@@ -8,15 +8,16 @@ import java.io.Serializable;
 public class FloorDTO implements Serializable {
     private static final long serialVersionUID	= -6507501740566566265L;
 
-    private String code;
+    private String name;
     private String map;
+    private Integer id;
 
-    public String getCode() {
-        return code;
+    public String getName() {
+        return name;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getMap() {
@@ -25,5 +26,13 @@ public class FloorDTO implements Serializable {
 
     public void setMap(String map) {
         this.map = map;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

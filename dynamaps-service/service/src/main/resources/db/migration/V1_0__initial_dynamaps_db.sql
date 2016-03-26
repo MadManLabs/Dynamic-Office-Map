@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `desk`;
 CREATE TABLE `desk` (
   `id` varchar(255) NOT NULL,
   `version_number` bigint(20) NOT NULL,
-  `code` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `inactive` bit(1) NOT NULL,
   `xlayout` varchar(255) NOT NULL,
   `ylayout` varchar(255) NOT NULL,
@@ -52,7 +52,7 @@ DROP TABLE IF EXISTS `floor`;
 CREATE TABLE `floor` (
   `id` varchar(255) NOT NULL,
   `version_number` bigint(20) NOT NULL,
-  `code` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `inactive` bit(1) NOT NULL,
   `map` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
@@ -108,7 +108,7 @@ DROP TABLE IF EXISTS `person`;
 CREATE TABLE `person` (
   `id` varchar(255) NOT NULL,
   `version_number` bigint(20) NOT NULL,
-  `code` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `inactive` bit(1) NOT NULL,
   `name` varchar(255) NOT NULL,

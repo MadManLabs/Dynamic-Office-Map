@@ -11,16 +11,14 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @MappedSuperclass
-public abstract class AbstractPersistable implements java.io.Serializable, Persistable<String> {
+public abstract class AbstractPersistable implements java.io.Serializable, Persistable<Integer> {
 
 	private static final long serialVersionUID = 2535090450811888936L;
 
 	@Id
-	@GeneratedValue(generator = "system-uuid")
-	@GenericGenerator(name = "system-uuid", strategy = "uuid2")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID")
-	@Property(policy=PojomaticPolicy.TO_STRING)
-	private String id;
+	private Integer id;
 	
 	@Version
 	@Column(name="VERSION_NUMBER")
@@ -33,7 +31,7 @@ public abstract class AbstractPersistable implements java.io.Serializable, Persi
      * 
      * @see org.springframework.data.domain.Persistable#getId()
      */
-	public String getId() {
+	public Integer getId() {
 
         return this.id;
     }
@@ -44,7 +42,7 @@ public abstract class AbstractPersistable implements java.io.Serializable, Persi
      * 
      * @param id the id to set
      */
-	public void setId(final String id) {
+	public void setId(final Integer id) {
 
         this.id = id;
     }

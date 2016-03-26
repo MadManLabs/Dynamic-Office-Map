@@ -9,10 +9,10 @@ public class PersonDTO implements Serializable {
     private static final long serialVersionUID	= -7639785294508068012L;
 
     private String name;
-    private String code;
-    private String description;
+    private String email;
     private DeskDTO desk;
-    private GeolocationDTO geolocation;
+    private String mac;
+    private Integer id;
 
     public String getName() {
         return name;
@@ -22,20 +22,13 @@ public class PersonDTO implements Serializable {
         this.name = name;
     }
 
-    public String getCode() {
-        return code;
+
+    public String getEmail() {
+        return email;
     }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public DeskDTO getDesk() {
@@ -46,11 +39,19 @@ public class PersonDTO implements Serializable {
         this.desk = desk;
     }
 
-    public GeolocationDTO getGeolocation() {
-        return geolocation;
+    public String getMac() {
+        return mac;
     }
 
-    public void setGeolocation(GeolocationDTO geolocation) {
-        this.geolocation = geolocation;
+    public void setMac(String mac) {
+        this.mac = mac;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

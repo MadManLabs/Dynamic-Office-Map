@@ -5,6 +5,7 @@ import org.pojomatic.annotations.Property;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -15,21 +16,21 @@ public class Desk extends AbstractPersistable {
 	/** Generated Serial Version UID. */
 	private static final long	serialVersionUID	= 9197221728593377103L;
 
-	@Column(name = "CODE", nullable = false)
+	@Column(name = "CODE", nullable = true)
 	@Property(policy = PojomaticPolicy.TO_STRING)
 	private String				code;
 
-	@Column(name = "XLAYOUT", nullable = false)
+	@Column(name = "XLAYOUT", nullable = true)
 	@Property(policy = PojomaticPolicy.TO_STRING)
 	private String xlayout;
 
-	@Column(name = "YLAYOUT", nullable = false)
+	@Column(name = "YLAYOUT", nullable = true)
 	@Property(policy = PojomaticPolicy.TO_STRING)
 	private String				ylayout;
 
-	@Column(name = "INACTIVE", nullable = false)
 	@Property(policy = PojomaticPolicy.TO_STRING)
-	private boolean				inactive;
+	@ManyToOne
+	private Zone zone;
 
 	/**
 	 * Default Constructor.
@@ -39,12 +40,11 @@ public class Desk extends AbstractPersistable {
 	}
 
 
-	public Desk(final String code, final String xlayout, final String ylayout, final boolean inactive) {
+	public Desk(final String code, final String xlayout, final String ylayout) {
 		this();
 		this.code = code;
 		this.xlayout = xlayout;
 		this.ylayout = ylayout;
-		this.inactive = inactive;
 	}
 
 	public String getCode() {
@@ -74,13 +74,11 @@ public class Desk extends AbstractPersistable {
 		this.ylayout = ylayout;
 	}
 
-	public boolean isInactive() {
-		return inactive;
+	public Zone getZone() {
+		return zone;
 	}
 
-	public void setInactive(
-		final boolean inactive) {
-		this.inactive = inactive;
+	public void setZone(Zone zone) {
+		this.zone = zone;
 	}
-
 }

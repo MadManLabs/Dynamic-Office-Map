@@ -9,10 +9,11 @@ public class DeskDTO implements Serializable {
 
     private static final long serialVersionUID	= -6780532242587430199L;
 
+    private Integer id;
     private String code;
     private String xlayout;
     private String ylayout;
-    private FloorDTO floor;
+    private ZoneDTO zone;
 
     public String getCode() {
         return code;
@@ -38,11 +39,21 @@ public class DeskDTO implements Serializable {
         this.ylayout = ylayout;
     }
 
-    public FloorDTO getFloor() {
-        return floor;
+    public ZoneDTO getZone() {
+        return zone;
     }
 
-    public void setFloor(FloorDTO floor) {
-        this.floor = floor;
+    public void setZone(ZoneDTO zone) {
+        this.zone = zone;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+
 }

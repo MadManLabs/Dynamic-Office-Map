@@ -7,8 +7,7 @@ import org.springframework.stereotype.Repository;
 import dynamaps.model.configuration.Person;
 
 @Repository
-public interface PersonRepository extends JpaRepository<Person, String> {
+public interface PersonRepository extends JpaRepository<Person, Integer> {
 
-	Person findByCode(
-		String code);
+	Person findByName(String name);
 }
