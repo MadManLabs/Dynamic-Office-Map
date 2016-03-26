@@ -44,6 +44,11 @@ public class DynamapsViewServiceImpl implements DynamapsViewService {
     }
 
     @Override
+    public PersonDTO getPersonDetails(Integer id) {
+        return dynamapsTransformer.transform(personRepository.findOne(id));
+    }
+
+    @Override
     public List<PersonDTO> getAllPersons() {
         return dynamapsTransformer.toPersonDtoList(personRepository.findAll());
     }
@@ -63,8 +68,11 @@ public class DynamapsViewServiceImpl implements DynamapsViewService {
         if (personDTO.getId() != null) {
             existingPerson = personRepository.findOne(personDTO.getId());
             if (existingPerson != null) {
+
                 if (existingDesk != null) {
                     existingPerson.setDesk(existingDesk);
+                } else if (existingPerson.getDesk() == null) {
+                    existingPerson.setDesk(deskRepository.save(new Desk("NO_DESK", "", "")));
                 }
                 if (existingZone != null) {
                     existingPerson.setZone(existingZone);
@@ -83,6 +91,8 @@ public class DynamapsViewServiceImpl implements DynamapsViewService {
                 Person newPerson = dynamapsTransformer.transform(personDTO);
                 if (existingDesk != null) {
                     newPerson.setDesk(existingDesk);
+                } else {
+                    newPerson.setDesk(deskRepository.save(new Desk("NO_DESK", "", "")));
                 }
                 if (existingZone != null) {
                     newPerson.setZone(existingZone);
@@ -93,6 +103,8 @@ public class DynamapsViewServiceImpl implements DynamapsViewService {
             Person newPerson = dynamapsTransformer.transform(personDTO);
             if (existingDesk != null) {
                 newPerson.setDesk(existingDesk);
+            } else {
+                newPerson.setDesk(deskRepository.save(new Desk("NO_DESK", "", "")));
             }
             if (existingZone != null) {
                 newPerson.setZone(existingZone);
@@ -238,5 +250,20 @@ public class DynamapsViewServiceImpl implements DynamapsViewService {
                 return null;
             }
         }
+    }
+
+    @Override
+    public List<DeskDTO> getAllDesksByZone(Integer zoneId) {
+        return dynamapsTransformer.toDeskDtoList(deskRepository.findByZoneId(zoneId));
+    }
+
+    @Override
+    public List<DeskDTO> getAllDesksByFloor(Integer floorId) {
+        return dynamapsTransformer.toDeskDtoList(deskRepository.findByZoneFloorId(floorId));
+    }
+
+    @Override
+    public List<PersonDTO> getAllPersonsByFloor(Integer floorId) {
+        return dynamapsTransformer.toPersonDtoList(personRepository.findByDeskZoneFloorId(floorId));
     }
 }

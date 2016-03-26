@@ -15,6 +15,8 @@ public interface DynamapsViewService {
 
     PersonDTO getPersonDetails(String name);
 
+    PersonDTO getPersonDetails(Integer id);
+
     List<PersonDTO> getAllPersons();
 
     PersonDTO savePersonDetails(PersonDTO personDTO);
@@ -38,4 +40,10 @@ public interface DynamapsViewService {
     List<ZoneDTO> getAllZonesByFloor(Integer floorId);
 
     ZoneDTO saveZoneDetails(ZoneDTO zoneDTO);
+
+    List<DeskDTO> getAllDesksByZone(Integer zoneId);
+
+    List<DeskDTO> getAllDesksByFloor(Integer floorId);
+
+    List<PersonDTO> getAllPersonsByFloor(Integer floorId);
 }

@@ -23,6 +23,7 @@ public class DynamapsTransformerImpl implements DynamapsTransformer {
     public PersonDTO transform(Person person) {
         if (person != null) {
             PersonDTO personDTO = new PersonDTO();
+            personDTO.setId(person.getId());
             personDTO.setName(person.getName());
             personDTO.setEmail(person.getEmail());
             personDTO.setMac(person.getMac());

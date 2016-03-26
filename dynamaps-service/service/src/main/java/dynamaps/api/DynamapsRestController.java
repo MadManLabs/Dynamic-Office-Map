@@ -38,6 +38,15 @@ public class DynamapsRestController {
 		return new ResponseEntity<PersonDTO>(personDTO, OK);
 	}
 
+	@RequestMapping(produces = APPLICATION_JSON_VALUE, method = GET, value = "/person/byid/{code}")
+	@ResponseBody
+	public ResponseEntity<PersonDTO> getPersonDetails(@PathVariable("code") final Integer code) {
+		LOGGER.debug("REST call for getting a person by id: " + code);
+		PersonDTO personDTO = dynamapsViewService.getPersonDetails(code);
+
+		return new ResponseEntity<PersonDTO>(personDTO, OK);
+	}
+
 	@RequestMapping(produces = APPLICATION_JSON_VALUE, method = GET, value = "/person")
 	@ResponseBody
 	public ResponseEntity<List<PersonDTO>> getAllPersonDetails() {
@@ -173,6 +182,24 @@ public class DynamapsRestController {
 		List<ZoneDTO> zoneDTOs = dynamapsViewService.getAllZones();
 
 		return new ResponseEntity<List<ZoneDTO>>(zoneDTOs, OK);
+	}
+
+	@RequestMapping(produces = APPLICATION_JSON_VALUE, method = GET, value = "/zone/{id}/desk")
+	@ResponseBody
+	public ResponseEntity<List<DeskDTO>> getAllDeskDetailsByZone(@PathVariable("id") final Integer id) {
+
+		List<DeskDTO> deskDTOs = dynamapsViewService.getAllDesksByZone(id);
+
+		return new ResponseEntity<List<DeskDTO>>(deskDTOs, OK);
+	}
+
+	@RequestMapping(produces = APPLICATION_JSON_VALUE, method = GET, value = "/floor/{id}/desk")
+	@ResponseBody
+	public ResponseEntity<List<DeskDTO>> getAllDeskDetailsByFloor(@PathVariable("id") final Integer id) {
+
+		List<DeskDTO> deskDTOs = dynamapsViewService.getAllDesksByFloor(id);
+
+		return new ResponseEntity<List<DeskDTO>>(deskDTOs, OK);
 	}
 
 
