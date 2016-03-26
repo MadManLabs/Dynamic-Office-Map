@@ -10,6 +10,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 import dynamaps.dto.DeskDTO;
 import dynamaps.dto.FloorDTO;
 import dynamaps.dto.PersonDTO;
+import dynamaps.dto.ZoneDTO;
 import dynamaps.service.DynamapsViewService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -130,4 +131,49 @@ public class DynamapsRestController {
 		DeskDTO saved = dynamapsViewService.saveDeskDetails(deskDTO);
 		return new ResponseEntity<Object>(saved, OK);
 	}
+
+	@RequestMapping(produces = APPLICATION_JSON_VALUE, method = GET, value = "/zone/{code}")
+	@ResponseBody
+	public ResponseEntity<ZoneDTO> getZoneDetails(@PathVariable("code") final Integer code) {
+		LOGGER.debug("REST call for getting desk by name: " + code);
+		ZoneDTO zoneDTO = dynamapsViewService.getZoneDetails(code);
+
+		return new ResponseEntity<ZoneDTO>(zoneDTO, OK);
+	}
+
+	@RequestMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE, method = POST, value = "/zone")
+	@ResponseBody
+	public ResponseEntity<?> saveZoneDetails(@RequestBody final ZoneDTO zoneDTO) {
+		LOGGER.debug("Saving zone " + zoneDTO);
+		ZoneDTO saved = dynamapsViewService.saveZoneDetails(zoneDTO);
+		return new ResponseEntity<Object>(saved, OK);
+	}
+
+	@RequestMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE, method = PUT, value = "/zone/{code}")
+	@ResponseBody
+	public ResponseEntity<?> updateZoneDetails(@RequestBody final ZoneDTO zoneDTO, @PathVariable("code") final Integer code) {
+		LOGGER.debug("updating desk with code " + code);
+		ZoneDTO saved = dynamapsViewService.saveZoneDetails(zoneDTO);
+		return new ResponseEntity<Object>(saved, OK);
+	}
+
+	@RequestMapping(produces = APPLICATION_JSON_VALUE, method = GET, value = "/floor/{id}/zone")
+	@ResponseBody
+	public ResponseEntity<List<ZoneDTO>> getAllZoneDetailsByFloor(@PathVariable("id") final Integer id) {
+
+		List<ZoneDTO> zoneDTOs = dynamapsViewService.getAllZonesByFloor(id);
+
+		return new ResponseEntity<List<ZoneDTO>>(zoneDTOs, OK);
+	}
+
+	@RequestMapping(produces = APPLICATION_JSON_VALUE, method = GET, value = "/zone")
+	@ResponseBody
+	public ResponseEntity<List<ZoneDTO>> getAllZonesDetails() {
+
+		List<ZoneDTO> zoneDTOs = dynamapsViewService.getAllZones();
+
+		return new ResponseEntity<List<ZoneDTO>>(zoneDTOs, OK);
+	}
+
+
 }

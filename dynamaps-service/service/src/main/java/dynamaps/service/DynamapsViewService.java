@@ -3,6 +3,7 @@ package dynamaps.service;
 import dynamaps.dto.DeskDTO;
 import dynamaps.dto.FloorDTO;
 import dynamaps.dto.PersonDTO;
+import dynamaps.dto.ZoneDTO;
 
 import java.util.List;
 
@@ -30,13 +31,11 @@ public interface DynamapsViewService {
 
     DeskDTO saveDeskDetails(DeskDTO deskDTO);
 
+    ZoneDTO getZoneDetails(Integer id);
 
+    List<ZoneDTO> getAllZones();
 
+    List<ZoneDTO> getAllZonesByFloor(Integer floorId);
 
-
-
-
-
-
-
+    ZoneDTO saveZoneDetails(ZoneDTO zoneDTO);
 }

@@ -3,7 +3,9 @@ package dynamaps.service;
 import dynamaps.dto.DeskDTO;
 import dynamaps.dto.FloorDTO;
 import dynamaps.dto.PersonDTO;
+import dynamaps.dto.ZoneDTO;
 import dynamaps.model.configuration.Floor;
+import dynamaps.model.configuration.Zone;
 import dynamaps.repository.configuration.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +31,9 @@ public class DynamapsViewServiceImpl implements DynamapsViewService {
 
     @Autowired
     private FloorRepository floorRepository;
+
+    @Autowired
+    private ZoneRepository zoneRepository;
 
 
     @Override
@@ -90,5 +95,60 @@ public class DynamapsViewServiceImpl implements DynamapsViewService {
     @Override
     public DeskDTO saveDeskDetails(DeskDTO deskDTO) {
         return dynamapsTransformer.transform(deskRepository.save(dynamapsTransformer.transform(deskDTO)));
+    }
+
+    @Override
+    public ZoneDTO getZoneDetails(Integer id) {
+        return dynamapsTransformer.transform(zoneRepository.findOne(id));
+    }
+
+    @Override
+    public List<ZoneDTO> getAllZones() {
+        return dynamapsTransformer.toZoneDtoList(zoneRepository.findAll());
+    }
+
+    @Override
+    public List<ZoneDTO> getAllZonesByFloor(Integer floorId) {
+        return dynamapsTransformer.toZoneDtoList(zoneRepository.findByFloorId(floorId));
+    }
+
+    @Override
+    public ZoneDTO saveZoneDetails(ZoneDTO zoneDTO) {
+        Zone existingZone = null;
+        if (zoneDTO.getFloor() != null && zoneDTO.getFloor().getId() != null) {
+            Floor existingFloor = floorRepository.findOne(zoneDTO.getFloor().getId());
+            if (existingFloor != null) {
+                if (zoneDTO.getId() != null) {
+                    existingZone = zoneRepository.findOne(zoneDTO.getId());
+                    if (existingZone != null) {
+                        existingZone.setFloor(existingFloor);
+                        existingZone.setName(zoneDTO.getName());
+                        return dynamapsTransformer.transform(zoneRepository.save(existingZone));
+                    } else {
+                        Zone newZone = dynamapsTransformer.transform(zoneDTO);
+                        newZone.setFloor(existingFloor);
+                        return dynamapsTransformer.transform(zoneRepository.save(newZone));
+                    }
+                } else {
+                    Zone newZone = dynamapsTransformer.transform(zoneDTO);
+                    newZone.setFloor(existingFloor);
+                    return dynamapsTransformer.transform(zoneRepository.save(newZone));
+                }
+            } else {
+                return null;
+            }
+        } else {
+            if (zoneDTO.getId() != null) {
+                existingZone = zoneRepository.findOne(zoneDTO.getId());
+                if (existingZone != null) {
+                    existingZone.setName(zoneDTO.getName());
+                    return dynamapsTransformer.transform(zoneRepository.save(existingZone));
+                } else {
+                    return null;
+                }
+            } else {
+                return null;
+            }
+        }
     }
 }
