@@ -13,6 +13,7 @@ public class PersonDTO implements Serializable {
     private DeskDTO desk;
     private String mac;
     private Integer id;
+    private ZoneDTO zone;
 
     public String getName() {
         return name;
@@ -53,5 +54,13 @@ public class PersonDTO implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public ZoneDTO getZone() {
+        return zone;
+    }
+
+    public void setZone(ZoneDTO zone) {
+        this.zone = zone;
     }
 }

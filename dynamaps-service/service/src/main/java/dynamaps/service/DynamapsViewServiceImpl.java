@@ -4,7 +4,9 @@ import dynamaps.dto.DeskDTO;
 import dynamaps.dto.FloorDTO;
 import dynamaps.dto.PersonDTO;
 import dynamaps.dto.ZoneDTO;
+import dynamaps.model.configuration.Desk;
 import dynamaps.model.configuration.Floor;
+import dynamaps.model.configuration.Person;
 import dynamaps.model.configuration.Zone;
 import dynamaps.repository.configuration.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +50,55 @@ public class DynamapsViewServiceImpl implements DynamapsViewService {
 
     @Override
     public PersonDTO savePersonDetails(PersonDTO personDTO) {
-        return dynamapsTransformer.transform(personRepository.save(dynamapsTransformer.transform(personDTO)));
+        Person existingPerson = null;
+        Desk existingDesk = null;
+        Zone existingZone = null;
+        if (personDTO.getDesk() != null && personDTO.getDesk().getId() != null) {
+            existingDesk = deskRepository.findOne(personDTO.getDesk().getId());
+        }
+        if (personDTO.getZone() != null && personDTO.getZone().getId() != null) {
+            existingZone = zoneRepository.findOne(personDTO.getZone().getId());
+        }
+
+        if (personDTO.getId() != null) {
+            existingPerson = personRepository.findOne(personDTO.getId());
+            if (existingPerson != null) {
+                if (existingDesk != null) {
+                    existingPerson.setDesk(existingDesk);
+                }
+                if (existingZone != null) {
+                    existingPerson.setZone(existingZone);
+                }
+                if (personDTO.getName() != null) {
+                    existingPerson.setName(personDTO.getName());
+                }
+                if (personDTO.getEmail() != null) {
+                    existingPerson.setEmail(personDTO.getEmail());
+                }
+                if (personDTO.getMac() != null) {
+                    existingPerson.setMac(personDTO.getMac());
+                }
+                return dynamapsTransformer.transform(personRepository.save(existingPerson));
+            } else {
+                Person newPerson = dynamapsTransformer.transform(personDTO);
+                if (existingDesk != null) {
+                    newPerson.setDesk(existingDesk);
+                }
+                if (existingZone != null) {
+                    newPerson.setZone(existingZone);
+                }
+                return dynamapsTransformer.transform(personRepository.save(newPerson));
+            }
+        } else {
+            Person newPerson = dynamapsTransformer.transform(personDTO);
+            if (existingDesk != null) {
+                newPerson.setDesk(existingDesk);
+            }
+            if (existingZone != null) {
+                newPerson.setZone(existingZone);
+            }
+            return dynamapsTransformer.transform(personRepository.save(newPerson));
+        }
     }
 
     @Override
@@ -94,7 +144,45 @@ public class DynamapsViewServiceImpl implements DynamapsViewService {
 
     @Override
     public DeskDTO saveDeskDetails(DeskDTO deskDTO) {
-        return dynamapsTransformer.transform(deskRepository.save(dynamapsTransformer.transform(deskDTO)));
+        Desk existingDesk = null;
+        Zone existingZone = null;
+
+        if (deskDTO.getZone() != null && deskDTO.getZone().getId() != null) {
+            existingZone = zoneRepository.findOne(deskDTO.getZone().getId());
+        }
+
+        if (deskDTO.getId() != null) {
+            existingDesk = deskRepository.findOne(deskDTO.getId());
+            if (existingDesk != null) {
+
+                if (existingZone != null) {
+                    existingDesk.setZone(existingZone);
+                }
+                if (deskDTO.getCode() != null) {
+                    existingDesk.setCode(deskDTO.getCode());
+                }
+                if (deskDTO.getXlayout() != null) {
+                    existingDesk.setXlayout(deskDTO.getXlayout());
+                }
+                if (deskDTO.getYlayout() != null) {
+                    existingDesk.setYlayout(deskDTO.getXlayout());
+                }
+                return dynamapsTransformer.transform(deskRepository.save(existingDesk));
+            } else {
+                Desk newDesk = dynamapsTransformer.transform(deskDTO);
+                if (newDesk != null) {
+                    newDesk.setZone(existingZone);
+                }
+
+                return dynamapsTransformer.transform(deskRepository.save(newDesk));
+            }
+        } else {
+            Desk newDesk = dynamapsTransformer.transform(deskDTO);
+            if (existingZone != null) {
+                newDesk.setZone(existingZone);
+            }
+            return dynamapsTransformer.transform(deskRepository.save(newDesk));
+        }
     }
 
     @Override

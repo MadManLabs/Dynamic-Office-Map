@@ -27,6 +27,7 @@ public class DynamapsTransformerImpl implements DynamapsTransformer {
             personDTO.setEmail(person.getEmail());
             personDTO.setMac(person.getMac());
             personDTO.setDesk(transform(person.getDesk()));
+            personDTO.setZone(transform(person.getZone()));
             return personDTO;
         } else {
             return null;
@@ -34,8 +35,12 @@ public class DynamapsTransformerImpl implements DynamapsTransformer {
     }
 
     @Override
-    public List<PersonDTO> toPersonDtoList(List<Person> person) {
-        return null;
+    public List<PersonDTO> toPersonDtoList(List<Person> persons) {
+        List<PersonDTO> personDTOs= new ArrayList<>();
+        for (Person person : persons) {
+            personDTOs.add(transform(person));
+        }
+        return personDTOs;
     }
 
 
@@ -47,6 +52,7 @@ public class DynamapsTransformerImpl implements DynamapsTransformer {
             person.setEmail(personDTO.getEmail());
             person.setName(personDTO.getName());
             person.setDesk(transform(personDTO.getDesk()));
+            person.setZone(transform(personDTO.getZone()));
             person.setId(personDTO.getId());
             return person;
         } else {
@@ -121,8 +127,12 @@ public class DynamapsTransformerImpl implements DynamapsTransformer {
     }
 
     @Override
-    public List<DeskDTO> toDeskDtoList(List<Desk> desk) {
-        return null;
+    public List<DeskDTO> toDeskDtoList(List<Desk> desks) {
+        List<DeskDTO> deskDTOs= new ArrayList<>();
+        for (Desk desk : desks) {
+            deskDTOs.add(transform(desk));
+        }
+        return deskDTOs;
     }
 
 

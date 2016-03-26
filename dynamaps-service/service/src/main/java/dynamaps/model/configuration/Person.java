@@ -30,6 +30,10 @@ public class Person extends AbstractPersistable {
 	@OneToOne @MapsId
 	private Desk desk;
 
+	@Property(policy = PojomaticPolicy.TO_STRING)
+	@ManyToOne
+	private Zone zone;
+
 
 	public Person() {
 		super();
@@ -67,5 +71,13 @@ public class Person extends AbstractPersistable {
 
 	public void setDesk(Desk desk) {
 		this.desk = desk;
+	}
+
+	public Zone getZone() {
+		return zone;
+	}
+
+	public void setZone(Zone zone) {
+		this.zone = zone;
 	}
 }

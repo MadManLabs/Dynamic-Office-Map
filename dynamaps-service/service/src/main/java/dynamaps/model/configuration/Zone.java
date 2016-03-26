@@ -25,6 +25,9 @@ public class Zone extends AbstractPersistable {
 	@OneToMany(mappedBy="zone")
 	private List<Desk> desks;
 
+	@OneToMany(mappedBy="zone")
+	private List<Person> persons;
+
 	/**
 	 * Default Constructor.
 	 */
@@ -55,5 +58,13 @@ public class Zone extends AbstractPersistable {
 
 	public void setDesks(List<Desk> desks) {
 		this.desks = desks;
+	}
+
+	public List<Person> getPersons() {
+		return persons;
+	}
+
+	public void setPersons(List<Person> persons) {
+		this.persons = persons;
 	}
 }
