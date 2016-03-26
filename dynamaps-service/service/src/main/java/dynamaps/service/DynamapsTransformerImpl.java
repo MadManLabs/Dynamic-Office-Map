@@ -161,8 +161,12 @@ public class DynamapsTransformerImpl implements DynamapsTransformer {
     }
 
     @Override
-    public List<ZoneDTO> toZoneDtoList(List<Zone> zone) {
-        return null;
+    public List<ZoneDTO> toZoneDtoList(List<Zone> zones) {
+        List<ZoneDTO> zoneDTOs = new ArrayList<>();
+        for (Zone zone : zones) {
+            zoneDTOs.add(transform(zone));
+        }
+        return zoneDTOs;
     }
 
 
