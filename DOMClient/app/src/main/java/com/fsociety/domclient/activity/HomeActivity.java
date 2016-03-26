@@ -13,6 +13,8 @@ import org.androidannotations.annotations.EActivity;
 
 @EActivity(R.layout.home_activity)
 public class HomeActivity extends BaseActivity {
+	private Menu homeMenu;
+
 	@Bean
 	protected StorageWriterService storageWriterService;
 
@@ -24,7 +26,9 @@ public class HomeActivity extends BaseActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		homeMenu = menu;
 		getMenuInflater().inflate(R.menu.home_menu, menu);
+		resetMenu();
 		return true;
 	}
 
@@ -35,8 +39,17 @@ public class HomeActivity extends BaseActivity {
 			case R.id.logout_action:
 				application.getSettings().setUsername(null);
 				storageWriterService.saveObjectToFile(application.getSettings(), application.getConfiguration().getApplicationBinDirectory(), application.getConfiguration().getSettingsFilename());
+				recreate();
 				return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	public void resetMenu() {
+		if (application.getSettings().getUsername() == null) {
+			homeMenu.findItem(R.id.logout_action).setVisible(false);
+		} else {
+			homeMenu.findItem(R.id.logout_action).setVisible(true);
+		}
 	}
 }

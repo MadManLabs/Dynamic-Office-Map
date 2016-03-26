@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.fsociety.domclient.R;
+import com.fsociety.domclient.activity.FindFriendActivity_;
 import com.fsociety.domclient.activity.RegisterDeskActivity_;
 import com.fsociety.domclient.service.StorageWriterService;
 
@@ -28,6 +29,8 @@ public class HomeFragment extends BaseFragment {
 	protected Button loginButton;
 	@ViewById(R.id.registerDeskButton)
 	protected Button registerDeskButton;
+	@ViewById(R.id.findFriendButton)
+	protected Button findFriendButton;
 	@ViewById(R.id.loggedAsTextView)
 	protected TextView loggedAsTextView;
 	@ViewById(R.id.loggedInUserRelativeLayout)
@@ -58,6 +61,12 @@ public class HomeFragment extends BaseFragment {
 	@Click(R.id.registerDeskButton)
 	protected void onReadQRCodeButtonClick(View view) {
 		Intent intent = new Intent(getActivity(), RegisterDeskActivity_.class);
+		getActivity().startActivity(intent);
+	}
+
+	@Click(R.id.findFriendButton)
+	protected void onFindFriendButtonClick(View view) {
+		Intent intent = new Intent(getActivity(), FindFriendActivity_.class);
 		getActivity().startActivity(intent);
 	}
 }

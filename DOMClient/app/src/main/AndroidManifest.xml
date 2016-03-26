@@ -19,7 +19,6 @@
 				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
-
 		<activity android:name=".activity.RegisterDeskActivity_" android:parentActivityName=".activity.HomeActivity_">
 			<meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".activity.HomeActivity_"/>
 			<intent-filter>
@@ -27,6 +26,12 @@
 
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
+		</activity>
+		<activity android:name=".activity.FindFriendActivity_" android:parentActivityName=".activity.FindFriendActivity_">
+			<meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".activity.HomeActivity_"/>
+		</activity>
+		<activity android:name=".activity.UserDetailsActivity_" android:parentActivityName=".activity.UserDetailsActivity_">
+			<meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".activity.FindFriendActivity_"/>
 		</activity>
 	</application>
 
