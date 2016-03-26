@@ -1,0 +1,22 @@
+<resources>
+
+	<style name="AppTheme" parent="AppBaseTheme">
+		<item name="android:windowSoftInputMode">stateHidden</item>
+	</style>
+
+	<style name="divider">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">1dp</item>
+		<item name="android:background">?android:attr/listDivider</item>
+	</style>
+
+	<style name="button">
+		<item name="android:paddingRight">18dp</item>
+		<item name="android:paddingLeft">18dp</item>
+	</style>
+
+	<style name="borderlessImage">
+		<item name="android:background">?android:attr/selectableItemBackground</item>
+	</style>
+
+</resources>

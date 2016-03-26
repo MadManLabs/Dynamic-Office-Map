@@ -1,0 +1,20 @@
+<resources>
+	<string name="application_name">DOM Client</string>
+
+	<string name="home_activity_logout_action_title">About</string>
+	<string name="home_activity_about_action_title">About</string>
+	<string name="home_activity_welcome_text">Welcome to the Dynamic Office Map Client!</string>
+	<string name="home_activity_logged_as_text">You are now logged as %1$s</string>
+	<string name="home_activity_login_explain_text">You must first login before you can do any changes. So please enter you credentials below…</string>
+	<string name="home_activity_username_text">Username:</string>
+	<string name="home_activity_login_text">Login</string>
+
+	<string name="home_activity_what_to_do_text">What do you want to do today?</string>
+	<string name="home_activity_register_desk_text">Register to a new desk</string>
+	<string name="home_activity_find_friend_text">Find a friend</string>
+
+	<string name="register_desk_activity_register_desk_1_text"><![CDATA[If you\'d like to register your desk please:<br/>- press the button below and scan the QR code attached to your desk]]></string>
+	<string name="register_desk_activity_register_desk_2_text"><![CDATA[- scan the NFC tag attached to your desk now]]></string>
+	<string name="register_desk_activity_read_qr_code_button_text">Scan QR code</string>
+	<string name="register_desk_activity_scan_cancelled_text">Scan was canceled. Please try again!</string>
+</resources>

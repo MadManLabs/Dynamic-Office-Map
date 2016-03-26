@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+				xmlns:tools="http://schemas.android.com/tools"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:paddingBottom="@dimen/activity_vertical_margin"
+				android:paddingLeft="@dimen/activity_horizontal_margin"
+				android:paddingRight="@dimen/activity_horizontal_margin"
+				android:paddingTop="@dimen/activity_vertical_margin"
+				tools:context=".activity.HomeActivity_$HomeFragment_">
+
+	<TextView
+			android:id="@+id/welcomeTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/home_activity_welcome_text"/>
+
+	<RelativeLayout
+			android:id="@+id/loggedInUserRelativeLayout"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_below="@+id/welcomeTextView"
+			android:visibility="gone">
+
+		<TextView
+				android:id="@+id/loggedAsTextView"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="@dimen/view_vertical_margin"
+				android:text="@string/home_activity_logged_as_text"/>
+
+		<TextView
+				android:id="@+id/whatToDoTextView"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/loggedAsTextView"
+				android:layout_marginTop="20dp"
+				android:text="@string/home_activity_what_to_do_text"/>
+
+		<Button
+				android:id="@+id/registerDeskButton"
+				style="@style/button"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/whatToDoTextView"
+				android:layout_centerHorizontal="true"
+				android:layout_marginTop="@dimen/view_vertical_margin"
+				android:text="@string/home_activity_register_desk_text"
+				android:textSize="@dimen/text_appearance_smaller_medium"/>
+
+		<Button
+				android:id="@+id/findAFriendButton"
+				style="@style/button"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/registerDeskButton"
+				android:layout_centerHorizontal="true"
+				android:layout_marginTop="@dimen/view_vertical_margin"
+				android:text="@string/home_activity_find_friend_text"
+				android:textSize="@dimen/text_appearance_smaller_medium"/>
+
+	</RelativeLayout>
+
+	<RelativeLayout
+			android:id="@+id/notLoggedInUserRelativeLayout"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_below="@+id/welcomeTextView">
+
+		<TextView
+				android:id="@+id/loginExplainTextView"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="@dimen/view_vertical_margin"
+				android:text="@string/home_activity_login_explain_text"/>
+
+		<RelativeLayout
+				android:id="@+id/passwordRelativeLayout"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignLeft="@+id/loginExplainTextView"
+				android:layout_below="@+id/loginExplainTextView">
+
+			<TextView
+					android:id="@+id/usernameTextView"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:text="@string/home_activity_username_text"
+					android:textSize="@dimen/text_appearance_smaller_medium"/>
+
+			<EditText
+					android:id="@+id/usernameEditText"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="@dimen/spacing_between_views"
+					android:layout_toRightOf="@+id/usernameTextView"
+					android:textSize="@dimen/text_appearance_smaller_medium"/>
+		</RelativeLayout>
+
+		<Button
+				android:id="@+id/loginButton"
+				style="@style/button"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/passwordRelativeLayout"
+				android:layout_centerHorizontal="true"
+				android:layout_marginTop="@dimen/view_vertical_margin"
+				android:text="@string/home_activity_login_text"
+				android:textSize="@dimen/text_appearance_smaller_medium"/>
+
+	</RelativeLayout>
+
+</RelativeLayout>

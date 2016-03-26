@@ -1,0 +1,20 @@
+<resources>
+	<!-- Default screen margins, per the Android Design guidelines. -->
+	<dimen name="activity_horizontal_margin">16dp</dimen>
+	<dimen name="activity_vertical_margin">16dp</dimen>
+
+	<!-- Spacing between views -->
+	<dimen name="view_vertical_margin">5dp</dimen>
+	<dimen name="view_horizontal_margin">0dp</dimen>
+	<dimen name="spacing_between_views">5dp</dimen>
+	<dimen name="category_view_top_margin">15dp</dimen>
+	<dimen name="divider_vertical_margin">10dp</dimen>
+
+	<dimen name="layout_marginTop">0dp</dimen>
+
+	<!-- Align views -->
+	<dimen name="align_view_to_checkbox_margin">8dp</dimen>
+
+	<!-- Text sizes -->
+	<dimen name="text_appearance_smaller_medium">16sp</dimen>
+</resources>

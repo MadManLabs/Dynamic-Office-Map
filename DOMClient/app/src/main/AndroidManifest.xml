@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.fsociety.domclient"
+		  xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<uses-permission android:name="android.permission.CAMERA" />
+	<uses-permission android:name="android.permission.NFC" />
+
+	<application
+			android:name=".core.Application_"
+			android:allowBackup="true"
+			android:icon="@mipmap/ic_launcher"
+			android:label="@string/application_name"
+			android:supportsRtl="true"
+			android:theme="@style/AppTheme">
+		<activity android:name=".activity.HomeActivity_">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
+
+		<activity android:name=".activity.RegisterDeskActivity_" android:parentActivityName=".activity.HomeActivity_">
+			<meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".activity.HomeActivity_"/>
+			<intent-filter>
+				<action android:name="com.google.zxing.client.android.SCAN" />
+
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+	</application>
+
+</manifest>
