@@ -9,10 +9,24 @@
 				android:paddingTop="@dimen/activity_vertical_margin"
 				tools:context=".activity.FindFriendActivity_$FindFriendFragment_">
 
+	<ImageView
+			android:id="@+id/searchImageView"
+			android:layout_width="100dp"
+			android:layout_height="100dp"
+			android:layout_centerHorizontal="true"
+			android:layout_marginTop="10dp"
+			android:adjustViewBounds="true"
+			android:contentDescription="searchIcon"
+			android:scaleType="fitXY"
+			android:src="@drawable/search"/>
+
 	<TextView
 			android:id="@+id/findFriendTextView"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:textSize="@dimen/text_appearance_smaller_medium"
+			android:layout_marginTop="25dp"
+			android:layout_below="@+id/searchImageView"
 			android:text="@string/find_friend_activity_find_friend_text"/>
 
 	<RelativeLayout

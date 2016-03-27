@@ -3,7 +3,6 @@ package com.fsociety.domclient.fragment;
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.fsociety.domclient.R;
 import com.fsociety.domclient.rest.GetPersonDtoByName;
@@ -18,10 +17,16 @@ public class UserDetailsFragment extends BaseFragment {
 	protected TextView nameTextView;
 	@ViewById(R.id.emailTextView)
 	protected TextView emailTextView;
+	@ViewById(R.id.floorTextView)
+	protected TextView floorTextView;
 	@ViewById(R.id.mapWebView)
 	protected WebView mapWebView;
 
 	private String username;
+
+	public TextView getFloorTextView() {
+		return floorTextView;
+	}
 
 	public TextView getEmailTextView() {
 		return emailTextView;
@@ -44,8 +49,15 @@ public class UserDetailsFragment extends BaseFragment {
 		Bundle extras = getActivity().getIntent().getExtras();
 		if(extras !=null) {
 			username = extras.getString("username");
-			Toast.makeText(getActivity(), username, Toast.LENGTH_LONG).show();
+			//Toast.makeText(getActivity(), username, Toast.LENGTH_LONG).show();
 		}
+		mapWebView.getSettings().setJavaScriptEnabled(true);
+		//mapWebView.getSettings().setBuiltInZoomControls(true);
+		mapWebView.setVerticalScrollBarEnabled(true);
+		mapWebView.setHorizontalScrollBarEnabled(true);
+		mapWebView.getSettings().setLoadWithOverviewMode(true);
+		mapWebView.getSettings().setUseWideViewPort(true);
+		mapWebView.setScrollbarFadingEnabled(false);
 		nameTextView.setText(String.format(getResources().getString(R.string.user_details_activity_name_text), ""));
 		emailTextView.setText(String.format(getResources().getString(R.string.user_details_activity_email_text), ""));
 		new GetPersonDtoByName(this).execute();

@@ -66,7 +66,7 @@ public class RegisterDeskActivity extends BaseActivity {
 		if (intent.hasExtra(NfcAdapter.EXTRA_TAG)) {
 			Parcelable[] parcelables = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
 			if (parcelables != null && parcelables.length > 0) {
-				Toast.makeText(this, readTextFromMessage((NdefMessage) parcelables[0]), Toast.LENGTH_LONG).show();
+				//Toast.makeText(this, readTextFromMessage((NdefMessage) parcelables[0]), Toast.LENGTH_LONG).show();
 				PersonDTO personDTO = new PersonDTO();
 				personDTO.setId(application.getSettings().getId());
 				DeskDTO deskDTO = new DeskDTO();

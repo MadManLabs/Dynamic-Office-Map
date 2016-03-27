@@ -9,17 +9,33 @@
 				android:paddingTop="@dimen/activity_vertical_margin"
 				tools:context=".activity.HomeActivity_$HomeFragment_">
 
+	<ImageView
+			android:id="@+id/endavaImageView"
+			android:layout_width="190dp"
+			android:layout_height="63dp"
+			android:layout_centerHorizontal="true"
+			android:layout_marginTop="10dp"
+			android:adjustViewBounds="true"
+			android:contentDescription="endavaIcon"
+			android:scaleType="fitXY"
+			android:src="@drawable/logo"/>
+
 	<TextView
 			android:id="@+id/welcomeTextView"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="@string/home_activity_welcome_text"/>
+			android:layout_below="@+id/endavaImageView"
+			android:text="@string/home_activity_welcome_text"
+			android:layout_marginTop="25dp"
+			android:textSize="@dimen/text_appearance_smaller_medium"
+			android:textStyle="bold"/>
 
 	<RelativeLayout
 			android:id="@+id/loggedInUserRelativeLayout"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_below="@+id/welcomeTextView"
+			android:layout_marginTop="25dp"
 			android:visibility="gone">
 
 		<TextView
@@ -27,7 +43,8 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginTop="@dimen/view_vertical_margin"
-				android:text="@string/home_activity_logged_as_text"/>
+				android:text="@string/home_activity_logged_as_text"
+				android:textSize="@dimen/text_appearance_smaller_medium"/>
 
 		<TextView
 				android:id="@+id/whatToDoTextView"
@@ -35,7 +52,8 @@
 				android:layout_height="wrap_content"
 				android:layout_below="@+id/loggedAsTextView"
 				android:layout_marginTop="20dp"
-				android:text="@string/home_activity_what_to_do_text"/>
+				android:text="@string/home_activity_what_to_do_text"
+				android:textSize="@dimen/text_appearance_smaller_medium"/>
 
 		<Button
 				android:id="@+id/registerDeskButton"
@@ -44,7 +62,7 @@
 				android:layout_height="wrap_content"
 				android:layout_below="@+id/whatToDoTextView"
 				android:layout_centerHorizontal="true"
-				android:layout_marginTop="@dimen/view_vertical_margin"
+				android:layout_marginTop="25dp"
 				android:text="@string/home_activity_register_desk_text"
 				android:textSize="@dimen/text_appearance_smaller_medium"/>
 
@@ -72,10 +90,11 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginTop="@dimen/view_vertical_margin"
-				android:text="@string/home_activity_login_explain_text"/>
+				android:text="@string/home_activity_login_explain_text"
+				android:textSize="@dimen/text_appearance_smaller_medium"/>
 
 		<RelativeLayout
-				android:id="@+id/passwordRelativeLayout"
+				android:id="@+id/usernameRelativeLayout"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_alignLeft="@+id/loginExplainTextView"
@@ -103,7 +122,7 @@
 				style="@style/button"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_below="@+id/passwordRelativeLayout"
+				android:layout_below="@+id/usernameRelativeLayout"
 				android:layout_centerHorizontal="true"
 				android:layout_marginTop="@dimen/view_vertical_margin"
 				android:text="@string/home_activity_login_text"

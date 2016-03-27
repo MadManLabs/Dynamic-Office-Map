@@ -13,14 +13,27 @@
 			android:id="@+id/registerDesk1TextView"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:textSize="@dimen/text_appearance_smaller_medium"
 			android:text="@string/register_desk_activity_register_desk_1_text"/>
+
+	<ImageView
+			android:id="@+id/qrImageView"
+			android:layout_width="100dp"
+			android:layout_height="100dp"
+			android:layout_centerHorizontal="true"
+			android:layout_below="@+id/registerDesk1TextView"
+			android:layout_marginTop="20dp"
+			android:adjustViewBounds="true"
+			android:contentDescription="qrIcon"
+			android:scaleType="fitXY"
+			android:src="@drawable/qr"/>
 
 	<Button
 			android:id="@+id/readQRCodeButton"
 			style="@style/button"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_below="@+id/registerDesk1TextView"
+			android:layout_below="@+id/qrImageView"
 			android:layout_centerHorizontal="true"
 			android:layout_marginTop="@dimen/view_vertical_margin"
 			android:text="@string/register_desk_activity_read_qr_code_button_text"/>
@@ -31,6 +44,19 @@
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/readQRCodeButton"
 			android:layout_marginTop="@dimen/view_vertical_margin"
+			android:textSize="@dimen/text_appearance_smaller_medium"
 			android:text="@string/register_desk_activity_register_desk_2_text"/>
+
+	<ImageView
+			android:id="@+id/nfcImageView"
+			android:layout_width="100dp"
+			android:layout_height="100dp"
+			android:layout_centerHorizontal="true"
+			android:layout_below="@+id/registerDesk2TextView"
+			android:layout_marginTop="20dp"
+			android:adjustViewBounds="true"
+			android:contentDescription="nfcIcon"
+			android:scaleType="fitXY"
+			android:src="@drawable/nfc"/>
 
 </RelativeLayout>

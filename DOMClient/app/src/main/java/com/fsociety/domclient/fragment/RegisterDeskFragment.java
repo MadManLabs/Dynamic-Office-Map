@@ -6,6 +6,7 @@ import android.nfc.NfcAdapter;
 import android.text.Html;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,8 @@ public class RegisterDeskFragment extends BaseFragment {
 	protected TextView registerDesk1TextView;
 	@ViewById(R.id.registerDesk2TextView)
 	protected TextView registerDesk2TextView;
+	@ViewById(R.id.nfcImageView)
+	protected ImageView nfcImageView;
 	@ViewById(R.id.readQRCodeButton)
 	protected Button readQRCodeButton;
 
@@ -35,6 +38,7 @@ public class RegisterDeskFragment extends BaseFragment {
 			registerDesk2TextView.setText(Html.fromHtml(String.format(getResources().getString(R.string.register_desk_activity_register_desk_2_text), getResources().getString(R.string.application_name))));
 		} else {
 			registerDesk2TextView.setVisibility(View.INVISIBLE);
+			nfcImageView.setVisibility(View.INVISIBLE);
 		}
 	}
 
@@ -50,7 +54,7 @@ public class RegisterDeskFragment extends BaseFragment {
 			if (resultCode == Activity.RESULT_OK) {
 				String contents = intent.getStringExtra("SCAN_RESULT");
 				String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
-				Toast.makeText(getActivity(), "Scan resulted in code:" + contents, Toast.LENGTH_LONG).show();
+				//Toast.makeText(getActivity(), "Scan resulted in code:" + contents, Toast.LENGTH_LONG).show();
 				PersonDTO personDTO = new PersonDTO();
 				personDTO.setId(application.getSettings().getId());
 				DeskDTO deskDTO = new DeskDTO();

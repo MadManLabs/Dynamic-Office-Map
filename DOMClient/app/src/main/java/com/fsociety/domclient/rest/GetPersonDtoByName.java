@@ -51,8 +51,8 @@ public class GetPersonDtoByName extends AsyncTask<Void, Void, PersonDTO> {
 			progressDialog.dismiss();
 		}
 		userDetailsFragment.getNameTextView().setText(String.format(userDetailsFragment.getResources().getString(R.string.user_details_activity_name_text), personDTO.getName()));
-		userDetailsFragment.getEmailTextView().setText(String.format(userDetailsFragment.getResources().getString(R.string.user_details_activity_email_text), personDTO.getEmail()));
-		// TODO: Add the correct URL to retrieve the office map...
-		userDetailsFragment.getMapWebView().loadUrl("https://www.google.ro/");
+		userDetailsFragment.getEmailTextView().setText(String.format(userDetailsFragment.getResources().getString(R.string.user_details_activity_email_text), personDTO.getEmail()!=null ? personDTO.getEmail() : ""));
+		userDetailsFragment.getFloorTextView().setText(userDetailsFragment.getFloorTextView().getText()+ " " + ((personDTO.getZone()!=null && personDTO.getZone().getFloor()!=null &&  personDTO.getZone().getFloor().getName()!= null) ? personDTO.getZone().getFloor().getName() : ""));
+		userDetailsFragment.getMapWebView().loadUrl("http://" + userDetailsFragment.application.getConfiguration().getServerIp() + ":" + userDetailsFragment.application.getConfiguration().getServerPort() + "/second/#/personMap/"+personDTO.getId());
 	}
 }
