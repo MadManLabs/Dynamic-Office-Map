@@ -202,5 +202,14 @@ public class DynamapsRestController {
 		return new ResponseEntity<List<DeskDTO>>(deskDTOs, OK);
 	}
 
+	@RequestMapping(produces = APPLICATION_JSON_VALUE, method = GET, value = "/floor/{id}/person")
+	@ResponseBody
+	public ResponseEntity<List<PersonDTO>> getAllPersonDetailsByFloor(@PathVariable("id") final Integer id) {
+
+		List<PersonDTO> personDTOs = dynamapsViewService.getAllPersonsByFloor(id);
+
+		return new ResponseEntity<List<PersonDTO>>(personDTOs, OK);
+	}
+
 
 }
