@@ -9,6 +9,7 @@
 	<title>Dynamic Office Map</title>
 
 	<link href="<c:url value="/resources/library/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
+	<link href="<c:url value="/resources/library/font-awesome/css/font-awesome.min.css" />" rel="stylesheet">
 	<link href="<c:url value="/resources/style/main.css" />" rel="stylesheet">
 
 	<script>var HOST = "${pageContext.request.contextPath}";</script>
@@ -35,5 +36,7 @@
 	<script src="<c:url value="/resources/app/controllers/FloorsController.js" />"></script>
 	<script src="<c:url value="/resources/app/controllers/AddFloorController.js" />"></script>
 	<script src="<c:url value="/resources/app/controllers/ViewFloorController.js" />"></script>
+	<script src="<c:url value="/resources/app/controllers/ViewPersonController.js" />"></script>
+	<script src="<c:url value="/resources/app/controllers/ViewPersonMapController.js" />"></script>
 </body>
 </html>

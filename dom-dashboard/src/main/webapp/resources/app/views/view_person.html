@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="media">
+        <div class="media-left media-middle">
+            <a href="#">
+                <img ng-src="http://www.gravatar.com/avatar/{{person.hashGravatar}}fs=50" alt="Avatar" />
+            </a>
+        </div>
+        <div class="media-body">
+            <h1 class="media-heading">{{ person.name }}</h1>
+        </div>
+    </div>
+
+    <br/> <br/>
+
+    <div class="row">
+        <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box">
+                <i class="fa fa-4x fa-building wow bounceIn text-primary"></i>
+                <h3>Floor</h3>
+                <p class="text-muted">{{ floor }}</p>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box">
+                <i class="fa fa-4x fa-users wow bounceIn text-primary"></i>
+                <h3>Zone</h3>
+                <p class="text-muted">{{ zone }}</p>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box">
+                <i class="fa fa-4x fa-desktop wow bounceIn text-primary"></i>
+                <h3>Desk</h3>
+                <p class="text-muted">{{ desk }}</p>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box">
+                <i class="fa fa-4x fa-coffee wow bounceIn text-primary"></i>
+                <h3>Temporary Place</h3>
+                <p class="text-muted">{{ tmp }}</p>
+            </div>
+        </div>
+    </div>
+</div>

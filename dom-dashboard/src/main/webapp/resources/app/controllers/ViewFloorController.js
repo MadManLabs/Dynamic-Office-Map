@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dynamicOfficeMapApp')
-    .controller('ViewFloorController', function ($scope, $http, $uibModal, $routeParams, NotificationService) {
+    .controller('ViewFloorController', function ($scope, $http, $uibModal, $routeParams, $location) {
 
         var floorId = $routeParams.floorId;
         $scope.floor = {};
@@ -15,6 +15,10 @@ angular.module('dynamicOfficeMapApp')
         var gridSize = 1100;
 
         var canvas = new fabric.Canvas('floorMap', { selection: false });
+
+        $scope.viewPerson = function(personId) {
+            $location.path('/person/' + personId);
+        };
 
         $http({
             method: 'GET',

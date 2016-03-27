@@ -10,10 +10,10 @@
             <div class="panel-body">
                 <div class="row" ng-repeat="person in persons" style="margin-bottom: 5px;">
                     <div class="col-sm-4">
-                        <img ng-src="http://www.gravatar.com/avatar/{{person.hashGravatar}}fs=50" alt="Description" />
+                        <img ng-src="http://www.gravatar.com/avatar/{{person.hashGravatar}}fs=50" alt="Avatar" />
                     </div>
                     <div class="col-sm-8">
-                        {{person.name}}
+                        <a ng-click="viewPerson(person.id)">{{person.name}}</a>
                     </div>
                 </div>
                 <span ng-hide="persons.length">There are no persons here.</span>

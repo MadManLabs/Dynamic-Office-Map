@@ -13,4 +13,9 @@ public class HomeController {
         return "index";
     }
 
+    @RequestMapping(value = "/second", method = RequestMethod.GET)
+    public String second() {
+        return "second";
+    }
+
 }
