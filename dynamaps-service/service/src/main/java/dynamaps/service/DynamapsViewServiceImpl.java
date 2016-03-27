@@ -61,7 +61,23 @@ public class DynamapsViewServiceImpl implements DynamapsViewService {
 
     @Override
     public PersonDTO getPersonDetails(String name) {
-        return dynamapsTransformer.transform(personRepository.findByName(name));
+        PersonDTO personDTO =  dynamapsTransformer.transform(personRepository.findByName(name));
+        if (personDTO.getMac() != null) {
+            try {
+                final HttpHeaders headers = getHttpHeaders();
+                final HttpEntity request = new HttpEntity(headers);
+                String getMacUrl = sensorsUrl.concat(personDTO.getMac());
+                final HttpEntity<String> macInformation = restTemplate.exchange(getMacUrl, GET, request, String.class);
+                MacDTO macDto = OBJECT_MAPPER.readValue(macInformation.getBody(), new TypeReference<MacDTO>() {});
+                if (macDto != null && macDto.getZone() != null && macDto.getZone().getName() != null) {
+
+                    personDTO.setMacZone(dynamapsTransformer.transform(zoneRepository.findByName(macDto.getZone().getName())));
+                }
+            } catch (RestClientException | IOException e) {
+                LOGGER.debug("Tried to get location for Mac "+ personDTO.getMac() + " but received and error " + e);
+            }
+        }
+        return personDTO;
     }
 
     @Override
