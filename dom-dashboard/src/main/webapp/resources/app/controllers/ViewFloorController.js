@@ -28,12 +28,10 @@ angular.module('dynamicOfficeMapApp')
 
             if ($scope.floor.map) {
                 canvas.loadFromJSON($scope.floor.map, canvas.renderAll.bind(canvas), function(o, object) {
-                    if (object.objectType && (object.objectType === 'Zone' || object.objectType === 'Desk')) {
-                        object.hasControls = false;
-                        object.hasRotatingPoint = false;
-                        object.lockMovementX = true;
-                        object.lockMovementY = true;
-                    }
+                    object.hasControls = false;
+                    object.hasRotatingPoint = false;
+                    object.lockMovementX = true;
+                    object.lockMovementY = true;
                 });
             } else {
                 for (var i = 0; i < (gridSize / grid); i++) {
@@ -41,16 +39,6 @@ angular.module('dynamicOfficeMapApp')
                     canvas.add(new fabric.Line([ 0, i * grid, gridSize, i * grid], { stroke: '#ccc', selectable: false }))
                 }
             }
-
-            canvas.on('object:moving', function(options) {
-                if (options.target.objectType && (options.target.objectType === 'Zone' || options.target.objectType === 'Text')) {
-                    return;
-                }
-                options.target.set({
-                    left: Math.round(options.target.left / grid) * grid,
-                    top: Math.round(options.target.top / grid) * grid
-                });
-            });
 
             canvas.on('object:selected', function(object) {
                 if (object.target.objectType && object.target.objectType === 'Desk') {
