@@ -27,8 +27,8 @@ public class Person extends AbstractPersistable {
 	private String				mac;
 
 	@Property(policy = PojomaticPolicy.TO_STRING)
-	@OneToOne
-	@MapsId
+	@OneToOne(optional = true)
+	@JoinColumn(name="DESK_ID", referencedColumnName="ID", nullable=true)
 	private Desk desk;
 
 	@Property(policy = PojomaticPolicy.TO_STRING)
