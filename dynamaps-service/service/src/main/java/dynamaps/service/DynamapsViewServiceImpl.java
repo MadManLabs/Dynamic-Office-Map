@@ -1,22 +1,32 @@
 package dynamaps.service;
 
-import dynamaps.dto.DeskDTO;
-import dynamaps.dto.FloorDTO;
-import dynamaps.dto.PersonDTO;
-import dynamaps.dto.ZoneDTO;
+import dynamaps.dto.*;
 import dynamaps.exceptions.DeskOccupiedException;
 import dynamaps.model.configuration.Desk;
 import dynamaps.model.configuration.Floor;
 import dynamaps.model.configuration.Person;
 import dynamaps.model.configuration.Zone;
 import dynamaps.repository.configuration.*;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.springframework.http.HttpMethod.GET;
 
 /**
  * Created by caldea on 3/26/2016.
@@ -24,6 +34,8 @@ import java.util.List;
 @Service
 @Transactional
 public class DynamapsViewServiceImpl implements DynamapsViewService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DynamapsViewServiceImpl.class);
 
     @Autowired
     private DynamapsTransformer dynamapsTransformer;
@@ -40,6 +52,12 @@ public class DynamapsViewServiceImpl implements DynamapsViewService {
     @Autowired
     private ZoneRepository zoneRepository;
 
+    @Value("${sensor.mac.url}")
+    public String sensorsUrl;
+
+    private RestTemplate restTemplate = new RestTemplate();
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+
 
     @Override
     public PersonDTO getPersonDetails(String name) {
@@ -48,7 +66,30 @@ public class DynamapsViewServiceImpl implements DynamapsViewService {
 
     @Override
     public PersonDTO getPersonDetails(Integer id) {
-        return dynamapsTransformer.transform(personRepository.findOne(id));
+        PersonDTO personDTO = dynamapsTransformer.transform(personRepository.findOne(id));
+        if (personDTO.getMac() != null) {
+            try {
+                final HttpHeaders headers = getHttpHeaders();
+                final HttpEntity request = new HttpEntity(headers);
+                String getMacUrl = sensorsUrl.concat(personDTO.getMac());
+                final HttpEntity<String> macInformation = restTemplate.exchange(getMacUrl, GET, request, String.class);
+                MacDTO macDto = OBJECT_MAPPER.readValue(macInformation.getBody(), new TypeReference<MacDTO>() {});
+                if (macDto != null && macDto.getZone() != null && macDto.getZone().getName() != null) {
+
+                    personDTO.setMacZone(dynamapsTransformer.transform(zoneRepository.findByName(macDto.getZone().getName())));
+                }
+            } catch (RestClientException | IOException e) {
+                LOGGER.debug("Tried to get location for Mac "+ personDTO.getMac() + " but received and error " + e);
+            }
+        }
+
+        return personDTO;
+    }
+
+    private HttpHeaders getHttpHeaders() {
+        final HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+        return headers;
     }
 
     @Override

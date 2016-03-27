@@ -1,1 +1,1 @@
-mvn clean compile flyway:migrate -P local_dynamaps
+mvn clean compile flyway:migrate -P local_sensors

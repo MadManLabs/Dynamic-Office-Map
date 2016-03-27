@@ -12,4 +12,6 @@ import java.util.List;
 public interface ZoneRepository extends JpaRepository<Zone, Integer> {
 
 	List<Zone> findByFloorId(Integer id);
+
+	Zone findByName(String name);
 }

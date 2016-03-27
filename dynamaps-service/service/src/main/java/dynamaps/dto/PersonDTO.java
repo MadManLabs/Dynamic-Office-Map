@@ -17,6 +17,7 @@ public class PersonDTO implements Serializable {
     private String mac;
     private Integer id;
     private ZoneDTO zone;
+    private ZoneDTO macZone;
 
     public String getName() {
         return name;
@@ -73,5 +74,13 @@ public class PersonDTO implements Serializable {
 
     public void setHashGravatar(String hashGravatar) {
         this.hashGravatar = hashGravatar;
+    }
+
+    public ZoneDTO getMacZone() {
+        return macZone;
+    }
+
+    public void setMacZone(ZoneDTO macZone) {
+        this.macZone = macZone;
     }
 }
