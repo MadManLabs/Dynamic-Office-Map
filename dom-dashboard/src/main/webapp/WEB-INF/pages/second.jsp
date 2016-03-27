@@ -2,10 +2,6 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="dynamicOfficeMapApp">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Dynamic Office Map</title>
 
     <style>
@@ -14,9 +10,13 @@
             margin: 0;
             padding: 0;
         }
+        body {
+            width: 1100px;
+            height: 1000px;
+        }
     </style>
 
-    <script>var HOST = "${pageContext.request.contextPath}";</script>
+    <script>var HOST = "http://192.168.137.1:8080";</script>
 
     <script src="<c:url value="/resources/library/jquery-1.12.2.min.js" />"></script>
     <script src="<c:url value="/resources/library/fabric.min.js" />"></script>

@@ -44,4 +44,8 @@
 
     </dependencies>
 
+    <build>
+        <finalName>dashboard</finalName>
+    </build>
+
 </project>

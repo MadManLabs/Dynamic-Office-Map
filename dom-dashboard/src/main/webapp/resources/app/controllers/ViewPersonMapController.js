@@ -15,6 +15,13 @@ angular.module('dynamicOfficeMapApp')
             $scope.person = response.data;
             var floor = $scope.person.desk.zone.floor;
 
+            String.prototype.replaceAll = function(search, replacement) {
+                var target = this;
+                return target.replace(new RegExp(search, 'g'), replacement);
+            };
+
+            floor.map = floor.map.replaceAll('localhost', window.location.hostname);
+
             if (floor.map) {
                 canvas.loadFromJSON(floor.map, canvas.renderAll.bind(canvas), function(o, object) {
                     object.hasControls = false;

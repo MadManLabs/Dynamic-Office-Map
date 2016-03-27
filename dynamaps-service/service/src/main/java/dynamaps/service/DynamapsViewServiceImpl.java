@@ -186,7 +186,14 @@ public class DynamapsViewServiceImpl implements DynamapsViewService {
 
     @Override
     public List<FloorDTO> getAllFloors() {
-        return dynamapsTransformer.toFloorDtoList(floorRepository.findAll());
+        List<FloorDTO> list = dynamapsTransformer.toFloorDtoList(floorRepository.findAll());
+        for (FloorDTO floorDTO : list) {
+            List<PersonDTO> personDTOs = getAllPersonsByFloor(floorDTO.getId());
+            if (personDTOs != null) {
+                floorDTO.setNrPersons(personDTOs.size());
+            }
+        }
+        return list;
     }
 
     @Override

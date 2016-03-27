@@ -12,6 +12,8 @@ public class FloorDTO implements Serializable {
     private String map;
     private Integer id;
 
+    private Integer nrPersons;
+
     public String getName() {
         return name;
     }
@@ -34,5 +36,13 @@ public class FloorDTO implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getNrPersons() {
+        return nrPersons;
+    }
+
+    public void setNrPersons(Integer nrPersons) {
+        this.nrPersons = nrPersons;
     }
 }
