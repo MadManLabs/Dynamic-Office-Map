@@ -9,7 +9,6 @@ angular.module('dynamicOfficeMapApp')
         $scope.objectSelected = false;
         $scope.objectSelectedInfo = {};
 
-        $scope.person = {};
         $scope.persons = [];
 
         var grid = 50;
@@ -51,9 +50,8 @@ angular.module('dynamicOfficeMapApp')
 
             canvas.on('object:selected', function(object) {
                 if (object.target.objectType && object.target.objectType === 'Desk') {
-                    console.log('selected desk');
-                    $scope.persons = [];
                     $scope.$apply(function () {
+                        $scope.persons = [];
                         $scope.objectSelected = true;
                         $scope.objectSelectedInfo = object.target;
                     });
@@ -61,13 +59,14 @@ angular.module('dynamicOfficeMapApp')
                         method: 'GET',
                         url: HOST + '/dynamaps/api/v1/office/person/' + object.target.idObject + '/desk'
                     }).then(function successCallback(response) {
-                        console.log(response.data);
-                        $scope.persons.push(response.data);
+                        if (response.data) {
+                            $scope.persons.push(response.data);
+                        }
                     });
                 } else if (object.target.objectType && object.target.objectType === 'Zone') {
                     console.log('selected zone');
-                    $scope.persons = [];
                     $scope.$apply(function() {
+                        $scope.persons = [];
                         $scope.objectSelected = true;
                         $scope.objectSelectedInfo = object.target;
                     });
