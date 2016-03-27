@@ -20,4 +20,7 @@
 	<string name="find_friend_activity_find_friend_text">Enter your friend\'s username below to look for him...</string>
 	<string name="find_friend_activity_search_username_text">Username:</string>
 	<string name="find_friend_activity_find_friend_button_text">Find</string>
+
+	<string name="user_details_activity_name_text">Name: %1$s</string>
+	<string name="user_details_activity_email_text">Email: %1$s</string>
 </resources>

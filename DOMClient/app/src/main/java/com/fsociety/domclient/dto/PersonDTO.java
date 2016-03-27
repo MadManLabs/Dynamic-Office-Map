@@ -3,9 +3,18 @@ package com.fsociety.domclient.dto;
 public class PersonDTO {
 	private String name;
 	private String email;
+	private ZoneDTO zone;
 	private DeskDTO desk;
 	private String mac;
 	private Integer id;
+
+	public ZoneDTO getZone() {
+		return zone;
+	}
+
+	public void setZone(ZoneDTO zone) {
+		this.zone = zone;
+	}
 
 	public DeskDTO getDesk() {
 		return desk;

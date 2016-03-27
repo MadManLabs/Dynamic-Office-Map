@@ -11,5 +11,5 @@ import org.androidannotations.annotations.EFragment;
  */
 @EFragment
 public class BaseFragment extends Fragment {
-	protected Application application = Application.getInstance();
+	public Application application = Application.getInstance();
 }
