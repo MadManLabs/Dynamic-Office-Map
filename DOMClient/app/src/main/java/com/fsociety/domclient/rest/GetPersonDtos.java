@@ -11,7 +11,6 @@ import com.fsociety.domclient.fragment.FindFriendFragment;
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -54,11 +53,10 @@ public class GetPersonDtos extends AsyncTask<Void, Void, List<PersonDTO>> {
 		if (findFriendFragment.getActivity() != null) {
 			progressDialog.dismiss();
 		}
-		List<String> usernames = new ArrayList<>();
 		for (PersonDTO personDTO : personDTOs) {
-			usernames.add(personDTO.getName());
+			findFriendFragment.usernames.add(personDTO.getName());
 		}
-		ArrayAdapter<String> searchUsernameInstantAutoCompleteTextViewAdapter = new ArrayAdapter<>(findFriendFragment.getActivity(), android.R.layout.simple_list_item_1, usernames);
+		ArrayAdapter<String> searchUsernameInstantAutoCompleteTextViewAdapter = new ArrayAdapter<>(findFriendFragment.getActivity(), android.R.layout.simple_list_item_1, findFriendFragment.usernames);
 		findFriendFragment.getSearchUsernameInstantAutoCompleteTextView().setAdapter(searchUsernameInstantAutoCompleteTextViewAdapter);
 		//findFriendFragment.getSearchUsernameInstantAutoCompleteTextView().setText("");
 	}
