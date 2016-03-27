@@ -13,6 +13,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.fsociety.domclient.R;
+import com.fsociety.domclient.dto.DeskDTO;
+import com.fsociety.domclient.dto.PersonDTO;
+import com.fsociety.domclient.rest.UpdatePersonDeskByName;
 
 import org.androidannotations.annotations.EActivity;
 
@@ -64,6 +67,12 @@ public class RegisterDeskActivity extends BaseActivity {
 			Parcelable[] parcelables = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
 			if (parcelables != null && parcelables.length > 0) {
 				Toast.makeText(this, readTextFromMessage((NdefMessage) parcelables[0]), Toast.LENGTH_LONG).show();
+				PersonDTO personDTO = new PersonDTO();
+				personDTO.setId(application.getSettings().getId());
+				DeskDTO deskDTO = new DeskDTO();
+				deskDTO.setId(Integer.valueOf(readTextFromMessage((NdefMessage) parcelables[0])));
+				personDTO.setDesk(deskDTO);
+				new UpdatePersonDeskByName(this, personDTO).execute();
 			} else {
 				Toast.makeText(this, "No NDEF messages found!", Toast.LENGTH_SHORT).show();
 			}

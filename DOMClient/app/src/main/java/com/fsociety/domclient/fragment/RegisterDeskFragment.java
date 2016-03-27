@@ -10,6 +10,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fsociety.domclient.R;
+import com.fsociety.domclient.dto.DeskDTO;
+import com.fsociety.domclient.dto.PersonDTO;
+import com.fsociety.domclient.rest.UpdatePersonDeskByName;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -48,6 +51,12 @@ public class RegisterDeskFragment extends BaseFragment {
 				String contents = intent.getStringExtra("SCAN_RESULT");
 				String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
 				Toast.makeText(getActivity(), "Scan resulted in code:" + contents, Toast.LENGTH_LONG).show();
+				PersonDTO personDTO = new PersonDTO();
+				personDTO.setId(application.getSettings().getId());
+				DeskDTO deskDTO = new DeskDTO();
+				deskDTO.setId(Integer.valueOf(contents));
+				personDTO.setDesk(deskDTO);
+				new UpdatePersonDeskByName(this, personDTO).execute();
 			} else if (resultCode == Activity.RESULT_CANCELED) {
 				Toast.makeText(getActivity(), getResources().getString(R.string.register_desk_activity_scan_cancelled_text), Toast.LENGTH_LONG).show();
 			}

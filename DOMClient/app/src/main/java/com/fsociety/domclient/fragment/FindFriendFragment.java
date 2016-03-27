@@ -2,20 +2,17 @@ package com.fsociety.domclient.fragment;
 
 import android.content.Intent;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 
 import com.fsociety.domclient.R;
 import com.fsociety.domclient.activity.UserDetailsActivity_;
+import com.fsociety.domclient.rest.GetPersonDtos;
 import com.fsociety.domclient.ui.InstantAutoCompleteTextView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @EFragment(R.layout.find_friend_fragment)
 public class FindFriendFragment extends BaseFragment {
@@ -24,22 +21,13 @@ public class FindFriendFragment extends BaseFragment {
 	@ViewById(R.id.findFriendButton)
 	protected Button findFriendButton;
 
+	public InstantAutoCompleteTextView getSearchUsernameInstantAutoCompleteTextView() {
+		return searchUsernameInstantAutoCompleteTextView;
+	}
+
 	@AfterViews
 	protected void setupViews() {
-		// TODO: REST call to retrieve all the available usernames
-
-		List<String> availableUsernames = new ArrayList<String>();
-		availableUsernames.add("adriantc1");
-		availableUsernames.add("adriantc2");
-		availableUsernames.add("adriantc3");
-		availableUsernames.add("fstancu1");
-		availableUsernames.add("fstancu2");
-		availableUsernames.add("fstancu3");
-		availableUsernames.add("caldea1");
-		availableUsernames.add("caldea2");
-		availableUsernames.add("caldea3");
-		ArrayAdapter<String> searchUsernameInstantAutoCompleteTextViewAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, availableUsernames);
-		searchUsernameInstantAutoCompleteTextView.setAdapter(searchUsernameInstantAutoCompleteTextViewAdapter);
+		new GetPersonDtos(this).execute();
 	}
 
 	@Click(R.id.findFriendButton)

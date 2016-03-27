@@ -10,9 +10,24 @@
 				tools:context=".activity.UserDetailsActivity_$UserDetailsFragment_">
 
 	<TextView
-			android:id="@+id/userDetailsTextView"
+			android:id="@+id/nameTextView"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="Hello World"/>
+			android:text="@string/user_details_activity_name_text"/>
+
+	<TextView
+			android:id="@+id/emailTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/nameTextView"
+			android:layout_marginTop="@dimen/view_vertical_margin"
+			android:text="@string/user_details_activity_email_text"/>
+
+	<WebView
+			android:id="@+id/mapWebView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="20dp"
+			android:layout_below="@+id/emailTextView"/>
 
 </RelativeLayout>

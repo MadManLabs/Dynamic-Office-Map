@@ -9,13 +9,23 @@ import java.io.File;
 
 @EBean(scope = Scope.Singleton)
 public class Configuration {
-	private String settingsFilename, applicationDirectory, applicationBinDirectory, applicationBinTempDirectory;
+	private String settingsFilename, applicationDirectory, applicationBinDirectory, applicationBinTempDirectory, serverIp, serverPort;
 
 	protected Configuration(Context context) {
+		serverIp = "192.168.166.69";
+		serverPort = "8080";
 		settingsFilename = "settings.json";
 		applicationDirectory = context.getFilesDir().getAbsolutePath();
 		applicationBinDirectory = context.getFilesDir().getAbsolutePath() + File.separator + "bin";
 		applicationBinTempDirectory = context.getFilesDir().getAbsolutePath() + File.separator + "bin" + File.separator + "temp";
+	}
+
+	public String getServerIp() {
+		return serverIp;
+	}
+
+	public String getServerPort() {
+		return serverPort;
 	}
 
 	public String getSettingsFilename() {
