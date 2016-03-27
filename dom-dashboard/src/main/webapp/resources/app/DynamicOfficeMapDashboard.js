@@ -16,6 +16,10 @@ angular
             templateUrl: 'app/views/update_floor.html',
             controller: 'FloorController'
         }).
+        when('/view/:floorId', {
+            templateUrl: 'app/views/view_floor.html',
+            controller: 'ViewFloorController'
+        }).
         otherwise({
             redirectTo: '/'
         });

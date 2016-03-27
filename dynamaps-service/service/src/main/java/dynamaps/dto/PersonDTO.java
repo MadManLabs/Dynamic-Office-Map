@@ -9,7 +9,10 @@ public class PersonDTO implements Serializable {
     private static final long serialVersionUID	= -7639785294508068012L;
 
     private String name;
+
     private String email;
+    private String hashGravatar;
+
     private DeskDTO desk;
     private String mac;
     private Integer id;
@@ -62,5 +65,13 @@ public class PersonDTO implements Serializable {
 
     public void setZone(ZoneDTO zone) {
         this.zone = zone;
+    }
+
+    public String getHashGravatar() {
+        return hashGravatar;
+    }
+
+    public void setHashGravatar(String hashGravatar) {
+        this.hashGravatar = hashGravatar;
     }
 }

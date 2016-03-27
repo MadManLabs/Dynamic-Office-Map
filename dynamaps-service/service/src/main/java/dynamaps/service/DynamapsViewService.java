@@ -46,4 +46,8 @@ public interface DynamapsViewService {
     List<DeskDTO> getAllDesksByFloor(Integer floorId);
 
     List<PersonDTO> getAllPersonsByFloor(Integer floorId);
+
+    List<PersonDTO> getAllPersonsByZone(Integer zoneId);
+
+    PersonDTO getPersonByDesk(Integer deskId);
 }

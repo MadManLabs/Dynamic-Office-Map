@@ -26,6 +26,9 @@ public class DynamapsTransformerImpl implements DynamapsTransformer {
             personDTO.setId(person.getId());
             personDTO.setName(person.getName());
             personDTO.setEmail(person.getEmail());
+            if (person.getEmail() != null) {
+                personDTO.setHashGravatar(MD5Util.md5Hex(person.getEmail()));
+            }
             personDTO.setMac(person.getMac());
             personDTO.setDesk(transform(person.getDesk()));
             personDTO.setZone(transform(person.getZone()));

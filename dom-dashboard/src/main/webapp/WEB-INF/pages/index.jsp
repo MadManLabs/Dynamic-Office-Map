@@ -34,5 +34,6 @@
 	<script src="<c:url value="/resources/app/controllers/FloorController.js" />"></script>
 	<script src="<c:url value="/resources/app/controllers/FloorsController.js" />"></script>
 	<script src="<c:url value="/resources/app/controllers/AddFloorController.js" />"></script>
+	<script src="<c:url value="/resources/app/controllers/ViewFloorController.js" />"></script>
 </body>
 </html>

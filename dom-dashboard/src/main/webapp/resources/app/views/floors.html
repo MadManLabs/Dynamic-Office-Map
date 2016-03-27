@@ -6,11 +6,15 @@
             <th>#</th>
             <th>Floor</th>
             <th>Persons</th>
+            <th>Actions</th>
         </thead>
         <tr ng-repeat="floor in floors">
             <td>{{$index + 1}}</td>
             <td><a ng-click="toToFloor(floor.id)">{{floor.name}}</a></td>
             <td>{{floor.persons}}</td>
+            <td>
+                <button class="btn btn-primary btn-sm" type="button" ng-click="viewFloor(floor.id)">View Floor</button>
+            </td>
         </tr>
     </table>
 </div>

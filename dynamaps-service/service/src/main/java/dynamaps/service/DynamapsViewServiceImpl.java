@@ -10,9 +10,11 @@ import dynamaps.model.configuration.Person;
 import dynamaps.model.configuration.Zone;
 import dynamaps.repository.configuration.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -265,5 +267,35 @@ public class DynamapsViewServiceImpl implements DynamapsViewService {
     @Override
     public List<PersonDTO> getAllPersonsByFloor(Integer floorId) {
         return dynamapsTransformer.toPersonDtoList(personRepository.findByDeskZoneFloorId(floorId));
+    }
+
+    @Override
+    public List<PersonDTO> getAllPersonsByZone(Integer zoneId) {
+        Zone zone = zoneRepository.findOne(zoneId);
+        if (zone == null) {
+            return new ArrayList<>();
+        }
+        List<Desk> desks = zone.getDesks();
+        List<Person> persons = new ArrayList<>();
+        for (Desk desk : desks) {
+            Person person = personRepository.findByDesk(desk);
+            if (person != null) {
+                persons.add(person);
+            }
+        }
+        return dynamapsTransformer.toPersonDtoList(persons);
+    }
+
+    @Override
+    public PersonDTO getPersonByDesk(Integer deskId) {
+        Desk desk = deskRepository.findOne(deskId);
+        if (desk == null) {
+            return null;
+        }
+        Person person = personRepository.findByDesk(desk);
+        if (person == null) {
+            return null;
+        }
+        return dynamapsTransformer.transform(person);
     }
 }

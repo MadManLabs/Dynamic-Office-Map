@@ -9,6 +9,10 @@ angular.module('dynamicOfficeMapApp')
             $location.path('/floor/' + floorId);
         };
 
+        $scope.viewFloor = function(floorId) {
+            $location.path('/view/' + floorId);
+        };
+
         $scope.addFloor = function() {
             var modalInstance = $uibModal.open({
                 animation: true,

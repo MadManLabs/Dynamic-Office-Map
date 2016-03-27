@@ -211,5 +211,22 @@ public class DynamapsRestController {
 		return new ResponseEntity<List<PersonDTO>>(personDTOs, OK);
 	}
 
+	@RequestMapping(produces = APPLICATION_JSON_VALUE, method = GET, value = "/person/{id}/desk")
+	@ResponseBody
+	public ResponseEntity<PersonDTO> getPersonByDesk(@PathVariable("id") final Integer id) {
+
+		PersonDTO personDTOs = dynamapsViewService.getPersonByDesk(id);
+
+		return new ResponseEntity<PersonDTO>(personDTOs, OK);
+	}
+
+	@RequestMapping(produces = APPLICATION_JSON_VALUE, method = GET, value = "/person/{id}/zone")
+	@ResponseBody
+	public ResponseEntity<List<PersonDTO>> getPersonsByZone(@PathVariable("id") final Integer id) {
+
+		List<PersonDTO> personDTOs = dynamapsViewService.getAllPersonsByZone(id);
+
+		return new ResponseEntity<List<PersonDTO>>(personDTOs, OK);
+	}
 
 }
