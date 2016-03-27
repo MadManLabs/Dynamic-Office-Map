@@ -32,17 +32,29 @@ angular.module('dynamicOfficeMapApp')
                     alert("Please provide the desk code.");
                     return;
                 }
-                fabric.Image.fromURL('resources/image/pc.png', function(img) {
-                    var desk = img.set({
-                        left: 100,
-                        top: 100,
-                        hasControls: false,
-                        hasRotatingPoint: false,
-                        objectType: 'Desk',
-                        zone: object.zone
+                $http({
+                    method: 'POST',
+                    url: HOST + '/dynamaps/api/v1/office/desk',
+                    data: {
+                        zone: {
+                            id: object.zone
+                        }
+                    }
+                }).then(function successCallback(response) {
+                    fabric.Image.fromURL('resources/image/pc.png', function(img) {
+                        var desk = img.set({
+                            left: 100,
+                            top: 100,
+                            hasControls: false,
+                            hasRotatingPoint: false,
+                            objectType: 'Desk',
+                            zone: object.zone,
+                            idObject: response.data.id
+                        });
+                        canvas.add(desk);
+                        $scope.saveFloor();
                     });
-                    // TODO: save desk
-                    canvas.add(desk);
+                    NotificationService.info('The new desk was added.');
                 });
             } else if (object.type === 'Text') {
                 var text = new fabric.Text(object.text, {
@@ -116,7 +128,19 @@ angular.module('dynamicOfficeMapApp')
         };
 
         $scope.updateDesk = function() {
-            console.log($scope.deskSelectedUpdatedObject);
+            $http({
+                method: 'POST',
+                url: HOST + '/dynamaps/api/v1/office/desk',
+                data: {
+                    id: $scope.objectSelectedInfo.idObject,
+                    zone: {
+                        id: $scope.objectSelectedInfo.zone
+                    }
+                }
+            }).then(function successCallback(response) {
+                $scope.saveFloor();
+                NotificationService.info('The desk was updated.');
+            });
         };
 
         $scope.updateZone = function() {
@@ -152,8 +176,13 @@ angular.module('dynamicOfficeMapApp')
             $scope.floor = response.data;
 
             if ($scope.floor.map) {
-                console.log($scope.floor.map);
-                canvas.loadFromJSON($scope.floor.map, canvas.renderAll.bind(canvas));
+                //console.log($scope.floor.map);
+                canvas.loadFromJSON($scope.floor.map, canvas.renderAll.bind(canvas), function(o, object) {
+                    if (object.objectType && (object.objectType === 'Zone' || object.objectType === 'Desk')) {
+                        object.hasControls = false;
+                        object.hasRotatingPoint = false;
+                    }
+                });
             } else {
                 for (var i = 0; i < (gridSize / grid); i++) {
                     canvas.add(new fabric.Line([ i * grid, 0, i * grid, gridSize], { stroke: '#ccc', selectable: false }));
