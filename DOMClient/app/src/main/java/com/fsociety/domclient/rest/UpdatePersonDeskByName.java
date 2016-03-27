@@ -17,6 +17,7 @@ public class UpdatePersonDeskByName extends AsyncTask<Void, Void, Boolean> {
 	private static final String TAG = "UpdatePersonDeskByName";
 
 	private RegisterDeskFragment registerDeskFragment;
+	private RegisterDeskActivity registerDeskActivity;
 	private ProgressDialog progressDialog;
 	private PersonDTO personDTO;
 
@@ -26,14 +27,19 @@ public class UpdatePersonDeskByName extends AsyncTask<Void, Void, Boolean> {
 	}
 
 	public UpdatePersonDeskByName(RegisterDeskActivity registerDeskActivity, PersonDTO personDTO) {
-		this.registerDeskFragment = registerDeskFragment;
+		this.registerDeskActivity = registerDeskActivity;
 		this.personDTO = personDTO;
 	}
 
 	@Override
 	protected void onPreExecute() {
-		if (registerDeskFragment != null) {
-			progressDialog = new ProgressDialog(registerDeskFragment.getActivity());
+		if (registerDeskFragment != null || registerDeskActivity != null) {
+			if (registerDeskFragment != null) {
+				progressDialog = new ProgressDialog(registerDeskFragment.getActivity());
+			}
+			if (registerDeskActivity != null) {
+				progressDialog = new ProgressDialog(registerDeskActivity);
+			}
 			progressDialog.setMessage("Loading...");
 			progressDialog.show();
 		}
@@ -42,7 +48,13 @@ public class UpdatePersonDeskByName extends AsyncTask<Void, Void, Boolean> {
 	@Override
 	protected Boolean doInBackground(Void... params) {
 		try {
-			final String url = "http://" + registerDeskFragment.application.getConfiguration().getServerIp() + ":" + registerDeskFragment.application.getConfiguration().getServerPort() + "/dynamaps/api/v1/office/person";
+			String url = "";
+			if (registerDeskFragment != null) {
+				url = "http://" + registerDeskFragment.application.getConfiguration().getServerIp() + ":" + registerDeskFragment.application.getConfiguration().getServerPort() + "/dynamaps/api/v1/office/person";
+			}
+			if (registerDeskActivity != null) {
+				url = "http://" + registerDeskActivity.application.getConfiguration().getServerIp() + ":" + registerDeskActivity.application.getConfiguration().getServerPort() + "/dynamaps/api/v1/office/person";
+			}
 			RestTemplate restTemplate = new RestTemplate();
 			restTemplate.getMessageConverters().add(new GsonHttpMessageConverter());
 			restTemplate.postForObject(url, personDTO, String.class);
@@ -56,22 +68,27 @@ public class UpdatePersonDeskByName extends AsyncTask<Void, Void, Boolean> {
 	@Override
 	protected void onPostExecute(Boolean result) {
 		super.onPostExecute(result);
-		if (registerDeskFragment.getActivity() != null) {
+		if (registerDeskFragment != null || registerDeskActivity != null) {
 			progressDialog.dismiss();
 		}
 		if (result) {
-			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(registerDeskFragment.getActivity());
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(registerDeskFragment != null ? registerDeskFragment.getActivity() : registerDeskActivity);
 			alertDialogBuilder.setTitle("Operation successful")
 					.setMessage("Your new desk has been registered. Thank you!").setCancelable(false);
 			alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int id) {
 					dialog.dismiss();
-					registerDeskFragment.getActivity().finish();
+					if (registerDeskFragment != null) {
+						registerDeskFragment.getActivity().finish();
+					}
+					if (registerDeskActivity != null) {
+						registerDeskActivity.finish();
+					}
 				}
 			});
 			alertDialogBuilder.show();
 		} else {
-			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(registerDeskFragment.getActivity());
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(registerDeskFragment != null ? registerDeskFragment.getActivity() : registerDeskActivity);
 			alertDialogBuilder.setIconAttribute(android.R.attr.alertDialogIcon);
 			alertDialogBuilder.setTitle("Operation error")
 					.setMessage("The new desk could not be registered. Please try again later!").setCancelable(false);

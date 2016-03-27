@@ -9,7 +9,7 @@ import com.fsociety.domclient.core.Application;
  * Created by atundrea on 3/26/2016.
  */
 public class BaseActivity extends Activity {
-	protected Application application = Application.getInstance();
+	public Application application = Application.getInstance();
 
 	Boolean displayHomeAsUpEnabled = true;
 

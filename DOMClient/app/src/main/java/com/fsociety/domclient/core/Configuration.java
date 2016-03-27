@@ -15,8 +15,8 @@ public class Configuration {
 		// Endava
 		//serverIp = "192.168.168.107";
 		// Wireless
-		//serverIp = "192.168.137.1";
-		serverIp = "192.168.166.69";
+		serverIp = "192.168.137.1";
+		//serverIp = "192.168.166.69";
 		serverPort = "8080";
 		settingsFilename = "settings.json";
 		applicationDirectory = context.getFilesDir().getAbsolutePath();
