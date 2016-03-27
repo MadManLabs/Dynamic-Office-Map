@@ -23,14 +23,16 @@ DROP TABLE IF EXISTS `desk`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `desk` (
-  `id` varchar(255) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `version_number` bigint(20) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `inactive` bit(1) NOT NULL,
-  `xlayout` varchar(255) NOT NULL,
-  `ylayout` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `code` varchar(255) DEFAULT NULL,
+  `xlayout` varchar(255) DEFAULT NULL,
+  `ylayout` varchar(255) DEFAULT NULL,
+  `zone_ID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_nk4s994jprk19ekj7w07lav1f` (`zone_ID`),
+  CONSTRAINT `FK_nk4s994jprk19ekj7w07lav1f` FOREIGN KEY (`zone_ID`) REFERENCES `zone` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,11 +52,10 @@ DROP TABLE IF EXISTS `floor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `floor` (
-  `id` varchar(255) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `version_number` bigint(20) NOT NULL,
+  `map` longtext,
   `name` varchar(255) NOT NULL,
-  `inactive` bit(1) NOT NULL,
-  `map` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -69,36 +70,6 @@ LOCK TABLES `floor` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `floor_desk`
---
-
-DROP TABLE IF EXISTS `floor_desk`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `floor_desk` (
-  `id` varchar(255) NOT NULL,
-  `version_number` bigint(20) NOT NULL,
-  `inactive` bit(1) NOT NULL,
-  `desk_id` varchar(255) DEFAULT NULL,
-  `floor_id` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_kpb2whhovex893o8m43fh9ovq` (`desk_id`),
-  KEY `FK_a6plda6gytgyaw8srxwisupdh` (`floor_id`),
-  CONSTRAINT `FK_a6plda6gytgyaw8srxwisupdh` FOREIGN KEY (`floor_id`) REFERENCES `floor` (`id`),
-  CONSTRAINT `FK_kpb2whhovex893o8m43fh9ovq` FOREIGN KEY (`desk_id`) REFERENCES `desk` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `floor_desk`
---
-
-LOCK TABLES `floor_desk` WRITE;
-/*!40000 ALTER TABLE `floor_desk` DISABLE KEYS */;
-/*!40000 ALTER TABLE `floor_desk` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `person`
 --
 
@@ -106,14 +77,19 @@ DROP TABLE IF EXISTS `person`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `person` (
-  `id` varchar(255) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `version_number` bigint(20) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `mac` varchar(255) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `inactive` bit(1) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `desk_id` int(11) DEFAULT NULL,
+  `zone_ID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_c8s3rhxjsm0yfvexjhwp8istt` (`desk_id`),
+  KEY `FK_6590jtb65jnt9d8c308g81es4` (`zone_ID`),
+  CONSTRAINT `FK_6590jtb65jnt9d8c308g81es4` FOREIGN KEY (`zone_ID`) REFERENCES `zone` (`id`),
+  CONSTRAINT `FK_c8s3rhxjsm0yfvexjhwp8istt` FOREIGN KEY (`desk_id`) REFERENCES `desk` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,33 +102,30 @@ LOCK TABLES `person` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `person_desk`
+-- Table structure for table `zone`
 --
 
-DROP TABLE IF EXISTS `person_desk`;
+DROP TABLE IF EXISTS `zone`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `person_desk` (
-  `id` varchar(255) NOT NULL,
+CREATE TABLE `zone` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `version_number` bigint(20) NOT NULL,
-  `inactive` bit(1) NOT NULL,
-  `desk_id` varchar(255) DEFAULT NULL,
-  `person_id` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `floor_ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK_pexn3n05dgna35o7si9ilhvpi` (`desk_id`),
-  KEY `FK_88dvjbe71d53vx4m2eqijtu2r` (`person_id`),
-  CONSTRAINT `FK_88dvjbe71d53vx4m2eqijtu2r` FOREIGN KEY (`person_id`) REFERENCES `person` (`id`),
-  CONSTRAINT `FK_pexn3n05dgna35o7si9ilhvpi` FOREIGN KEY (`desk_id`) REFERENCES `desk` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `FK_1aavukfqpvyqht7t11n9x0cb` (`floor_ID`),
+  CONSTRAINT `FK_1aavukfqpvyqht7t11n9x0cb` FOREIGN KEY (`floor_ID`) REFERENCES `floor` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `person_desk`
+-- Dumping data for table `zone`
 --
 
-LOCK TABLES `person_desk` WRITE;
-/*!40000 ALTER TABLE `person_desk` DISABLE KEYS */;
-/*!40000 ALTER TABLE `person_desk` ENABLE KEYS */;
+LOCK TABLES `zone` WRITE;
+/*!40000 ALTER TABLE `zone` DISABLE KEYS */;
+/*!40000 ALTER TABLE `zone` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -164,4 +137,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-26 15:39:14
+-- Dump completed on 2016-03-27  8:41:16
