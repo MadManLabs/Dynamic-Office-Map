@@ -4,6 +4,7 @@ import dynamaps.dto.DeskDTO;
 import dynamaps.dto.FloorDTO;
 import dynamaps.dto.PersonDTO;
 import dynamaps.dto.ZoneDTO;
+import dynamaps.exceptions.DeskOccupiedException;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public interface DynamapsViewService {
 
     List<PersonDTO> getAllPersons();
 
-    PersonDTO savePersonDetails(PersonDTO personDTO);
+    PersonDTO savePersonDetails(PersonDTO personDTO) throws DeskOccupiedException;
 
     FloorDTO getFloorDetails(Integer id);
 

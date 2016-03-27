@@ -4,6 +4,7 @@ import dynamaps.dto.DeskDTO;
 import dynamaps.dto.FloorDTO;
 import dynamaps.dto.PersonDTO;
 import dynamaps.dto.ZoneDTO;
+import dynamaps.exceptions.DeskOccupiedException;
 import dynamaps.model.configuration.Desk;
 import dynamaps.model.configuration.Floor;
 import dynamaps.model.configuration.Person;
@@ -56,7 +57,7 @@ public class DynamapsViewServiceImpl implements DynamapsViewService {
     }
 
     @Override
-    public PersonDTO savePersonDetails(PersonDTO personDTO) {
+    public PersonDTO savePersonDetails(PersonDTO personDTO) throws DeskOccupiedException {
         Person existingPerson = null;
         Desk existingDesk = null;
         Zone existingZone = null;
@@ -65,6 +66,12 @@ public class DynamapsViewServiceImpl implements DynamapsViewService {
         }
         if (personDTO.getZone() != null && personDTO.getZone().getId() != null) {
             existingZone = zoneRepository.findOne(personDTO.getZone().getId());
+        }
+        if (existingDesk != null) {
+            Person occperson = personRepository.findByDesk(existingDesk);
+            if (occperson!= null && !occperson.getId().equals(personDTO.getId())) {
+                throw new DeskOccupiedException("Occupied by:" + occperson.getId());
+            }
         }
 
         if (personDTO.getId() != null) {

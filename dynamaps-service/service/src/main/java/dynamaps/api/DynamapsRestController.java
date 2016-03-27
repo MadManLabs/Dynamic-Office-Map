@@ -1,5 +1,6 @@
 package dynamaps.api;
 
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -11,6 +12,7 @@ import dynamaps.dto.DeskDTO;
 import dynamaps.dto.FloorDTO;
 import dynamaps.dto.PersonDTO;
 import dynamaps.dto.ZoneDTO;
+import dynamaps.exceptions.DeskOccupiedException;
 import dynamaps.service.DynamapsViewService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,16 +62,27 @@ public class DynamapsRestController {
 	@ResponseBody
 	public ResponseEntity<?> savePersonDetails(@RequestBody final PersonDTO personDTO) {
 		LOGGER.debug("Saving person" + personDTO);
-		PersonDTO saved = dynamapsViewService.savePersonDetails(personDTO);
-		return new ResponseEntity<Object>(saved, OK);
+		PersonDTO saved = null;
+		try {
+			saved = dynamapsViewService.savePersonDetails(personDTO);
+			return new ResponseEntity<Object>(saved, OK);
+		} catch (DeskOccupiedException e) {
+			return new ResponseEntity<Object>(e.getMessage(), INTERNAL_SERVER_ERROR);
+		}
+
 	}
 
 	@RequestMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE, method = PUT, value = "/person/{code}")
 	@ResponseBody
 	public ResponseEntity<?> updatePersonDetails(@RequestBody final PersonDTO personDTO, @PathVariable("code") final String code) {
 		LOGGER.debug("updating person with code " + code);
-		PersonDTO saved = dynamapsViewService.savePersonDetails(personDTO);
-		return new ResponseEntity<Object>(saved, OK);
+		PersonDTO saved = null;
+		try {
+			saved = dynamapsViewService.savePersonDetails(personDTO);
+			return new ResponseEntity<Object>(saved, OK);
+		} catch (DeskOccupiedException e) {
+			return new ResponseEntity<Object>(e.getMessage(), INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@RequestMapping(produces = APPLICATION_JSON_VALUE, method = GET, value = "/floor/{code}")
