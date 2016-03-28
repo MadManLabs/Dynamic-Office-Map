@@ -233,6 +233,16 @@ public class DynamapsRestController {
 		return new ResponseEntity<PersonDTO>(personDTOs, OK);
 	}
 
+	@RequestMapping(produces = APPLICATION_JSON_VALUE, method = POST, value = "/person/{idPerson}/zone/{idZone}")
+	@ResponseBody
+	public ResponseEntity<PersonDTO> updateTmpZone(@PathVariable("idPerson") final Integer idPerson,
+												   @PathVariable("idZone") final Integer idZone) {
+
+		PersonDTO personDTOs = dynamapsViewService.updateTmpZone(idPerson, idZone);
+
+		return new ResponseEntity<PersonDTO>(personDTOs, OK);
+	}
+
 	@RequestMapping(produces = APPLICATION_JSON_VALUE, method = GET, value = "/person/{id}/zone")
 	@ResponseBody
 	public ResponseEntity<List<PersonDTO>> getPersonsByZone(@PathVariable("id") final Integer id) {

@@ -369,4 +369,15 @@ public class DynamapsViewServiceImpl implements DynamapsViewService {
         }
         return dynamapsTransformer.transform(person);
     }
+
+    @Override
+    public PersonDTO updateTmpZone(Integer personId, Integer zoneId) {
+        Person person = personRepository.findOne(personId);
+        Zone zone = zoneRepository.findOne(zoneId);
+        if (person != null && zone != null) {
+            person.setZone(zone);
+        }
+        person = personRepository.save(person);
+        return dynamapsTransformer.transform(person);
+    }
 }

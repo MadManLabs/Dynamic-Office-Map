@@ -51,4 +51,6 @@ public interface DynamapsViewService {
     List<PersonDTO> getAllPersonsByZone(Integer zoneId);
 
     PersonDTO getPersonByDesk(Integer deskId);
+
+    PersonDTO updateTmpZone(Integer personId, Integer zoneId);
 }
