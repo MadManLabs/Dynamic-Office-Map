@@ -1,5 +1,6 @@
 package com.fsociety.domclient.activity;
 
+import android.app.Fragment;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.fsociety.domclient.R;
 import com.fsociety.domclient.dto.DeskDTO;
 import com.fsociety.domclient.dto.PersonDTO;
+import com.fsociety.domclient.fragment.RegisterDeskFragment;
 import com.fsociety.domclient.rest.UpdatePersonDeskByName;
 
 import org.androidannotations.annotations.EActivity;
@@ -28,6 +30,8 @@ public class RegisterDeskActivity extends BaseActivity {
 	private IntentFilter writeTagFilters[];
 	private boolean writeMode;
 	private Tag readTag;
+
+	public RegisterDeskFragment registerDeskFragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +76,7 @@ public class RegisterDeskActivity extends BaseActivity {
 				DeskDTO deskDTO = new DeskDTO();
 				deskDTO.setId(Integer.valueOf(readTextFromMessage((NdefMessage) parcelables[0])));
 				personDTO.setDesk(deskDTO);
-				new UpdatePersonDeskByName(this, personDTO).execute();
+				new UpdatePersonDeskByName(this, personDTO, registerDeskFragment.getTemporaryDeskCheckBox().isChecked()).execute();
 			} else {
 				Toast.makeText(this, "No NDEF messages found!", Toast.LENGTH_SHORT).show();
 			}
