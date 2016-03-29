@@ -16,7 +16,7 @@
         }
     </style>
 
-    <script>var HOST = "http://192.168.137.1:8080";</script>
+    <script>var HOST = "http://192.168.168.107:8080";</script>
 
     <script src="<c:url value="/resources/library/jquery-1.12.2.min.js" />"></script>
     <script src="<c:url value="/resources/library/fabric.min.js" />"></script>
