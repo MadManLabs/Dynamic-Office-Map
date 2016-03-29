@@ -20,15 +20,18 @@ public class UpdatePersonDeskByName extends AsyncTask<Void, Void, Boolean> {
 	private RegisterDeskActivity registerDeskActivity;
 	private ProgressDialog progressDialog;
 	private PersonDTO personDTO;
+	private Boolean temporaryDesk;
 
-	public UpdatePersonDeskByName(RegisterDeskFragment registerDeskFragment, PersonDTO personDTO) {
+	public UpdatePersonDeskByName(RegisterDeskFragment registerDeskFragment, PersonDTO personDTO, Boolean temporaryDesk) {
 		this.registerDeskFragment = registerDeskFragment;
 		this.personDTO = personDTO;
+		this.temporaryDesk = temporaryDesk;
 	}
 
-	public UpdatePersonDeskByName(RegisterDeskActivity registerDeskActivity, PersonDTO personDTO) {
+	public UpdatePersonDeskByName(RegisterDeskActivity registerDeskActivity, PersonDTO personDTO, Boolean temporaryDesk) {
 		this.registerDeskActivity = registerDeskActivity;
 		this.personDTO = personDTO;
+		this.temporaryDesk = temporaryDesk;
 	}
 
 	@Override
@@ -50,14 +53,22 @@ public class UpdatePersonDeskByName extends AsyncTask<Void, Void, Boolean> {
 		try {
 			String url = "";
 			if (registerDeskFragment != null) {
-				url = "http://" + registerDeskFragment.application.getConfiguration().getServerIp() + ":" + registerDeskFragment.application.getConfiguration().getServerPort() + "/dynamaps/api/v1/office/person";
+				if (!temporaryDesk) {
+					url = "http://" + registerDeskFragment.application.getConfiguration().getServerIp() + ":" + registerDeskFragment.application.getConfiguration().getServerPort() + "/dynamaps/api/v1/office/person";
+				} else {
+					url = "http://" + registerDeskFragment.application.getConfiguration().getServerIp() + ":" + registerDeskFragment.application.getConfiguration().getServerPort() + "/dynamaps/api/v1/office/person/"+personDTO.getId()+"/zone/"+personDTO.getDesk().getId();
+				}
 			}
 			if (registerDeskActivity != null) {
-				url = "http://" + registerDeskActivity.application.getConfiguration().getServerIp() + ":" + registerDeskActivity.application.getConfiguration().getServerPort() + "/dynamaps/api/v1/office/person";
+				if (!temporaryDesk) {
+					url = "http://" + registerDeskActivity.application.getConfiguration().getServerIp() + ":" + registerDeskActivity.application.getConfiguration().getServerPort() + "/dynamaps/api/v1/office/person";
+				} else {
+					url = "http://" + registerDeskActivity.application.getConfiguration().getServerIp() + ":" + registerDeskActivity.application.getConfiguration().getServerPort() + "/dynamaps/api/v1/office/person/"+personDTO.getId()+"/zone/"+personDTO.getDesk().getId();
+				}
 			}
 			RestTemplate restTemplate = new RestTemplate();
 			restTemplate.getMessageConverters().add(new GsonHttpMessageConverter());
-			restTemplate.postForObject(url, personDTO, String.class);
+			String message = restTemplate.postForObject(url, personDTO, String.class);
 			return true;
 		} catch (Exception e) {
 			Log.e(TAG, e.getMessage(), e);
