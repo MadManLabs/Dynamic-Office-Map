@@ -56,5 +56,6 @@
 	<modules>
 		<module>service</module>
 		<module>sensors</module>
+		<module>bluesensor</module>
 	</modules>
 </project>
