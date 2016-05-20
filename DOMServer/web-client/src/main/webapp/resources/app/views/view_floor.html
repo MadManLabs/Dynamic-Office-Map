@@ -1,0 +1,37 @@
+<h1>Floor Details</h1>
+<div class="row">
+    <div class="col-md-4">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-6">
+                    <input ng-model="floor.name" class="form-control" placeholder="Floor Name">
+                </div>
+                <div class="col-sm-6">
+                    <button class="btn btn-primary" type="button" ng-click="saveFloor()">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4">
+        <div class="buttons">
+            <button class="btn btn-primary" ng-click="grabMode(false)"><i class="fa fa-edit"></i> Edit mode</button>
+            <button class="btn btn-primary" ng-click="grabMode(true)"><i class="fa fa-arrows"></i> Grab mode</button>
+            <button class="btn btn-primary" ng-click="zoomIn()"><i class="fa fa-search-plus"></i> Zoom in</button>
+            <button class="btn btn-primary" ng-click="zoomOut()"><i class="fa fa-search-minus"></i> Zoom out</button>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-default" type="button" ng-click="addItem()">Add Item</button>
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-danger" type="button" ng-click="deleteObject()">Remove Selected Item</button>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-12" style="width: 100%; text-align:center;">
+        <canvas id="floorMap" width="1100" height="1000" style="border:1px solid #aaa; display: inline;">
+            Your browser doesn't support canvas
+        </canvas>
+    </div>
+</div>
