@@ -28,10 +28,10 @@ public class Person {
     private String mac;
 
     @DBRef
-    private Zone zone;
+    private Zone permanentZone;
 
     @DBRef
-    private List<Asset> assets;
+    private Zone temporaryZone;
 
     public Person() {
     }
@@ -76,19 +76,19 @@ public class Person {
         this.mac = mac;
     }
 
-    public Zone getZone() {
-        return zone;
+    public Zone getPermanentZone() {
+        return permanentZone;
     }
 
-    public void setZone(Zone zone) {
-        this.zone = zone;
+    public void setPermanentZone(Zone permanentZone) {
+        this.permanentZone = permanentZone;
     }
 
-    public List<Asset> getAssets() {
-        return assets;
+    public Zone getTemporaryZone() {
+        return temporaryZone;
     }
 
-    public void setAssets(List<Asset> assets) {
-        this.assets = assets;
+    public void setTemporaryZone(Zone temporaryZone) {
+        this.temporaryZone = temporaryZone;
     }
 }
