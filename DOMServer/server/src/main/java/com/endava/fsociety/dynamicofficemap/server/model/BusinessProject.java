@@ -19,6 +19,8 @@ public class BusinessProject {
 
     private String description;
 
+    private String technologies;
+
     @DBRef
     private Zone zone;
 
@@ -64,5 +66,13 @@ public class BusinessProject {
 
     public void setZone(Zone zone) {
         this.zone = zone;
+    }
+
+    public String getTechnologies() {
+        return technologies;
+    }
+
+    public void setTechnologies(String technologies) {
+        this.technologies = technologies;
     }
 }

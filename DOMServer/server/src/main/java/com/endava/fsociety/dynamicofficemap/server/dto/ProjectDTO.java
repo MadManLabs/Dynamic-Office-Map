@@ -13,8 +13,9 @@ public class ProjectDTO {
     private String logo;
     private String description;
     private String name;
+    private String technologies;
 
-    public ProjectDTO(String zoneId, String zoneCode, String zoneName, String id, String logo, String description, String name) {
+    public ProjectDTO(String zoneId, String zoneCode, String zoneName, String id, String logo, String description, String name, String technologies) {
         this.zoneId = zoneId;
         this.zoneCode = zoneCode;
         this.zoneName = zoneName;
@@ -22,6 +23,7 @@ public class ProjectDTO {
         this.logo = logo;
         this.description = description;
         this.name = name;
+        this.technologies = technologies;
     }
 
     public ProjectDTO(BusinessProject businessProject) {
@@ -34,6 +36,7 @@ public class ProjectDTO {
         this.logo = businessProject.getLogo();
         this.description = businessProject.getDescription();
         this.name = businessProject.getName();
+        this.technologies = businessProject.getTechnologies();
     }
 
     public String getZoneCode() {
@@ -90,5 +93,13 @@ public class ProjectDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getTechnologies() {
+        return technologies;
+    }
+
+    public void setTechnologies(String technologies) {
+        this.technologies = technologies;
     }
 }
