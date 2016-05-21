@@ -40,6 +40,19 @@
                 </button>
             </div>
         </div>
+        <div class="form-group" ng-show="viewTenant && !asset.onMap">
+            <label for="closeBy" class="col-sm-2 control-label">Close&nbsp;By</label>
+            <div class="col-sm-8">
+                <select class="form-control" ng-model="closeBy" id="closeBy"
+                        ng-options="asset.code for asset in assets track by asset.id">
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-danger" type="button" ng-click="removeCloseBy()">
+                    <i class="fa fa-times" aria-hidden="true"></i>&nbsp;
+                </button>
+            </div>
+        </div>
     </form>
 </div>
 <div class="modal-footer">
