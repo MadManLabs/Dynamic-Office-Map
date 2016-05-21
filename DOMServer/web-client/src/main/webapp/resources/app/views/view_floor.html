@@ -32,7 +32,13 @@
         </button>
     </div>
     <div class="col-md-2">
-
+        <div class="row" ng-show="objectSelectedInfo.objectType === 'Asset'">
+            <div class="col-md-6"><b>Asset Code:</b> {{ objectSelectedDBInfo.code }}</div>
+            <div class="col-md-6"><b>Asset Name:</b> {{ objectSelectedDBInfo.name }}</div>
+        </div>
+        <div class="row" ng-show="objectSelectedInfo.objectType === 'Zone'">
+            <div class="col-md-6"><b>Zone Name:</b> {{ objectSelectedDBInfo.name }}</div>
+        </div>
     </div>
 
 </div>

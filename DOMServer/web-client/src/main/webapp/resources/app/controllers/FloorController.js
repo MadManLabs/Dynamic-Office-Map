@@ -7,9 +7,27 @@ angular.module('dynamicOfficeMapApp')
         $scope.floor = {};
         $scope.objectSelected = false;
         $scope.objectSelectedInfo = null;
+        $scope.objectSelectedDBInfo = {};
         var grid = 50;
 
         var canvas = new fabric.CanvasWithViewport('floorMap', { selection: false });
+
+        var updateObjectSelectedDBInfo = function() {
+            var url = undefined;
+            if ($scope.objectSelectedInfo !== null && $scope.objectSelectedInfo.objectType === 'Asset') {
+                url = HOST + "/asset/" + $scope.objectSelectedInfo.idObject;
+            } else if ($scope.objectSelectedInfo !== null && $scope.objectSelectedInfo.objectType === 'Zone') {
+                url = HOST + "/zone/" + $scope.objectSelectedInfo.idObject;
+            }
+            if (url) {
+                $http({
+                    method: 'GET',
+                    url: url
+                }).then(function successCallback(response) {
+                    $scope.objectSelectedDBInfo = response.data;
+                });
+            }
+        };
 
         $scope.updateItem = function() {
             if ($scope.objectSelectedInfo !== null && $scope.objectSelectedInfo.objectType === 'Asset') {
@@ -127,12 +145,14 @@ angular.module('dynamicOfficeMapApp')
                     $scope.$apply(function() {
                         $scope.objectSelected = true;
                         $scope.objectSelectedInfo = object.target;
-                        console.log($scope.objectSelectedInfo);
+                        $scope.objectSelectedDBInfo = {};
+                        updateObjectSelectedDBInfo();
                     });
                 } else {
                     $scope.$apply(function() {
                         $scope.objectSelected = true;
                         $scope.objectSelectedInfo = null;
+                        $scope.objectSelectedDBInfo = {};
                     });
                 }
             });
@@ -141,6 +161,7 @@ angular.module('dynamicOfficeMapApp')
                 $scope.$apply(function() {
                     $scope.objectSelected = false;
                     $scope.objectSelectedInfo = null;
+                    $scope.objectSelectedDBInfo = {};
                 });
             });
 
