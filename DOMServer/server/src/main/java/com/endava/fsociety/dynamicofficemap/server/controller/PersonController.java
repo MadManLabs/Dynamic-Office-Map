@@ -26,6 +26,11 @@ public class PersonController {
         return personViewService.findAllPersons();
     }
 
+    @RequestMapping(value = "/map/{floorId}", method = RequestMethod.GET)
+    public List<PersonDTO> findAllPersonsOnMap(@PathVariable("floorId") String floorId) {
+        return personViewService.findAllPersonsOnMap(floorId);
+    }
+
     @RequestMapping(value = "/username/{username}", method = RequestMethod.GET)
     public PersonDTO findByUsername(@PathVariable("username") String username) {
         return personViewService.findByUsername(username);

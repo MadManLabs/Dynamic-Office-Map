@@ -91,4 +91,14 @@ public class AssetViewServiceImpl implements AssetViewService {
         return assetDTOs;
     }
 
+    @Override
+    public AssetDTO removeFromMap(String id) {
+        Asset asset = assetService.findById(id);
+        if (asset == null) {
+            throw new BadUrlException("There is no asset with id " + id);
+        }
+        asset.setOnMap(false);
+        return new AssetDTO(assetService.save(asset));
+    }
+
 }

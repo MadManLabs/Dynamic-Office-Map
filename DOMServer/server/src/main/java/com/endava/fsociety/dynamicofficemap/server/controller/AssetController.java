@@ -23,6 +23,11 @@ public class AssetController {
         return assetViewService.findById(assetId);
     }
 
+    @RequestMapping(value = "/{assetId}/removeFromMap", method = RequestMethod.PUT)
+    public AssetDTO removeFromMap(@PathVariable("assetId") String assetId) {
+        return assetViewService.removeFromMap(assetId);
+    }
+
     @RequestMapping(value = "/floor/{floorId}", method = RequestMethod.GET)
     public List<AssetDTO> findByFloor(@PathVariable("floorId") String floorId) {
         return assetViewService.findByFloor(floorId);

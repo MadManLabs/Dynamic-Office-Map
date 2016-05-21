@@ -62,4 +62,19 @@ public class AssetServiceImpl implements AssetService {
         return assets;
     }
 
+    @Override
+    public List<Asset> findByMap(Floor floor) {
+        List<Asset> assets = new ArrayList<Asset>();
+        List<Zone> zones = zoneService.findByFloor(floor);
+        if (zones != null) {
+            for (Zone zone : zones) {
+                List<Asset> assetsByZone = assetRepository.findByZoneAndIsOnMap(zone, true);
+                if (assetsByZone != null) {
+                    assets.addAll(assetsByZone);
+                }
+            }
+        }
+        return assets;
+    }
+
 }

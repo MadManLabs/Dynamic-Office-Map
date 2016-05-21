@@ -39,6 +39,38 @@ public class Person {
     public Person() {
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Person person = (Person) o;
+
+        if (id != null ? !id.equals(person.id) : person.id != null) return false;
+        if (firstName != null ? !firstName.equals(person.firstName) : person.firstName != null) return false;
+        if (lastName != null ? !lastName.equals(person.lastName) : person.lastName != null) return false;
+        if (email != null ? !email.equals(person.email) : person.email != null) return false;
+        if (username != null ? !username.equals(person.username) : person.username != null) return false;
+        if (mac != null ? !mac.equals(person.mac) : person.mac != null) return false;
+        if (permanentDesk != null ? !permanentDesk.equals(person.permanentDesk) : person.permanentDesk != null)
+            return false;
+        return temporaryZone != null ? temporaryZone.equals(person.temporaryZone) : person.temporaryZone == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (username != null ? username.hashCode() : 0);
+        result = 31 * result + (mac != null ? mac.hashCode() : 0);
+        result = 31 * result + (permanentDesk != null ? permanentDesk.hashCode() : 0);
+        result = 31 * result + (temporaryZone != null ? temporaryZone.hashCode() : 0);
+        return result;
+    }
+
     public String getId() {
         return id;
     }

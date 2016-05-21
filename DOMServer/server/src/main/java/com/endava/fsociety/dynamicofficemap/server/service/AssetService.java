@@ -24,4 +24,6 @@ public interface AssetService {
 
     List<Asset> findByFloor(Floor floor);
 
+    List<Asset> findByMap(Floor floor);
+
 }

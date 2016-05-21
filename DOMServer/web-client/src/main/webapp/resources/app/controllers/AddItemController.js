@@ -49,7 +49,8 @@ angular.module('dynamicOfficeMapApp')
                     name: $scope.assetName,
                     code: $scope.assetCode,
                     typeId: assetTypeId,
-                    zoneId: zoneId
+                    zoneId: zoneId,
+                    onMap: true
                 }
             }).then(function successCallback(response) {
                 $scope.zones.push(response.data);

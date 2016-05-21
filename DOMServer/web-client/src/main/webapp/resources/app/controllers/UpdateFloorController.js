@@ -15,9 +15,9 @@ angular.module('dynamicOfficeMapApp')
         var updateObjectSelectedDBInfo = function() {
             var url = undefined;
             if ($scope.objectSelectedInfo !== null && $scope.objectSelectedInfo.objectType === 'Asset') {
-                url = HOST + "/asset/" + $scope.objectSelectedInfo.idObject;
+                url = HOST + "asset/" + $scope.objectSelectedInfo.idObject;
             } else if ($scope.objectSelectedInfo !== null && $scope.objectSelectedInfo.objectType === 'Zone') {
-                url = HOST + "/zone/" + $scope.objectSelectedInfo.idObject;
+                url = HOST + "zone/" + $scope.objectSelectedInfo.idObject;
             }
             if (url) {
                 $http({
@@ -98,19 +98,19 @@ angular.module('dynamicOfficeMapApp')
         };
 
         $scope.deleteObject = function() {
-            var activeObject = canvas.getActiveObject(),
-                activeGroup = canvas.getActiveGroup();
+            var activeObject = canvas.getActiveObject();
             if (activeObject) {
                 if (confirm('Are you sure?')) {
-                    canvas.remove(activeObject);
-                }
-            } else if (activeGroup) {
-                if (confirm('Are you sure?')) {
-                    var objectsInGroup = activeGroup.getObjects();
-                    canvas.discardActiveGroup();
-                    objectsInGroup.forEach(function(object) {
-                        canvas.remove(object);
-                    });
+                    if ($scope.objectSelectedInfo !== null && $scope.objectSelectedInfo.objectType === 'Asset') {
+                        $http({
+                            method: 'PUT',
+                            url: HOST + 'asset/' + $scope.objectSelectedInfo.idObject + '/removeFromMap'
+                        }).then(function successCallback(response) {
+                            canvas.remove(activeObject);
+                        });
+                    } else {
+                        canvas.remove(activeObject);
+                    }
                 }
             }
         };

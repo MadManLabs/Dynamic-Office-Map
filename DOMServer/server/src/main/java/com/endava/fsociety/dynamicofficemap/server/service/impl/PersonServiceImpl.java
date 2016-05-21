@@ -2,17 +2,22 @@ package com.endava.fsociety.dynamicofficemap.server.service.impl;
 
 import com.endava.fsociety.dynamicofficemap.server.exception.BadUrlException;
 import com.endava.fsociety.dynamicofficemap.server.model.Asset;
+import com.endava.fsociety.dynamicofficemap.server.model.Floor;
 import com.endava.fsociety.dynamicofficemap.server.model.Person;
 import com.endava.fsociety.dynamicofficemap.server.model.Zone;
 import com.endava.fsociety.dynamicofficemap.server.repository.AssetRepository;
 import com.endava.fsociety.dynamicofficemap.server.repository.PersonRepository;
 import com.endava.fsociety.dynamicofficemap.server.repository.ZoneRepository;
+import com.endava.fsociety.dynamicofficemap.server.service.AssetService;
 import com.endava.fsociety.dynamicofficemap.server.service.PersonService;
+import com.endava.fsociety.dynamicofficemap.server.service.ZoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by caldea on 5/21/2016.
@@ -28,6 +33,12 @@ public class PersonServiceImpl implements PersonService {
 
     @Autowired
     private AssetRepository assetRepository;
+
+    @Autowired
+    private ZoneService zoneService;
+
+    @Autowired
+    private AssetService assetService;
 
     @Override
     public Person findByUsername(String username) {
@@ -73,6 +84,19 @@ public class PersonServiceImpl implements PersonService {
             persons = personRepository.findByTemporaryZone(zone);
         } else {
             throw new BadUrlException("The zone was not found");
+        }
+        return persons;
+    }
+
+    @Override
+    public Set<Person> findAllPersonsOnMap(Floor floor) {
+        List<Asset> assets = assetService.findByMap(floor);
+        Set<Person> persons = new HashSet<Person>();
+        for (Asset asset : assets) {
+            Person person = personRepository.findByPermanentDesk(asset);
+            if (person != null) {
+                persons.add(person);
+            }
         }
         return persons;
     }
