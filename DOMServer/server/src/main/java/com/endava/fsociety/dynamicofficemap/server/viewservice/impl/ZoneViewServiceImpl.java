@@ -60,10 +60,11 @@ public class ZoneViewServiceImpl implements ZoneViewService {
             zone = new Zone();
         }
 
+        Zone parentZone = null;
         if (zoneDTO.getParentId() != null) {
-            Zone parentZone = zoneService.findById(zoneDTO.getParentId());
-            zone.setParent(parentZone);
+            parentZone = zoneService.findById(zoneDTO.getParentId());
         }
+        zone.setParent(parentZone);
 
         Floor floor = floorService.findById(zoneDTO.getFloorId());
         if (floor == null) {

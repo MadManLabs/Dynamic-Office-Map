@@ -14,7 +14,22 @@ angular.module('dynamicOfficeMapApp')
         $scope.updateItem = function() {
             if ($scope.objectSelectedInfo !== null && $scope.objectSelectedInfo.objectType === 'Asset') {
                 updateAsset();
+            } else if ($scope.objectSelectedInfo !== null && $scope.objectSelectedInfo.objectType === 'Zone') {
+                updateZone();
             }
+        };
+
+        var updateZone = function() {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/views/update_zone.html',
+                controller: 'UpdateZoneController',
+                resolve: {
+                    zoneId: function() {
+                        return $scope.objectSelectedInfo.idObject;
+                    }
+                }
+            });
         };
 
         var updateAsset = function() {
@@ -27,9 +42,6 @@ angular.module('dynamicOfficeMapApp')
                         return $scope.objectSelectedInfo.idObject;
                     }
                 }
-            });
-
-            modalInstance.result.then(function (object) {
             });
         };
 
