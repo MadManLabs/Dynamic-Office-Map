@@ -68,6 +68,11 @@ public class PersonViewServiceImpl implements PersonViewService {
     }
 
     @Override
+    public PersonDTO updateTemporaryZoneByBeaconId(String personId, String beaconUuid) throws BadUrlException {
+        return new PersonDTO(personService.updateTemporaryZoneByBeacon(personId, beaconUuid));
+    }
+
+    @Override
     public List<PersonDTO> findAllPersonsByTempZoneCode(String zoneCode) throws BadUrlException {
         List<Person> persons = personService.findAllPersonsByTempZoneCode(zoneCode);
         List<PersonDTO> personDTOs = new ArrayList<PersonDTO>();

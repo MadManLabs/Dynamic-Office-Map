@@ -18,6 +18,8 @@ public interface PersonViewService {
 
     PersonDTO updateTemporaryZone(String personId, String temporaryZoneCode) throws BadUrlException;
 
+    PersonDTO updateTemporaryZoneByBeaconId(String personId, String beaconUuid) throws BadUrlException;
+
     List<PersonDTO> findAllPersonsByTempZoneCode(String zoneCode) throws BadUrlException;
 
     List<PersonDTO> findAllPersonsOnMap(String floorId);

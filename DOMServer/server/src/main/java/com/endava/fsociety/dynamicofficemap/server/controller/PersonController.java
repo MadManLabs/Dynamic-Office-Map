@@ -66,4 +66,9 @@ public class PersonController {
         return personViewService.findById(personId);
     }
 
+    @RequestMapping(value = "/{id}/beacon/{beaconUuid}", method = RequestMethod.PUT)
+    public PersonDTO updateTemporaryZoneByBeacon(@PathVariable("id") String personId, @PathVariable("beaconUuid") String beaconUuid) {
+        return personViewService.updateTemporaryZoneByBeaconId(personId, beaconUuid);
+    }
+
 }

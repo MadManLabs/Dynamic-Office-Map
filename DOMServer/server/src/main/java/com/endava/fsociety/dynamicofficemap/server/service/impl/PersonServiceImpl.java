@@ -1,14 +1,12 @@
 package com.endava.fsociety.dynamicofficemap.server.service.impl;
 
 import com.endava.fsociety.dynamicofficemap.server.exception.BadUrlException;
-import com.endava.fsociety.dynamicofficemap.server.model.Asset;
-import com.endava.fsociety.dynamicofficemap.server.model.Floor;
-import com.endava.fsociety.dynamicofficemap.server.model.Person;
-import com.endava.fsociety.dynamicofficemap.server.model.Zone;
+import com.endava.fsociety.dynamicofficemap.server.model.*;
 import com.endava.fsociety.dynamicofficemap.server.repository.AssetRepository;
 import com.endava.fsociety.dynamicofficemap.server.repository.PersonRepository;
 import com.endava.fsociety.dynamicofficemap.server.repository.ZoneRepository;
 import com.endava.fsociety.dynamicofficemap.server.service.AssetService;
+import com.endava.fsociety.dynamicofficemap.server.service.BeaconService;
 import com.endava.fsociety.dynamicofficemap.server.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +33,9 @@ public class PersonServiceImpl implements PersonService {
 
     @Autowired
     private AssetService assetService;
+
+    @Autowired
+    private BeaconService beaconService;
 
     @Override
     public Person findByUsername(String username) {
@@ -73,6 +74,30 @@ public class PersonServiceImpl implements PersonService {
             person = personRepository.save(person);
         } else {
             throw new BadUrlException("The Zone or the Person were not found");
+        }
+        return person;
+    }
+
+    @Override
+    public Person updateTemporaryZoneByBeacon(String personId, String beaconUuid) throws BadUrlException {
+        Beacon beacon = beaconService.findByUuid(beaconUuid);
+        Person person = personRepository.findOne(personId);
+        if (beacon != null && person != null) {
+            if ("zone".equalsIgnoreCase(beacon.getType())) {
+                Zone zone = zoneRepository.findByCode(beacon.getCode());
+                if (zone != null) {
+                    person.setTemporaryZone(zone);
+                    person = personRepository.save(person);
+                }
+            } else if ("asset".equalsIgnoreCase(beacon.getType())) {
+                Asset asset = assetRepository.findByCode(beacon.getCode());
+                if (asset != null && asset.getZone() != null) {
+                    person.setTemporaryZone(asset.getZone());
+                    person = personRepository.save(person);
+                }
+            }
+        } else {
+            throw new BadUrlException("The Beacon or the Person were not found");
         }
         return person;
     }

@@ -24,6 +24,8 @@ public interface PersonService {
 
     Person updateTemporaryZone(String personId, String temporaryZoneCode) throws BadUrlException;
 
+    Person updateTemporaryZoneByBeacon(String personId, String beaconUuid) throws BadUrlException;
+
     List<Person> findAllPersonsByTempZoneCode(String zoneCode) throws BadUrlException;
 
     Set<Person> findAllPersonsOnMap(Floor floor);
