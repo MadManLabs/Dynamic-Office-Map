@@ -12,7 +12,7 @@ public interface PersonViewService {
 
     List<PersonDTO> findAllPersons();
 
-    PersonDTO findByEmail(String email);
+    PersonDTO findByUsername(String username);
 
     PersonDTO updatePermanentDesk(String personId, String assetCode) throws BadUrlException;
 

@@ -32,8 +32,12 @@ public class PersonViewServiceImpl implements PersonViewService {
 
 
     @Override
-    public PersonDTO findByEmail(String email) {
-        return new PersonDTO(personService.findByEmail(email));
+    public PersonDTO findByUsername(String username) {
+        Person person = personService.findByUsername(username);
+        if (person == null) {
+            throw new BadUrlException("There is no person with username " + username);
+        }
+        return new PersonDTO(person);
     }
 
     @Override

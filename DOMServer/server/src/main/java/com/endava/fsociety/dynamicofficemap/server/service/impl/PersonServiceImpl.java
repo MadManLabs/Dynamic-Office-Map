@@ -30,8 +30,8 @@ public class PersonServiceImpl implements PersonService {
     private AssetRepository assetRepository;
 
     @Override
-    public Person findByEmail(String email) {
-        return personRepository.findByEmail(email);
+    public Person findByUsername(String username) {
+        return personRepository.findByUsername(username);
     }
 
     @Override

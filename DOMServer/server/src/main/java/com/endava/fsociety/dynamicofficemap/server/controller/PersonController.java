@@ -32,8 +32,8 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/username/{username}", method = RequestMethod.GET)
-    public PersonDTO findByEmail(@PathVariable("username") String username) {
-        return personViewService.findByEmail(username);
+    public PersonDTO findByUsername(@PathVariable("username") String username) {
+        return personViewService.findByUsername(username);
     }
 
     @RequestMapping(value = "/{id}/permanentDesk/{assetCode}", method = RequestMethod.PUT)

@@ -8,8 +8,10 @@ import java.util.List;
 /**
  * Created by caldea on 5/21/2016.
  */
+
 public interface PersonService {
-    Person findByEmail(String email);
+
+    Person findByUsername(String email);
 
     List<Person> findAll();
 

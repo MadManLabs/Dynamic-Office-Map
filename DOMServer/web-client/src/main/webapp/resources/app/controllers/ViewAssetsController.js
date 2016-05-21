@@ -14,4 +14,11 @@ angular.module('dynamicOfficeMapApp')
             $scope.floor = response.data;
         });
 
+        $http({
+            method: 'GET',
+            url: HOST + 'asset/floor/' + floorId
+        }).then(function successCallback(response) {
+            $scope.assets = response.data;
+        });
+
     });
