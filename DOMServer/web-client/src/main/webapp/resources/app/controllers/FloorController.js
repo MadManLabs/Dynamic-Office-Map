@@ -5,9 +5,33 @@ angular.module('dynamicOfficeMapApp')
 
         var floorId = $routeParams.floorId;
         $scope.floor = {};
+        $scope.objectSelected = false;
+        $scope.objectSelectedInfo = null;
         var grid = 50;
 
         var canvas = new fabric.CanvasWithViewport('floorMap', { selection: false });
+
+        $scope.updateItem = function() {
+            if ($scope.objectSelectedInfo !== null && $scope.objectSelectedInfo.objectType === 'Asset') {
+                updateAsset();
+            }
+        };
+
+        var updateAsset = function() {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/views/update_asset.html',
+                controller: 'UpdateAssetController',
+                resolve: {
+                    assetId: function() {
+                        return $scope.objectSelectedInfo.idObject;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (object) {
+            });
+        };
 
         $scope.addItem = function() {
             var modalInstance = $uibModal.open({
@@ -43,6 +67,24 @@ angular.module('dynamicOfficeMapApp')
             });
         };
 
+        $scope.deleteObject = function() {
+            var activeObject = canvas.getActiveObject(),
+                activeGroup = canvas.getActiveGroup();
+            if (activeObject) {
+                if (confirm('Are you sure?')) {
+                    canvas.remove(activeObject);
+                }
+            } else if (activeGroup) {
+                if (confirm('Are you sure?')) {
+                    var objectsInGroup = activeGroup.getObjects();
+                    canvas.discardActiveGroup();
+                    objectsInGroup.forEach(function(object) {
+                        canvas.remove(object);
+                    });
+                }
+            }
+        };
+
         $http({
             method: 'GET',
             url: HOST + 'floor/' + floorId
@@ -69,14 +111,16 @@ angular.module('dynamicOfficeMapApp')
             });
 
             canvas.on('object:selected', function(object) {
-                if (object.target.objectType && (object.target.objectType === 'Zone' || object.target.objectType === 'Desk')) {
+                if (object.target.objectType && (['Zone', 'Asset'].indexOf(object.target.objectType) != -1)) {
                     $scope.$apply(function() {
                         $scope.objectSelected = true;
                         $scope.objectSelectedInfo = object.target;
+                        console.log($scope.objectSelectedInfo);
                     });
                 } else {
                     $scope.$apply(function() {
-                        $scope.objectSelected = false;
+                        $scope.objectSelected = true;
+                        $scope.objectSelectedInfo = null;
                     });
                 }
             });
@@ -84,6 +128,7 @@ angular.module('dynamicOfficeMapApp')
             canvas.on('selection:cleared', function(object) {
                 $scope.$apply(function() {
                     $scope.objectSelected = false;
+                    $scope.objectSelectedInfo = null;
                 });
             });
 

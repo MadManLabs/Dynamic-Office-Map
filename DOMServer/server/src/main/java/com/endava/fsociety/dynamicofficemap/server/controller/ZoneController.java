@@ -18,6 +18,11 @@ public class ZoneController {
     @Autowired
     private ZoneViewService zoneViewService;
 
+    @RequestMapping(value = "/{zoneId}", method = RequestMethod.GET)
+    public ZoneDTO findById(@PathVariable("zoneId") String id) {
+        return zoneViewService.findById(id);
+    }
+
     @RequestMapping(value = "/floor/{floorId}", method = RequestMethod.GET)
     public List<ZoneDTO> findByFloor(@PathVariable String floorId) {
         return zoneViewService.findByFloor(floorId);

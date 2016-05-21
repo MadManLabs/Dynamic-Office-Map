@@ -2,6 +2,7 @@ package com.endava.fsociety.dynamicofficemap.server.viewservice.impl;
 
 import com.endava.fsociety.dynamicofficemap.server.dto.AssetDTO;
 import com.endava.fsociety.dynamicofficemap.server.exception.BadDataException;
+import com.endava.fsociety.dynamicofficemap.server.exception.BadUrlException;
 import com.endava.fsociety.dynamicofficemap.server.model.Asset;
 import com.endava.fsociety.dynamicofficemap.server.model.AssetType;
 import com.endava.fsociety.dynamicofficemap.server.model.Zone;
@@ -27,6 +28,15 @@ public class AssetViewServiceImpl implements AssetViewService {
 
     @Autowired
     private ZoneService zoneService;
+
+    @Override
+    public AssetDTO findById(String id) {
+        Asset asset = assetService.findById(id);
+        if (asset == null) {
+            throw new BadUrlException("There is no asset with id " + id);
+        }
+        return new AssetDTO(asset);
+    }
 
     @Override
     public AssetDTO save(AssetDTO assetDTO) {

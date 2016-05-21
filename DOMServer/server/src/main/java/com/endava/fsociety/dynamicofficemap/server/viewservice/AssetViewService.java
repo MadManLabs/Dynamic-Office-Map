@@ -8,6 +8,8 @@ import com.endava.fsociety.dynamicofficemap.server.dto.AssetDTO;
 
 public interface AssetViewService {
 
+    AssetDTO findById(String id);
+
     AssetDTO save(AssetDTO assetDTO);
 
 }

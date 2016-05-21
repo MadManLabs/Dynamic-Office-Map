@@ -27,6 +27,15 @@ public class ZoneViewServiceImpl implements ZoneViewService {
     @Autowired
     private FloorService floorService;
 
+    @Override
+    public ZoneDTO findById(String id) {
+        Zone zone = zoneService.findById(id);
+        if (zone == null) {
+            throw new BadUrlException("There is no zone with id " + id);
+        }
+        return new ZoneDTO(zone);
+    }
+
     public List<ZoneDTO> findByFloor(String floorId) {
         Floor floor = floorService.findById(floorId);
         if (floor == null) {

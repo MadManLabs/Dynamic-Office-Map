@@ -10,6 +10,8 @@ import java.util.List;
 
 public interface ZoneViewService {
 
+    ZoneDTO findById(String id);
+
     List<ZoneDTO> findByFloor(String floorId);
 
     ZoneDTO save(ZoneDTO zoneDTO);

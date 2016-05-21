@@ -14,17 +14,22 @@
     </div>
     <div class="col-md-4">
         <div class="buttons">
-            <button class="btn btn-primary" ng-click="grabMode(false)"><i class="fa fa-edit"></i> Edit mode</button>
-            <button class="btn btn-primary" ng-click="grabMode(true)"><i class="fa fa-arrows"></i> Grab mode</button>
-            <button class="btn btn-primary" ng-click="zoomIn()"><i class="fa fa-search-plus"></i> Zoom in</button>
-            <button class="btn btn-primary" ng-click="zoomOut()"><i class="fa fa-search-minus"></i> Zoom out</button>
+            <button class="btn btn-default" ng-click="grabMode(false)"><i class="fa fa-edit"></i> Edit mode</button>
+            <button class="btn btn-default" ng-click="grabMode(true)"><i class="fa fa-arrows"></i> Grab mode</button>
+            <button class="btn btn-default" ng-click="zoomIn()"><i class="fa fa-search-plus"></i> Zoom in</button>
+            <button class="btn btn-default" ng-click="zoomOut()"><i class="fa fa-search-minus"></i> Zoom out</button>
         </div>
     </div>
     <div class="col-md-2">
-        <button class="btn btn-default" type="button" ng-click="addItem()">Add Item</button>
+        <button class="btn btn-primary" type="button" ng-click="addItem()">Add Item</button>
     </div>
     <div class="col-md-2">
-        <button class="btn btn-danger" type="button" ng-click="deleteObject()">Remove Selected Item</button>
+        <button class="btn btn-danger" type="button" ng-click="deleteObject()" ng-show="objectSelected">
+            <i class="fa fa-trash" aria-hidden="true"></i> Remove
+        </button>
+        <button class="btn btn-primary" type="button" ng-click="updateItem()" ng-show="objectSelectedInfo !== null">
+            <i class="fa fa-pencil" aria-hidden="true"></i> Update
+        </button>
     </div>
 
 </div>

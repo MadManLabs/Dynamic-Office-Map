@@ -2,6 +2,7 @@ package com.endava.fsociety.dynamicofficemap.server.dto;
 
 import com.endava.fsociety.dynamicofficemap.server.model.Asset;
 import com.endava.fsociety.dynamicofficemap.server.model.AssetType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Created by fstancu on 5/11/2016.
@@ -17,6 +18,7 @@ public class AssetDTO {
     private String typeName;
 
     private String zoneId;
+    private String floorId;
 
     public AssetDTO() {
     }
@@ -28,8 +30,10 @@ public class AssetDTO {
         this.typeId = asset.getAssetType().getId();
         this.typeName = asset.getAssetType().getName();
         this.zoneId = asset.getZone().getId();
+        this.floorId = asset.getZone().getFloor().getId();
     }
 
+    @JsonIgnore
     public Asset getEntity() {
         Asset asset = new Asset();
         asset.setId(id);
@@ -90,5 +94,13 @@ public class AssetDTO {
 
     public void setZoneId(String zoneId) {
         this.zoneId = zoneId;
+    }
+
+    public String getFloorId() {
+        return floorId;
+    }
+
+    public void setFloorId(String floorId) {
+        this.floorId = floorId;
     }
 }
