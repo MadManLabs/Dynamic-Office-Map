@@ -36,7 +36,7 @@ public class GetPersonDtos extends AsyncTask<Void, Void, List<PersonDTO>> {
 	@Override
 	protected List<PersonDTO> doInBackground(Void... params) {
 		try {
-			final String url = "http://" + findFriendFragment.application.getConfiguration().getServerIp() + ":" + findFriendFragment.application.getConfiguration().getServerPort() + "/dynamaps/api/v1/office/person";
+			final String url = "http://" + findFriendFragment.application.getSettings().getServerIp() + ":" + findFriendFragment.application.getSettings().getServerPort() + "/api/person";
 			RestTemplate restTemplate = new RestTemplate();
 			restTemplate.getMessageConverters().add(new GsonHttpMessageConverter());
 			PersonDTO[] personDTOs = restTemplate.getForObject(url, PersonDTO[].class);
@@ -54,7 +54,7 @@ public class GetPersonDtos extends AsyncTask<Void, Void, List<PersonDTO>> {
 			progressDialog.dismiss();
 		}
 		for (PersonDTO personDTO : personDTOs) {
-			findFriendFragment.usernames.add(personDTO.getName());
+			findFriendFragment.usernames.add(personDTO.getUsername());
 		}
 		ArrayAdapter<String> searchUsernameInstantAutoCompleteTextViewAdapter = new ArrayAdapter<>(findFriendFragment.getActivity(), android.R.layout.simple_list_item_1, findFriendFragment.usernames);
 		findFriendFragment.getSearchUsernameInstantAutoCompleteTextView().setAdapter(searchUsernameInstantAutoCompleteTextViewAdapter);

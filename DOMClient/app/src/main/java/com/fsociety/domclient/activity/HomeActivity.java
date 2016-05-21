@@ -36,8 +36,12 @@ public class HomeActivity extends BaseActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		Intent intent;
 		switch (item.getItemId()) {
+			case R.id.settings_action:
+				intent = new Intent(this, SettingsActivity_.class);
+				startActivity(intent);
+				return true;
 			case R.id.logout_action:
-				application.getSettings().setUsername(null);
+				application.getSettings().setLoggedInPersonDTO(null);
 				storageWriterService.saveObjectToFile(application.getSettings(), application.getConfiguration().getApplicationBinDirectory(), application.getConfiguration().getSettingsFilename());
 				recreate();
 				return true;
@@ -46,7 +50,7 @@ public class HomeActivity extends BaseActivity {
 	}
 
 	public void resetMenu() {
-		if (application.getSettings().getUsername() == null) {
+		if (application.getSettings().getLoggedInPersonDTO() == null) {
 			homeMenu.findItem(R.id.logout_action).setVisible(false);
 		} else {
 			homeMenu.findItem(R.id.logout_action).setVisible(true);

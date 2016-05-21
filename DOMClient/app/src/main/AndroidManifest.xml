@@ -29,6 +29,9 @@
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
 		</activity>
+		<activity android:name=".activity.SettingsActivity_" android:parentActivityName=".activity.SettingsActivity_">
+			<meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".activity.HomeActivity_"/>
+		</activity>
 		<activity android:name=".activity.FindFriendActivity_" android:parentActivityName=".activity.FindFriendActivity_">
 			<meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".activity.HomeActivity_"/>
 		</activity>

@@ -3,19 +3,15 @@ package com.fsociety.domclient.fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.nfc.NfcAdapter;
-import android.text.Html;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fsociety.domclient.R;
 import com.fsociety.domclient.activity.RegisterDeskActivity;
-import com.fsociety.domclient.dto.DeskDTO;
-import com.fsociety.domclient.dto.PersonDTO;
-import com.fsociety.domclient.rest.UpdatePersonDeskByName;
+import com.fsociety.domclient.rest.UpdatePersonDeskById;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -30,21 +26,15 @@ public class RegisterDeskFragment extends BaseFragment {
 	protected TextView registerDesk2TextView;
 	@ViewById(R.id.nfcImageView)
 	protected ImageView nfcImageView;
-	@ViewById(R.id.temporaryDeskCheckBox)
-	protected CheckBox temporaryDeskCheckBox;
 	@ViewById(R.id.readQRCodeButton)
 	protected Button readQRCodeButton;
-
-	public CheckBox getTemporaryDeskCheckBox() {
-		return temporaryDeskCheckBox;
-	}
 
 	@AfterViews
 	protected void setupViews() {
 		((RegisterDeskActivity) getActivity()).registerDeskFragment = this;
-		registerDesk1TextView.setText(Html.fromHtml(String.format(getResources().getString(R.string.register_desk_activity_register_desk_1_text), getResources().getString(R.string.application_name))));
+		registerDesk1TextView.setText(getResources().getString(R.string.register_desk_activity_register_desk_1_text));
 		if (NfcAdapter.getDefaultAdapter(getActivity()) != null) {
-			registerDesk2TextView.setText(Html.fromHtml(String.format(getResources().getString(R.string.register_desk_activity_register_desk_2_text), getResources().getString(R.string.application_name))));
+			registerDesk2TextView.setText(getResources().getString(R.string.register_desk_activity_register_desk_2_text));
 		} else {
 			registerDesk2TextView.setVisibility(View.INVISIBLE);
 			nfcImageView.setVisibility(View.INVISIBLE);
@@ -64,12 +54,9 @@ public class RegisterDeskFragment extends BaseFragment {
 				String contents = intent.getStringExtra("SCAN_RESULT");
 				String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
 				//Toast.makeText(getActivity(), "Scan resulted in code:" + contents, Toast.LENGTH_LONG).show();
-				PersonDTO personDTO = new PersonDTO();
-				personDTO.setId(application.getSettings().getId());
-				DeskDTO deskDTO = new DeskDTO();
-				deskDTO.setId(Integer.valueOf(contents));
-				personDTO.setDesk(deskDTO);
-				new UpdatePersonDeskByName(this, personDTO, temporaryDeskCheckBox.isChecked()).execute();
+				String codeType = contents.split("=")[0];
+				String code = contents.split("=")[1];
+				new UpdatePersonDeskById(this, application.getSettings().getLoggedInPersonDTO(), codeType, code).execute();
 			} else if (resultCode == Activity.RESULT_CANCELED) {
 				Toast.makeText(getActivity(), getResources().getString(R.string.register_desk_activity_scan_cancelled_text), Toast.LENGTH_LONG).show();
 			}

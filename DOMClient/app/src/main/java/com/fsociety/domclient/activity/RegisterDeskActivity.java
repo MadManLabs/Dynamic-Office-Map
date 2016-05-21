@@ -1,6 +1,5 @@
 package com.fsociety.domclient.activity;
 
-import android.app.Fragment;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -17,7 +16,7 @@ import com.fsociety.domclient.R;
 import com.fsociety.domclient.dto.DeskDTO;
 import com.fsociety.domclient.dto.PersonDTO;
 import com.fsociety.domclient.fragment.RegisterDeskFragment;
-import com.fsociety.domclient.rest.UpdatePersonDeskByName;
+import com.fsociety.domclient.rest.UpdatePersonDeskById;
 
 import org.androidannotations.annotations.EActivity;
 
@@ -72,11 +71,13 @@ public class RegisterDeskActivity extends BaseActivity {
 			if (parcelables != null && parcelables.length > 0) {
 				//Toast.makeText(this, readTextFromMessage((NdefMessage) parcelables[0]), Toast.LENGTH_LONG).show();
 				PersonDTO personDTO = new PersonDTO();
-				personDTO.setId(application.getSettings().getId());
+				//personDTO.setId(application.getSettings().getId());
 				DeskDTO deskDTO = new DeskDTO();
-				deskDTO.setId(Integer.valueOf(readTextFromMessage((NdefMessage) parcelables[0])));
-				personDTO.setDesk(deskDTO);
-				new UpdatePersonDeskByName(this, personDTO, registerDeskFragment.getTemporaryDeskCheckBox().isChecked()).execute();
+				String nfcCode = readTextFromMessage((NdefMessage) parcelables[0]);
+				String codeType = nfcCode.split("=")[0];
+				String code = nfcCode.split("=")[1];
+				//personDTO.setDesk(deskDTO);
+				new UpdatePersonDeskById(this, application.getSettings().getLoggedInPersonDTO(), codeType, code).execute();
 			} else {
 				Toast.makeText(this, "No NDEF messages found!", Toast.LENGTH_SHORT).show();
 			}

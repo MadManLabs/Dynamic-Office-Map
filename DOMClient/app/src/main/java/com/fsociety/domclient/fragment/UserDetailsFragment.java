@@ -17,15 +17,21 @@ public class UserDetailsFragment extends BaseFragment {
 	protected TextView nameTextView;
 	@ViewById(R.id.emailTextView)
 	protected TextView emailTextView;
-	@ViewById(R.id.floorTextView)
-	protected TextView floorTextView;
+	@ViewById(R.id.permanentFloorZoneTextView)
+	protected TextView permanentFloorZoneTextView;
+	@ViewById(R.id.temporaryFloorZoneTextView)
+	protected TextView temporaryFloorZoneTextView;
 	@ViewById(R.id.mapWebView)
 	protected WebView mapWebView;
 
 	private String username;
 
-	public TextView getFloorTextView() {
-		return floorTextView;
+	public TextView getTemporaryFloorZoneTextView() {
+		return temporaryFloorZoneTextView;
+	}
+
+	public TextView getPermanentFloorZoneTextView() {
+		return permanentFloorZoneTextView;
 	}
 
 	public TextView getEmailTextView() {
@@ -52,7 +58,7 @@ public class UserDetailsFragment extends BaseFragment {
 			//Toast.makeText(getActivity(), username, Toast.LENGTH_LONG).show();
 		}
 		mapWebView.getSettings().setJavaScriptEnabled(true);
-		//mapWebView.getSettings().setBuiltInZoomControls(true);
+		mapWebView.getSettings().setBuiltInZoomControls(true);
 		mapWebView.setVerticalScrollBarEnabled(true);
 		mapWebView.setHorizontalScrollBarEnabled(true);
 		mapWebView.getSettings().setLoadWithOverviewMode(true);

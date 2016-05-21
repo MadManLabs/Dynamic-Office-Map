@@ -1,27 +1,42 @@
 package com.fsociety.domclient.core;
 
+import com.fsociety.domclient.dto.PersonDTO;
+
 public class Settings {
-	private Integer id;
-	private String username;
+	private PersonDTO loggedInPersonDTO;
+	private boolean enableBeaconUpdates;
+	private String serverIp;
+	private String serverPort;
 
-	public Settings() {
-		this.id = 0;
-		this.username = null;
+	public PersonDTO getLoggedInPersonDTO() {
+		return loggedInPersonDTO;
 	}
 
-	public Integer getId() {
-		return id;
+	public void setLoggedInPersonDTO(PersonDTO loggedInPersonDTO) {
+		this.loggedInPersonDTO = loggedInPersonDTO;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public boolean getEnableBeaconUpdates() {
+		return enableBeaconUpdates;
 	}
 
-	public String getUsername() {
-		return username;
+	public void setEnableBeaconUpdates(boolean enableBeaconUpdates) {
+		this.enableBeaconUpdates = enableBeaconUpdates;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public String getServerIp() {
+		return (serverIp==null)?"192.168.168.107":serverIp;
+	}
+
+	public void setServerIp(String serverIp) {
+		this.serverIp = serverIp;
+	}
+
+	public String getServerPort() {
+		return (serverPort==null)?"8080":serverPort;
+	}
+
+	public void setServerPort(String serverPort) {
+		this.serverPort = serverPort;
 	}
 }

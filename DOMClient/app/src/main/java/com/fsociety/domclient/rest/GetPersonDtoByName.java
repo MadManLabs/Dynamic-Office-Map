@@ -33,7 +33,7 @@ public class GetPersonDtoByName extends AsyncTask<Void, Void, PersonDTO> {
 	@Override
 	protected PersonDTO doInBackground(Void... params) {
 		try {
-			final String url = "http://" + userDetailsFragment.application.getConfiguration().getServerIp() + ":" + userDetailsFragment.application.getConfiguration().getServerPort() + "/dynamaps/api/v1/office/person/" + userDetailsFragment.getUsername();
+			final String url = "http://" + userDetailsFragment.application.getSettings().getServerIp() + ":" + userDetailsFragment.application.getSettings().getServerPort() + "/api/person/username/" + userDetailsFragment.getUsername();
 			RestTemplate restTemplate = new RestTemplate();
 			restTemplate.getMessageConverters().add(new GsonHttpMessageConverter());
 			PersonDTO personDTO = restTemplate.getForObject(url, PersonDTO.class);
@@ -52,7 +52,8 @@ public class GetPersonDtoByName extends AsyncTask<Void, Void, PersonDTO> {
 		}
 		userDetailsFragment.getNameTextView().setText(String.format(userDetailsFragment.getResources().getString(R.string.user_details_activity_name_text), personDTO.getName()));
 		userDetailsFragment.getEmailTextView().setText(String.format(userDetailsFragment.getResources().getString(R.string.user_details_activity_email_text), personDTO.getEmail() != null ? personDTO.getEmail() : ""));
-		userDetailsFragment.getFloorTextView().setText(userDetailsFragment.getFloorTextView().getText()+ " " + ((personDTO.getDesk()!=null && personDTO.getDesk().getZone()!=null && personDTO.getDesk().getZone().getFloor()!=null && personDTO.getDesk().getZone().getFloor().getName()!= null) ? personDTO.getDesk().getZone().getFloor().getName() : ""));
-		userDetailsFragment.getMapWebView().loadUrl("http://" + userDetailsFragment.application.getConfiguration().getServerIp() + ":" + userDetailsFragment.application.getConfiguration().getServerPort() + "/dashboard/second/#/personMap/"+personDTO.getId());
+		userDetailsFragment.getPermanentFloorZoneTextView().setText(userDetailsFragment.getPermanentFloorZoneTextView().getText()+ " " + (personDTO.getPermanentFloorName()!=null?personDTO.getPermanentFloorName():"-") + " / " + (personDTO.getPermanentZoneName()!=null?personDTO.getPermanentZoneName():"-") );
+		userDetailsFragment.getTemporaryFloorZoneTextView().setText(userDetailsFragment.getTemporaryFloorZoneTextView().getText()+ " " + (personDTO.getTemporaryFloorName()!=null?personDTO.getTemporaryFloorName():"-") + " / " + (personDTO.getTemporaryZoneName()!=null?personDTO.getTemporaryZoneName():"-") );
+		userDetailsFragment.getMapWebView().loadUrl("http://" + userDetailsFragment.application.getSettings().getServerIp() + ":" + userDetailsFragment.application.getSettings().getServerPort() + "/map/#/personMap/"+personDTO.getUsername());
 	}
 }

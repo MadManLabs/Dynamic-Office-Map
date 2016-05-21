@@ -9,20 +9,10 @@
 				android:paddingTop="@dimen/activity_vertical_margin"
 				tools:context=".activity.RegisterDeskActivity_$RegisterDeskFragment_">
 
-	<CheckBox
-			android:id="@+id/temporaryDeskCheckBox"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:textSize="@dimen/text_appearance_smaller_medium"
-			android:text="This is a temporary desk"
-			android:checked="true"/>
-
 	<TextView
 			android:id="@+id/registerDesk1TextView"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_below="@+id/temporaryDeskCheckBox"
-			android:layout_marginTop="@dimen/view_vertical_margin"
 			android:textSize="@dimen/text_appearance_smaller_medium"
 			android:text="@string/register_desk_activity_register_desk_1_text"/>
 

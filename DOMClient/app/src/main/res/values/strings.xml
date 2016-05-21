@@ -1,9 +1,8 @@
 <resources>
 	<string name="application_name">DOM Client</string>
 
-	<string name="home_activity_logout_action_title">Logout</string>
 	<string name="home_activity_welcome_text">Welcome to the Dynamic Office Map Client!</string>
-	<string name="home_activity_logged_as_text">You are now logged as %1$s...</string>
+	<string name="home_activity_logged_as_text"><![CDATA[You are now logged as <b>%1$s<b/>&#8230;]]></string>
 	<string name="home_activity_login_explain_text">You must first login before you can do any changes. So please enter you credentials below…</string>
 	<string name="home_activity_username_text">Username:</string>
 	<string name="home_activity_login_text">Login</string>
@@ -17,7 +16,7 @@
 	<string name="register_desk_activity_read_qr_code_button_text">Scan QR code</string>
 	<string name="register_desk_activity_scan_cancelled_text">Scan was canceled. Please try again!</string>
 
-	<string name="find_friend_activity_find_friend_text">Enter your friend\'s username below to look for him...</string>
+	<string name="find_friend_activity_find_friend_text">Enter your friend\'s username below to look for him&#8230;</string>
 	<string name="find_friend_activity_search_username_text">Username:</string>
 	<string name="find_friend_activity_find_friend_button_text">Find</string>
 

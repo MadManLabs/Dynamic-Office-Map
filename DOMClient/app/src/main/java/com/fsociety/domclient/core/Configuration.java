@@ -9,27 +9,13 @@ import java.io.File;
 
 @EBean(scope = Scope.Singleton)
 public class Configuration {
-	private String settingsFilename, applicationDirectory, applicationBinDirectory, applicationBinTempDirectory, serverIp, serverPort;
+	private String settingsFilename, applicationDirectory, applicationBinDirectory, applicationBinTempDirectory;
 
 	protected Configuration(Context context) {
-		// Endava
-		serverIp = "192.168.168.107";
-		// Wireless
-		//serverIp = "192.168.173.1";
-		//serverIp = "192.168.166.69";
-		serverPort = "8080";
 		settingsFilename = "settings.json";
 		applicationDirectory = context.getFilesDir().getAbsolutePath();
 		applicationBinDirectory = context.getFilesDir().getAbsolutePath() + File.separator + "bin";
 		applicationBinTempDirectory = context.getFilesDir().getAbsolutePath() + File.separator + "bin" + File.separator + "temp";
-	}
-
-	public String getServerIp() {
-		return serverIp;
-	}
-
-	public String getServerPort() {
-		return serverPort;
 	}
 
 	public String getSettingsFilename() {

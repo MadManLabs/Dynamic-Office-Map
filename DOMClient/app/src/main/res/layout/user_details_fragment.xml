@@ -39,7 +39,8 @@
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/nameTextView"
 			android:layout_marginTop="@dimen/view_vertical_margin"
-			android:text="@string/user_details_activity_email_text"/>
+			android:text="@string/user_details_activity_email_text"
+			android:textSize="@dimen/text_appearance_smaller_medium"/>
 
 	<TextView
 			android:id="@+id/positionTextView"
@@ -59,19 +60,45 @@
 			android:layout_marginTop="@dimen/divider_vertical_margin"/>
 
 	<TextView
-			android:id="@+id/floorTextView"
+			android:id="@+id/permanentFloorZoneTextView"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/divider1View"
 			android:layout_marginLeft="@dimen/view_horizontal_margin"
-			android:text="Floor:"
+			android:text="Permanent:"
 			android:textSize="@dimen/text_appearance_smaller_medium"/>
+
+	<TextView
+			android:id="@+id/temporaryFloorZoneTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/permanentFloorZoneTextView"
+			android:layout_marginLeft="@dimen/view_horizontal_margin"
+			android:text="Temporary:"
+			android:textSize="@dimen/text_appearance_smaller_medium"/>
+
+	<TextView
+			android:id="@+id/currentMapPositionTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/temporaryFloorZoneTextView"
+			android:layout_marginTop="@dimen/category_view_top_margin"
+			android:text="Current position"
+			android:textSize="@dimen/text_appearance_smaller_medium"
+			android:textStyle="bold"/>
+
+	<View
+			android:id="@+id/divider3View"
+			style="@style/divider"
+			android:layout_below="@+id/currentMapPositionTextView"
+			android:layout_marginBottom="@dimen/divider_vertical_margin"
+			android:layout_marginTop="@dimen/divider_vertical_margin"/>
 
 	<WebView
 			android:id="@+id/mapWebView"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginTop="20dp"
-			android:layout_below="@+id/floorTextView"/>
+			android:layout_marginStart="10dp"
+			android:layout_below="@+id/divider3View"/>
 
 </RelativeLayout>

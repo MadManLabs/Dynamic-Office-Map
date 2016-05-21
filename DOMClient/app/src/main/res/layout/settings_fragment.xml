@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+			xmlns:tools="http://schemas.android.com/tools"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:paddingBottom="@dimen/activity_vertical_margin"
+			android:paddingLeft="@dimen/activity_horizontal_margin"
+			android:paddingRight="@dimen/activity_horizontal_margin"
+			android:paddingTop="@dimen/activity_vertical_margin"
+			tools:context=".fragment.SettingsFragment_">
+
+	<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+
+		<TextView
+				android:id="@+id/beaconTextView"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="@dimen/category_view_top_margin"
+				android:text="Beacon"
+				android:textSize="@dimen/text_appearance_smaller_medium"
+				android:textStyle="bold"/>
+
+		<View
+				android:id="@+id/divider1View"
+				style="@style/divider"
+				android:layout_below="@+id/beaconTextView"
+				android:layout_marginBottom="@dimen/divider_vertical_margin"
+				android:layout_marginTop="@dimen/divider_vertical_margin"/>
+
+		<CheckBox
+				android:id="@+id/enableBeaconUpdatesCheckBox"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/divider1View"
+				android:layout_marginLeft="@dimen/view_horizontal_margin"
+				android:text="Enable beacon updates"
+				android:textSize="@dimen/text_appearance_smaller_medium"/>
+
+		<TextView
+				android:id="@+id/connectionTextView"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/enableBeaconUpdatesCheckBox"
+				android:layout_marginTop="@dimen/category_view_top_margin"
+				android:text="Connection"
+				android:textSize="@dimen/text_appearance_smaller_medium"
+				android:textStyle="bold"/>
+
+		<View
+				android:id="@+id/divider2View"
+				style="@style/divider"
+				android:layout_below="@+id/connectionTextView"
+				android:layout_marginBottom="@dimen/divider_vertical_margin"
+				android:layout_marginTop="@dimen/divider_vertical_margin"/>
+
+		<RelativeLayout
+				android:id="@+id/ipRelativeLayout"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/divider2View"
+				android:layout_marginLeft="@dimen/view_horizontal_margin">
+
+			<TextView
+					android:id="@+id/ipTextView"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:text="IP address:"
+					android:textSize="@dimen/text_appearance_smaller_medium"/>
+
+			<EditText
+					android:id="@+id/ipEditText"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="@dimen/spacing_between_views"
+					android:layout_toRightOf="@+id/ipTextView"
+					android:inputType="textNoSuggestions"
+					android:textSize="@dimen/text_appearance_smaller_medium"/>
+		</RelativeLayout>
+
+		<RelativeLayout
+				android:id="@+id/portRelativeLayout"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/ipRelativeLayout"
+				android:layout_marginLeft="@dimen/view_horizontal_margin">
+
+			<TextView
+					android:id="@+id/portTextView"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:text="Port:"
+					android:textSize="@dimen/text_appearance_smaller_medium"/>
+
+			<EditText
+					android:id="@+id/portEditText"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="@dimen/spacing_between_views"
+					android:layout_toRightOf="@+id/portTextView"
+					android:inputType="number"
+					android:maxLength="5"
+					android:textSize="@dimen/text_appearance_smaller_medium"/>
+		</RelativeLayout>
+	</RelativeLayout>
+
+</ScrollView>

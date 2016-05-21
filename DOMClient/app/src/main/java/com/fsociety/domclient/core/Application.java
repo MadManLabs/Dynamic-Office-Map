@@ -1,9 +1,9 @@
 package com.fsociety.domclient.core;
 
-import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
 
-import com.fsociety.domclient.activity.HomeActivity_;
+import com.fsociety.domclient.rest.UpdatePersonDeskById;
 import com.fsociety.domclient.service.StorageReaderService;
 
 import org.altbeacon.beacon.BeaconManager;
@@ -43,12 +43,10 @@ public class Application extends android.app.Application implements BootstrapNot
 
 		settings = storageReaderService.readObjectFromFile(Settings.class, configuration.getApplicationBinDirectory(), configuration.getSettingsFilename());
 
-		BeaconManager beaconManager = BeaconManager.getInstanceForApplication(this);
-		beaconManager.setBackgroundBetweenScanPeriod(5000);
-		beaconManager.setForegroundBetweenScanPeriod(5000);
-		beaconManager.getBeaconParsers().add(new BeaconParser().setBeaconLayout("m:0-3=4c000215,i:4-19,i:20-21,i:22-23,p:24-24"));
-		Region region = new Region("com.fsociety.domclient", Identifier.parse("ADA50693-A4E2-4FB1-AFCF-C6EB07647825"), null, null);
-		regionBootstrap = new RegionBootstrap(this, region);
+		setupBeaconManager();
+		if (!settings.getEnableBeaconUpdates()) {
+			regionBootstrap.disable();
+		}
 	}
 
 	public Configuration getConfiguration() {
@@ -59,22 +57,34 @@ public class Application extends android.app.Application implements BootstrapNot
 		return settings;
 	}
 
+	public RegionBootstrap getRegionBootstrap() {
+		return regionBootstrap;
+	}
+
+	public void setupBeaconManager() {
+		BeaconManager beaconManager = BeaconManager.getInstanceForApplication(this);
+		beaconManager.setBackgroundScanPeriod(1100);
+		beaconManager.setBackgroundBetweenScanPeriod(20000);
+		beaconManager.setForegroundBetweenScanPeriod(1100);
+		beaconManager.setForegroundScanPeriod(20000);
+		beaconManager.getBeaconParsers().add(new BeaconParser().setBeaconLayout("m:0-3=4c000215,i:4-19,i:20-21,i:22-23,p:24-24"));
+		Region region = new Region("com.fsociety.domclient", Identifier.parse("FDA50693-A4E2-4FB1-AFCF-C6EB07647825"), null, null);
+		regionBootstrap = new RegionBootstrap(this, region);
+	}
+
 	@Override
 	public void didDetermineStateForRegion(int arg0, Region arg1) {
-		// Don't care
 	}
 
 	@Override
 	public void didEnterRegion(Region region) {
-		Log.d(TAG, "Got a didEnterRegion call");
-		// This call to disable will make it so the activity below only gets launched the first time a beacon is seen (until the next time the app is launched)
-		// if you want the Activity to launch every single time beacons come into view, remove this call.
-		//regionBootstrap.disable();
-		Intent intent = new Intent(this, HomeActivity_.class);
-		// IMPORTANT: in the AndroidManifest.xml definition of this activity, you must set android:launchMode="singleInstance" or you will get two instances
-		// created when a user launches the activity manually and it gets launched from here.
-		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		this.startActivity(intent);
+		if (settings.getEnableBeaconUpdates()) {
+			if (getSettings().getLoggedInPersonDTO() != null) {
+				new UpdatePersonDeskById(this, getSettings().getLoggedInPersonDTO(), "BEACON", region.getId1().toString()).execute();
+			} else {
+				Toast.makeText(this, "User is not logged in!", Toast.LENGTH_SHORT).show();
+			}
+		}
 	}
 
 	@Override

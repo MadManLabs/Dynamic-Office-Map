@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 	<item
-			android:id="@+id/logout_action"
+			android:id="@+id/settings_action"
 			android:orderInCategory="1"
 			android:showAsAction="ifRoom"
-			android:title="@string/home_activity_logout_action_title"/>
+			android:title="Settings"/>
+
+	<item
+			android:id="@+id/logout_action"
+			android:orderInCategory="2"
+			android:showAsAction="ifRoom"
+			android:title="Logout"/>
 </menu>

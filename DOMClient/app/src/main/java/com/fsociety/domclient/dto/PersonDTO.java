@@ -1,28 +1,22 @@
 package com.fsociety.domclient.dto;
 
 public class PersonDTO {
-	private String name;
+	private String id;
+	private String firstName;
+	private String lastName;
 	private String email;
-	private ZoneDTO zone;
-	private DeskDTO desk;
+	private String username;
 	private String mac;
-	private Integer id;
-
-	public ZoneDTO getZone() {
-		return zone;
-	}
-
-	public void setZone(ZoneDTO zone) {
-		this.zone = zone;
-	}
-
-	public DeskDTO getDesk() {
-		return desk;
-	}
-
-	public void setDesk(DeskDTO desk) {
-		this.desk = desk;
-	}
+	private String temporaryZoneId;
+	private String temporaryZoneCode;
+	private String temporaryZoneName;
+	private String permanentZoneId;
+	private String permanentZoneCode;
+	private String permanentZoneName;
+	private String permanentDeskId;
+	private String permanentDeskCode;
+	private String temporaryFloorName;
+	private String permanentFloorName;
 
 	public String getEmail() {
 		return email;
@@ -32,12 +26,28 @@ public class PersonDTO {
 		this.email = email;
 	}
 
-	public Integer getId() {
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getMac() {
@@ -48,11 +58,95 @@ public class PersonDTO {
 		this.mac = mac;
 	}
 
-	public String getName() {
-		return name;
+	public String getPermanentDeskCode() {
+		return permanentDeskCode;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setPermanentDeskCode(String permanentDeskCode) {
+		this.permanentDeskCode = permanentDeskCode;
+	}
+
+	public String getPermanentDeskId() {
+		return permanentDeskId;
+	}
+
+	public void setPermanentDeskId(String permanentDeskId) {
+		this.permanentDeskId = permanentDeskId;
+	}
+
+	public String getPermanentZoneCode() {
+		return permanentZoneCode;
+	}
+
+	public void setPermanentZoneCode(String permanentZoneCode) {
+		this.permanentZoneCode = permanentZoneCode;
+	}
+
+	public String getPermanentZoneId() {
+		return permanentZoneId;
+	}
+
+	public void setPermanentZoneId(String permanentZoneId) {
+		this.permanentZoneId = permanentZoneId;
+	}
+
+	public String getPermanentZoneName() {
+		return permanentZoneName;
+	}
+
+	public void setPermanentZoneName(String permanentZoneName) {
+		this.permanentZoneName = permanentZoneName;
+	}
+
+	public String getTemporaryZoneCode() {
+		return temporaryZoneCode;
+	}
+
+	public void setTemporaryZoneCode(String temporaryZoneCode) {
+		this.temporaryZoneCode = temporaryZoneCode;
+	}
+
+	public String getTemporaryZoneId() {
+		return temporaryZoneId;
+	}
+
+	public void setTemporaryZoneId(String temporaryZoneId) {
+		this.temporaryZoneId = temporaryZoneId;
+	}
+
+	public String getTemporaryZoneName() {
+		return temporaryZoneName;
+	}
+
+	public void setTemporaryZoneName(String temporaryZoneName) {
+		this.temporaryZoneName = temporaryZoneName;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPermanentFloorName() {
+		return permanentFloorName;
+	}
+
+	public void setPermanentFloorName(String permanentFloorName) {
+		this.permanentFloorName = permanentFloorName;
+	}
+
+	public String getTemporaryFloorName() {
+		return temporaryFloorName;
+	}
+
+	public void setTemporaryFloorName(String temporaryFloorName) {
+		this.temporaryFloorName = temporaryFloorName;
+	}
+
+	public String getName() {
+		return firstName + " " + lastName;
 	}
 }
