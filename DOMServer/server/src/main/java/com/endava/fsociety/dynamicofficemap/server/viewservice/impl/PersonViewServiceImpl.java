@@ -58,6 +58,15 @@ public class PersonViewServiceImpl implements PersonViewService {
     }
 
     @Override
+    public PersonDTO findByEmail(String email) {
+        Person person = personService.findByEmail(email);
+        if (person == null) {
+            throw new BadUrlException("There is no person with email " + email);
+        }
+        return new PersonDTO(person);
+    }
+
+    @Override
     public PersonDTO updatePermanentDesk(String personId, String assetCode) throws BadUrlException {
         return new PersonDTO(personService.updatePermanentDesk(personId, assetCode));
     }

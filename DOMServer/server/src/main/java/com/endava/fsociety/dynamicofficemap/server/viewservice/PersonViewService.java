@@ -14,6 +14,8 @@ public interface PersonViewService {
 
     PersonDTO findByUsername(String username);
 
+    PersonDTO findByEmail(String email);
+
     PersonDTO updatePermanentDesk(String personId, String assetCode) throws BadUrlException;
 
     PersonDTO updateTemporaryZone(String personId, String temporaryZoneCode) throws BadUrlException;

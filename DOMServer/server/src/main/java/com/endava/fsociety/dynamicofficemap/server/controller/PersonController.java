@@ -3,10 +3,7 @@ package com.endava.fsociety.dynamicofficemap.server.controller;
 import com.endava.fsociety.dynamicofficemap.server.dto.PersonDTO;
 import com.endava.fsociety.dynamicofficemap.server.viewservice.PersonViewService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -44,6 +41,11 @@ public class PersonController {
     @RequestMapping(value = "/username/{username}", method = RequestMethod.GET)
     public PersonDTO findByUsername(@PathVariable("username") String username) {
         return personViewService.findByUsername(username);
+    }
+
+    @RequestMapping(value = "/email", method = RequestMethod.GET)
+    public PersonDTO findByEmail(@RequestParam(value = "email", required = false) String email) {
+        return personViewService.findByEmail(email);
     }
 
     @RequestMapping(value = "/{id}/permanentDesk/{assetCode}", method = RequestMethod.PUT)

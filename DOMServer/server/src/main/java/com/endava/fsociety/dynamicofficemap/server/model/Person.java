@@ -21,6 +21,8 @@ public class Person {
 
     private String lastName;
 
+    private String role;
+
     @Indexed(unique = true)
     private String email;
 
@@ -133,5 +135,13 @@ public class Person {
 
     public void setPermanentDesk(Asset permanentDesk) {
         this.permanentDesk = permanentDesk;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

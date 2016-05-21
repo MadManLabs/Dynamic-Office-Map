@@ -43,6 +43,11 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    public Person findByEmail(String email) {
+        return personRepository.findByEmail(email);
+    }
+
+    @Override
     public Person findById(String id) {
         return personRepository.findOne(id);
     }

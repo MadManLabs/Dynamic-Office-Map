@@ -16,6 +16,8 @@ public interface PersonService {
 
     Person findByUsername(String email);
 
+    Person findByEmail(String email);
+
     Person findById(String id);
 
     List<Person> findAll();

@@ -17,6 +17,8 @@ public interface PersonRepository extends MongoRepository<Person, String> {
 
     Person findByUsername(String username);
 
+    Person findByEmail(String email);
+
     Person findByPermanentDesk(Asset asset);
 
     List<Person> findByTemporaryZone(Zone zone);
