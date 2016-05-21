@@ -5,6 +5,8 @@ import com.endava.fsociety.dynamicofficemap.server.viewservice.AssetViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Created by fstancu on 5/20/2016.
  */
@@ -19,6 +21,11 @@ public class AssetController {
     @RequestMapping(value = "/{assetId}", method = RequestMethod.GET)
     public AssetDTO findById(@PathVariable("assetId") String assetId) {
         return assetViewService.findById(assetId);
+    }
+
+    @RequestMapping(value = "/floor/{floorId}", method = RequestMethod.GET)
+    public List<AssetDTO> findByFloor(@PathVariable("floorId") String floorId) {
+        return assetViewService.findByFloor(floorId);
     }
 
     @RequestMapping(method = RequestMethod.POST)

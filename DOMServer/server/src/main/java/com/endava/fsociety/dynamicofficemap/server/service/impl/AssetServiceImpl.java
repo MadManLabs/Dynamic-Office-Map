@@ -2,11 +2,15 @@ package com.endava.fsociety.dynamicofficemap.server.service.impl;
 
 import com.endava.fsociety.dynamicofficemap.server.model.Asset;
 import com.endava.fsociety.dynamicofficemap.server.model.AssetType;
+import com.endava.fsociety.dynamicofficemap.server.model.Floor;
+import com.endava.fsociety.dynamicofficemap.server.model.Zone;
 import com.endava.fsociety.dynamicofficemap.server.repository.AssetRepository;
 import com.endava.fsociety.dynamicofficemap.server.service.AssetService;
+import com.endava.fsociety.dynamicofficemap.server.service.ZoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +22,9 @@ public class AssetServiceImpl implements AssetService {
 
     @Autowired
     private AssetRepository assetRepository;
+
+    @Autowired
+    private ZoneService zoneService;
 
     public List<Asset> findAll() {
         return assetRepository.findAll();
@@ -38,6 +45,21 @@ public class AssetServiceImpl implements AssetService {
 
     public Asset save(Asset asset) {
         return assetRepository.save(asset);
+    }
+
+    @Override
+    public List<Asset> findByFloor(Floor floor) {
+        List<Asset> assets = new ArrayList<Asset>();
+        List<Zone> zones = zoneService.findByFloor(floor);
+        if (zones != null) {
+            for (Zone zone : zones) {
+                List<Asset> assetsByZone = assetRepository.findByZone(zone);
+                if (assetsByZone != null) {
+                    assets.addAll(assetsByZone);
+                }
+            }
+        }
+        return assets;
     }
 
 }

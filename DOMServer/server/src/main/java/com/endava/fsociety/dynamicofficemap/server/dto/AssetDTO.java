@@ -14,6 +14,8 @@ public class AssetDTO {
     private String name;
     private String code;
 
+    private boolean isOnMap = false;
+
     private String typeId;
     private String typeName;
 
@@ -31,6 +33,7 @@ public class AssetDTO {
         this.typeName = asset.getAssetType().getName();
         this.zoneId = asset.getZone().getId();
         this.floorId = asset.getZone().getFloor().getId();
+        this.isOnMap = asset.isOnMap();
     }
 
     @JsonIgnore
@@ -102,5 +105,13 @@ public class AssetDTO {
 
     public void setFloorId(String floorId) {
         this.floorId = floorId;
+    }
+
+    public boolean isOnMap() {
+        return isOnMap;
+    }
+
+    public void setOnMap(boolean onMap) {
+        isOnMap = onMap;
     }
 }

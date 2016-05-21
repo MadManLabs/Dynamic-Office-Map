@@ -10,7 +10,7 @@ angular
         $routeProvider.
         when('/', {
             templateUrl: 'app/views/view_floors.html',
-            controller: 'FloorsController'
+            controller: 'ViewFloorsController'
         }).
         when('/floor/:floorId', {
             templateUrl: 'app/views/update_floor.html',
@@ -19,6 +19,10 @@ angular
         when('/view/:floorId', {
             templateUrl: 'app/views/view_floor.html',
             controller: 'ViewFloorController'
+        }).
+        when('/assets/:floorId', {
+            templateUrl: 'app/views/view_assets.html',
+            controller: 'ViewAssetsController'
         }).
         when('/person/:personId', {
             templateUrl: 'app/views/view_person.html',

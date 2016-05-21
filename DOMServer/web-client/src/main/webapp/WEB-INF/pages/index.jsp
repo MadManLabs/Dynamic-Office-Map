@@ -35,12 +35,13 @@
 	<script src="<c:url value="/resources/app/service/AssetService.js" />"></script>
 
 	<script src="<c:url value="/resources/app/controllers/UpdateFloorController.js" />"></script>
-	<script src="<c:url value="/resources/app/controllers/FloorsController.js" />"></script>
+	<script src="<c:url value="/resources/app/controllers/ViewFloorsController.js" />"></script>
 	<script src="<c:url value="/resources/app/controllers/AddFloorController.js" />"></script>
 	<script src="<c:url value="/resources/app/controllers/AddItemController.js" />"></script>
 	<script src="<c:url value="/resources/app/controllers/UpdateAssetController.js" />"></script>
 	<script src="<c:url value="/resources/app/controllers/UpdateZoneController.js" />"></script>
 	<script src="<c:url value="/resources/app/controllers/ViewFloorController.js" />"></script>
+	<script src="<c:url value="/resources/app/controllers/ViewAssetsController.js" />"></script>
 	<script src="<c:url value="/resources/app/controllers/ViewPersonController.js" />"></script>
 	<script src="<c:url value="/resources/app/controllers/ViewPersonMapController.js" />"></script>
 </body>

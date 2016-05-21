@@ -20,6 +20,8 @@ public class Asset {
     @Indexed(unique = true)
     private String code;
 
+    private boolean isOnMap = false;
+
     @DBRef
     private AssetType assetType;
 
@@ -67,5 +69,13 @@ public class Asset {
 
     public void setZone(Zone zone) {
         this.zone = zone;
+    }
+
+    public boolean isOnMap() {
+        return isOnMap;
+    }
+
+    public void setOnMap(boolean onMap) {
+        isOnMap = onMap;
     }
 }

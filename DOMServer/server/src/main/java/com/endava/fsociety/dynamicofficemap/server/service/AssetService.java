@@ -2,6 +2,7 @@ package com.endava.fsociety.dynamicofficemap.server.service;
 
 import com.endava.fsociety.dynamicofficemap.server.model.Asset;
 import com.endava.fsociety.dynamicofficemap.server.model.AssetType;
+import com.endava.fsociety.dynamicofficemap.server.model.Floor;
 
 import java.util.List;
 
@@ -20,5 +21,7 @@ public interface AssetService {
     Asset findById(String id);
 
     Asset save(Asset asset);
+
+    List<Asset> findByFloor(Floor floor);
 
 }

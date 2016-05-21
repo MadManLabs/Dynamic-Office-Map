@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dynamicOfficeMapApp')
-    .controller('FloorsController', function ($scope, $http, $uibModal, $location) {
+    .controller('ViewFloorsController', function ($scope, $http, $uibModal, $location) {
 
         $scope.floors = [];
 
@@ -11,6 +11,10 @@ angular.module('dynamicOfficeMapApp')
 
         $scope.viewFloor = function(floorId) {
             $location.path('/view/' + floorId);
+        };
+
+        $scope.viewAssets = function (floorId) {
+            $location.path('/assets/' + floorId);
         };
 
         $scope.addFloor = function() {
