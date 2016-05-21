@@ -18,6 +18,10 @@ angular.module('dynamicOfficeMapApp')
             $uibModalInstance.dismiss('cancel');
         };
 
+        $scope.removeTenant = function() {
+            $scope.tenant = {};
+        };
+
         $scope.ok = function() {
             if ($scope.zone) {
                 $scope.asset.zoneId = $scope.zone.id;

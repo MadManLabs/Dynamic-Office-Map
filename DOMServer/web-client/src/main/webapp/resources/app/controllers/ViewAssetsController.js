@@ -21,6 +21,20 @@ angular.module('dynamicOfficeMapApp')
             $scope.assets = response.data;
         });
 
+        $scope.viewQRCode = function(assetId) {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/views/view_qrcode.html',
+                controller: 'ViewQRCodeController',
+                size: "sm",
+                resolve: {
+                    assetId: function() {
+                        return assetId;
+                    }
+                }
+            });
+        };
+
         $scope.editAsset = function(assetId) {
             var modalInstance = $uibModal.open({
                 animation: true,

@@ -72,11 +72,12 @@ public class AssetViewServiceImpl implements AssetViewService {
                 asset.setCloseBy(closeByAsset);
             }
         }
+
         if (assetDTO.getTenantId() != null) {
             Person person = personService.findById(assetDTO.getTenantId());
-            if (person != null) {
-                asset.setTenant(person);
-            }
+            asset.setTenant(person);
+        } else {
+            asset.setTenant(null);
         }
 
         asset.setAssetType(assetType);
