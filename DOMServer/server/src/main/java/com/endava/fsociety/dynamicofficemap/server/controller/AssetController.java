@@ -29,7 +29,7 @@ public class AssetController {
     }
 
     @RequestMapping(value = "/{assetCode}/tenant/{personId}", method = RequestMethod.PUT)
-    public AssetDTO removeFromMap(@PathVariable("assetCode") String assetCode, @PathVariable("personId") String personId) {
+    public AssetDTO claimAsset(@PathVariable("assetCode") String assetCode, @PathVariable("personId") String personId) {
         return assetViewService.updateTenantOnAsset(assetCode, personId);
     }
 
