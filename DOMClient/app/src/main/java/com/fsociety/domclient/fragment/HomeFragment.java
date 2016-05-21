@@ -13,7 +13,6 @@ import com.fsociety.domclient.R;
 import com.fsociety.domclient.activity.FindFriendActivity_;
 import com.fsociety.domclient.activity.RegisterDeskActivity_;
 import com.fsociety.domclient.dto.PersonDTO;
-import com.fsociety.domclient.rest.GetPersonDtosAtLogin;
 import com.fsociety.domclient.service.StorageWriterService;
 
 import org.androidannotations.annotations.AfterViews;
@@ -49,7 +48,7 @@ public class HomeFragment extends BaseFragment {
 	@AfterViews
 	protected void setupViews() {
 		if (application.getSettings().getUsername() == null) {
-			new GetPersonDtosAtLogin(this).execute();
+			//new GetPersonDtosAtLogin(this).execute();
 			loggedInUserRelativeLayout.setVisibility(View.INVISIBLE);
 			notLoggedInUserRelativeLayout.setVisibility(View.VISIBLE);
 		} else {
