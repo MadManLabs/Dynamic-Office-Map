@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dynamicOfficeMapApp')
-    .controller('FloorController', function ($scope, $http, $uibModal, $routeParams, NotificationService) {
+    .controller('UpdateFloorController', function ($scope, $http, $uibModal, $routeParams, NotificationService) {
 
         var floorId = $routeParams.floorId;
         $scope.floor = {};

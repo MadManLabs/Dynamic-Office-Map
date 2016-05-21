@@ -13,8 +13,8 @@ angular
             controller: 'FloorsController'
         }).
         when('/floor/:floorId', {
-            templateUrl: 'app/views/view_floor.html',
-            controller: 'FloorController'
+            templateUrl: 'app/views/update_floor.html',
+            controller: 'UpdateFloorController'
         }).
         when('/view/:floorId', {
             templateUrl: 'app/views/view_floor2.html',

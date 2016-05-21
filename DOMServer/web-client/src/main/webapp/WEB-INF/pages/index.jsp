@@ -34,7 +34,7 @@
 	<script src="<c:url value="/resources/app/service/NotificationService.js" />"></script>
 	<script src="<c:url value="/resources/app/service/AssetService.js" />"></script>
 
-	<script src="<c:url value="/resources/app/controllers/FloorController.js" />"></script>
+	<script src="<c:url value="/resources/app/controllers/UpdateFloorController.js" />"></script>
 	<script src="<c:url value="/resources/app/controllers/FloorsController.js" />"></script>
 	<script src="<c:url value="/resources/app/controllers/AddFloorController.js" />"></script>
 	<script src="<c:url value="/resources/app/controllers/AddItemController.js" />"></script>
