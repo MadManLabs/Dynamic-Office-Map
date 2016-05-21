@@ -28,6 +28,11 @@ public class AssetController {
         return assetViewService.removeFromMap(assetId);
     }
 
+    @RequestMapping(value = "/{assetCode}/tenant/{personId}", method = RequestMethod.PUT)
+    public AssetDTO removeFromMap(@PathVariable("assetCode") String assetCode, @PathVariable("personId") String personId) {
+        return assetViewService.updateTenantOnAsset(assetCode, personId);
+    }
+
     @RequestMapping(value = "/floor/{floorId}", method = RequestMethod.GET)
     public List<AssetDTO> findByFloor(@PathVariable("floorId") String floorId) {
         return assetViewService.findByFloor(floorId);
