@@ -11,5 +11,9 @@ import java.util.List;
 public interface ExportService {
     byte[] exportAssets(List<AssetDTO> assetDTOs);
 
-    ResponseEntity<byte[]> createReponseForExportedDocument(byte[] excelDocumentContent);
+    byte[] exportQR(String toBeEncoded);
+
+    ResponseEntity<byte[]> createReponseForExcelExportedDocument(byte[] excelDocumentContent);
+
+    ResponseEntity<byte[]> createReponseForPNGExportedDocument(byte[] excelDocumentContent);
 }
