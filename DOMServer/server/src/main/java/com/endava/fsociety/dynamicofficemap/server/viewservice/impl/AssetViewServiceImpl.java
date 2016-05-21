@@ -117,7 +117,7 @@ public class AssetViewServiceImpl implements AssetViewService {
     }
 
     @Override
-    public List<AssetDTO> findByMapAndTypeId(String floorId, String assetTypeId) {
+    public List<AssetDTO> findByFloorAndTypeId(String floorId, String assetTypeId) {
         Floor floor = floorService.findById(floorId);
         AssetType assetType = assetTypeService.findById(assetTypeId);
         if (floor == null) {

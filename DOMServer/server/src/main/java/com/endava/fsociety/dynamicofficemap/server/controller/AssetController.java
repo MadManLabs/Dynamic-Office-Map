@@ -38,9 +38,9 @@ public class AssetController {
         return assetViewService.findByMap(floorId);
     }
 
-    @RequestMapping(value = "/map/{floorId}/{assetTypeId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/floor/{floorId}/assetType/{assetTypeId}", method = RequestMethod.GET)
     public List<AssetDTO> findByMapAndType(@PathVariable("floorId") String floorId, @PathVariable("assetTypeId") String assetTypeId) {
-        return assetViewService.findByMapAndTypeId(floorId, assetTypeId);
+        return assetViewService.findByFloorAndTypeId(floorId, assetTypeId);
     }
 
     @RequestMapping(method = RequestMethod.POST)
