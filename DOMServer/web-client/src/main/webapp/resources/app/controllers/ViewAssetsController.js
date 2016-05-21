@@ -21,4 +21,29 @@ angular.module('dynamicOfficeMapApp')
             $scope.assets = response.data;
         });
 
+        $scope.addAsset = function() {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/views/add_asset.html',
+                controller: 'AddAssetController',
+                resolve: {
+                    floorId: function() {
+                        return floorId;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (asset) {
+                $scope.assets.push(asset);
+            });
+        };
+
+        $scope.addAssetType = function() {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/views/add_asset_type.html',
+                controller: 'AddAssetTypeController'
+            });
+        };
+
     });

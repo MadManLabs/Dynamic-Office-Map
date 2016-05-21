@@ -38,6 +38,8 @@
 	<script src="<c:url value="/resources/app/controllers/ViewFloorsController.js" />"></script>
 	<script src="<c:url value="/resources/app/controllers/AddFloorController.js" />"></script>
 	<script src="<c:url value="/resources/app/controllers/AddItemController.js" />"></script>
+	<script src="<c:url value="/resources/app/controllers/AddAssetTypeController.js" />"></script>
+	<script src="<c:url value="/resources/app/controllers/AddAssetController.js" />"></script>
 	<script src="<c:url value="/resources/app/controllers/UpdateAssetController.js" />"></script>
 	<script src="<c:url value="/resources/app/controllers/UpdateZoneController.js" />"></script>
 	<script src="<c:url value="/resources/app/controllers/ViewFloorController.js" />"></script>

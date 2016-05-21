@@ -16,6 +16,15 @@ public interface AssetViewService {
 
     List<AssetDTO> findByFloor(String floorId);
 
+    /**
+     * This will return the assets that are added on the map.
+     * 
+     * @param floorId
+     * @return
+     */
+
+    List<AssetDTO> findByMap(String floorId);
+
     AssetDTO removeFromMap(String id);
 
 }

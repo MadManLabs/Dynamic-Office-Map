@@ -14,4 +14,6 @@ public interface AssetTypeService {
 
     List<AssetType> findAll();
 
+    AssetType save(AssetType assetType);
+
 }

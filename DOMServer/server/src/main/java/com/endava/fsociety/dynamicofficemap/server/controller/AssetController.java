@@ -33,6 +33,11 @@ public class AssetController {
         return assetViewService.findByFloor(floorId);
     }
 
+    @RequestMapping(value = "/map/{floorId}", method = RequestMethod.GET)
+    public List<AssetDTO> findByMap(@PathVariable("floorId") String floorId) {
+        return assetViewService.findByMap(floorId);
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public AssetDTO save(@RequestBody AssetDTO assetDTO) {
         return assetViewService.save(assetDTO);

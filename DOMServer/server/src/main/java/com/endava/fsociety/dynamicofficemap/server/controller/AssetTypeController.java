@@ -3,6 +3,7 @@ package com.endava.fsociety.dynamicofficemap.server.controller;
 import com.endava.fsociety.dynamicofficemap.server.dto.AssetTypeDTO;
 import com.endava.fsociety.dynamicofficemap.server.viewservice.AssetTypeViewService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +24,11 @@ public class AssetTypeController {
     @RequestMapping(method = RequestMethod.GET)
     public List<AssetTypeDTO> findAll() {
         return assetTypeViewService.findAll();
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public AssetTypeDTO save(@RequestBody AssetTypeDTO assetTypeDTO) {
+        return assetTypeViewService.save(assetTypeDTO);
     }
 
 }

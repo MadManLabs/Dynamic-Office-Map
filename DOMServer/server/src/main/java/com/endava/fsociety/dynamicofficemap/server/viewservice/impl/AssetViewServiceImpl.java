@@ -102,6 +102,20 @@ public class AssetViewServiceImpl implements AssetViewService {
     }
 
     @Override
+    public List<AssetDTO> findByMap(String floorId) {
+        Floor floor = floorService.findById(floorId);
+        if (floor == null) {
+            throw new BadUrlException("There is no floor with id " + floorId);
+        }
+        List<Asset> assets = assetService.findByMap(floor);
+        List<AssetDTO> assetDTOs = new ArrayList<AssetDTO>();
+        for (Asset asset : assets) {
+            assetDTOs.add(new AssetDTO(asset));
+        }
+        return assetDTOs;
+    }
+
+    @Override
     public AssetDTO removeFromMap(String id) {
         Asset asset = assetService.findById(id);
         if (asset == null) {

@@ -1,6 +1,7 @@
 package com.endava.fsociety.dynamicofficemap.server.viewservice.impl;
 
 import com.endava.fsociety.dynamicofficemap.server.dto.AssetTypeDTO;
+import com.endava.fsociety.dynamicofficemap.server.exception.BadDataException;
 import com.endava.fsociety.dynamicofficemap.server.model.AssetType;
 import com.endava.fsociety.dynamicofficemap.server.service.AssetTypeService;
 import com.endava.fsociety.dynamicofficemap.server.viewservice.AssetTypeViewService;
@@ -27,5 +28,24 @@ public class AssetTypeViewServiceImpl implements AssetTypeViewService {
             assetTypeDTOs.add(new AssetTypeDTO(assetType));
         }
         return assetTypeDTOs;
+    }
+
+    @Override
+    public AssetTypeDTO save(AssetTypeDTO assetTypeDTO) {
+        AssetType assetType;
+        if (assetTypeDTO.getId() != null) {
+            assetType = assetTypeService.findById(assetTypeDTO.getId());
+            if (assetType == null) {
+                throw new BadDataException("There is no asset type with id " + assetTypeDTO.getId());
+            }
+        } else {
+            assetType = new AssetType();
+        }
+
+        assetType.setName(assetTypeDTO.getName());
+        assetType.setCode(assetTypeDTO.getCode());
+        assetType.setImage(assetType.getImage());
+
+        return new AssetTypeDTO(assetTypeService.save(assetType));
     }
 }

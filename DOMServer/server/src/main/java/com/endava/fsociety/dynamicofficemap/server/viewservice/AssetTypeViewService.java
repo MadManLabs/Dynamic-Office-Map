@@ -12,4 +12,6 @@ public interface AssetTypeViewService {
 
     List<AssetTypeDTO> findAll();
 
+    AssetTypeDTO save(AssetTypeDTO assetTypeDTO);
+
 }

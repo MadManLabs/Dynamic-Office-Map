@@ -29,6 +29,11 @@ angular.module('dynamicOfficeMapApp')
 
             if ($scope.floor.map) {
 
+                String.prototype.replaceAll = function(search, replacement) {
+                    var target = this;
+                    return target.replace(new RegExp(search, 'g'), replacement);
+                };
+
                 $scope.floor.map = $scope.floor.map.replaceAll('localhost', window.location.hostname);
                 $scope.floor.map = $scope.floor.map.replace( /\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/gi, window.location.hostname);
 

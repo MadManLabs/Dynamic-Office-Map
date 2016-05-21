@@ -1,0 +1,46 @@
+<div class="modal-header">
+    <h3 class="modal-title">Add Asset</h3>
+</div>
+<div class="modal-body">
+    <form class="form-horizontal" name="addFloor">
+        <div class="form-group">
+            <label for="assetType" class="col-sm-2 control-label">Asset&nbsp;Type</label>
+            <div class="col-sm-10">
+                <div class="row">
+                    <div class="col-md-8">
+                        <select class="form-control" ng-model="assetType" id="assetType"
+                                ng-options="type.name for type in assetTypes">
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <img ng-src="{{assetType.image}}" alt="Asset Type" ng-show="assetType.image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="assetZone" class="col-sm-2 control-label">Asset&nbsp;Zone</label>
+            <div class="col-sm-10">
+                <select class="form-control" ng-model="assetZone" id="assetZone"
+                        ng-options="zone.name for zone in zones">
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="assetCode" class="col-sm-2 control-label">Asset&nbsp;Code</label>
+            <div class="col-sm-10">
+                <input ng-model="asset.code" class="form-control" id="assetCode">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="assetName" class="col-sm-2 control-label">Asset&nbsp;Name</label>
+            <div class="col-sm-10">
+                <input ng-model="asset.name" class="form-control" id="assetName">
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()" ng-disabled="!addFloor.$valid">Save</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>
