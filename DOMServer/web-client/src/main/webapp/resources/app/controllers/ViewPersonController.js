@@ -14,20 +14,24 @@ angular.module('dynamicOfficeMapApp')
 
         $http({
             method: 'GET',
-            url: HOST + '/dynamaps/api/v1/office/person/byid/' + personId
+            url: HOST + 'person/id/' + personId
         }).then(function successCallback(response) {
             $scope.person = response.data;
 
-            console.log($scope.person.macZone);
-
-            if ($scope.person.desk) {
-                $scope.floor = $scope.person.desk.zone.floor.name;
-                $scope.zone = $scope.person.desk.zone.name;
-                $scope.desk = $scope.person.desk.id;
+            if ($scope.person.permanentFloorName) {
+                $scope.floor = $scope.person.permanentFloorName;
             }
 
-            if ($scope.person.zone) {
-                $scope.tmp = $scope.person.zone.name + " / " + $scope.person.zone.floor.name;
+            if ($scope.person.permanentZoneName) {
+                $scope.zone = $scope.person.permanentZoneName;
+            }
+
+            if ($scope.person.permanentDeskCode) {
+                $scope.desk = $scope.person.permanentDeskCode;
+            }
+
+            if ($scope.person.temporaryZoneName || $scope.person.temporaryFloorName) {
+                $scope.tmp = $scope.person.temporaryZoneName + " / " + $scope.person.temporaryFloorName;
             }
 
             if ($scope.person.macZone) {
