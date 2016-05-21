@@ -18,4 +18,6 @@ public interface ZoneRepository extends MongoRepository<Zone, String> {
 
     List<Zone> findByParent(Zone parent);
 
+    Zone findByCode(String code);
+
 }

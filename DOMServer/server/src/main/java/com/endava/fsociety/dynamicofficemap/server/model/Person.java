@@ -28,7 +28,7 @@ public class Person {
     private String mac;
 
     @DBRef
-    private Zone permanentZone;
+    private Asset permanentDesk;
 
     @DBRef
     private Zone temporaryZone;
@@ -76,19 +76,19 @@ public class Person {
         this.mac = mac;
     }
 
-    public Zone getPermanentZone() {
-        return permanentZone;
-    }
-
-    public void setPermanentZone(Zone permanentZone) {
-        this.permanentZone = permanentZone;
-    }
-
     public Zone getTemporaryZone() {
         return temporaryZone;
     }
 
     public void setTemporaryZone(Zone temporaryZone) {
         this.temporaryZone = temporaryZone;
+    }
+
+    public Asset getPermanentDesk() {
+        return permanentDesk;
+    }
+
+    public void setPermanentDesk(Asset permanentDesk) {
+        this.permanentDesk = permanentDesk;
     }
 }
