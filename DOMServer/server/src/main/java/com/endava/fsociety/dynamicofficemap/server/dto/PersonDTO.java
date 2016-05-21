@@ -16,6 +16,8 @@ public class PersonDTO {
 
     private String email;
 
+    private String username;
+
     private String mac;
 
     private String temporaryZoneId;
@@ -35,11 +37,12 @@ public class PersonDTO {
     private String permanentDeskCode;
 
 
-    public PersonDTO(String id, String firstName, String lastName, String email, String mac, String temporaryZoneId, String temporaryZoneCode, String temporaryZoneName, String permanentZoneId, String permanentZoneCode, String permanentZoneName, String permanentDeskId, String permanentDeskCode) {
+    public PersonDTO(String id, String firstName, String lastName, String email, String username, String mac, String temporaryZoneId, String temporaryZoneCode, String temporaryZoneName, String permanentZoneId, String permanentZoneCode, String permanentZoneName, String permanentDeskId, String permanentDeskCode) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.username = username;
         this.mac = mac;
         this.temporaryZoneId = temporaryZoneId;
         this.temporaryZoneCode = temporaryZoneCode;
@@ -57,6 +60,7 @@ public class PersonDTO {
             this.firstName = person.getFirstName();
             this.lastName = person.getLastName();
             this.email = person.getEmail();
+            this.username = person.getUsername();
             this.mac = person.getMac();
             if (person.getTemporaryZone() != null) {
                 this.temporaryZoneId = person.getTemporaryZone().getId();
@@ -105,6 +109,14 @@ public class PersonDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getMac() {

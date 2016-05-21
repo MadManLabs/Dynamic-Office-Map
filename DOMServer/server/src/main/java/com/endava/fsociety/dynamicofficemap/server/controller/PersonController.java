@@ -31,9 +31,9 @@ public class PersonController {
         return personViewService.findAllPersonsByTempZoneCode(temporaryZoneCode);
     }
 
-    @RequestMapping(value = "/email/{email}", method = RequestMethod.GET)
-    public PersonDTO findByEmail(@PathVariable("email") String email) {
-        return personViewService.findByEmail(email);
+    @RequestMapping(value = "/username/{username}", method = RequestMethod.GET)
+    public PersonDTO findByEmail(@PathVariable("username") String username) {
+        return personViewService.findByEmail(username);
     }
 
     @RequestMapping(value = "/{id}/permanentDesk/{assetCode}", method = RequestMethod.PUT)
