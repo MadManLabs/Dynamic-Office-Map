@@ -29,4 +29,5 @@ public interface AssetViewService {
 
     AssetDTO removeFromMap(String id);
 
+    AssetDTO updateTenantOnAsset(String assetCode, String tenantId);
 }

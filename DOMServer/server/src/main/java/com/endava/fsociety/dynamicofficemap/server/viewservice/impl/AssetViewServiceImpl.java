@@ -144,4 +144,18 @@ public class AssetViewServiceImpl implements AssetViewService {
         return new AssetDTO(assetService.save(asset));
     }
 
+    @Override
+    public AssetDTO updateTenantOnAsset(String assetCode, String tenantId) {
+        Asset asset = assetService.findByCode(assetCode);
+        if (asset == null) {
+            throw new BadUrlException("There is no asset with code " + assetCode);
+        }
+        Person person = personService.findById(tenantId);
+        if (person == null) {
+            throw new BadUrlException("There is no person with id " + tenantId);
+        }
+        asset.setTenant(person);
+        return new AssetDTO(assetService.save(asset));
+    }
+
 }
