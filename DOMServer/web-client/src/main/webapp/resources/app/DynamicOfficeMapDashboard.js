@@ -17,7 +17,7 @@ angular
             controller: 'UpdateFloorController'
         }).
         when('/view/:floorId', {
-            templateUrl: 'app/views/view_floor2.html',
+            templateUrl: 'app/views/view_floor.html',
             controller: 'ViewFloorController'
         }).
         when('/person/:personId', {
