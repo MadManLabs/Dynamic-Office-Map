@@ -16,10 +16,11 @@
         }
     </style>
 
-    <script>var HOST = "http://192.168.168.107:8080";</script>
+    <script>var HOST = "${pageContext.request.contextPath}/api/";</script>
 
     <script src="<c:url value="/resources/library/jquery-1.12.2.min.js" />"></script>
     <script src="<c:url value="/resources/library/fabric.min.js" />"></script>
+    <script src="<c:url value="/resources/library/fabricjs_viewport.js" />"></script>
     <script src="<c:url value="/resources/library/angular/angular.min.js" />"></script>
     <script src="<c:url value="/resources/library/bootstrap/js/bootstrap.min.js" />"></script>
     <script src="<c:url value="/resources/library/angular/angular-route.min.js" />"></script>
@@ -32,7 +33,6 @@
 <!-- Angular Imports -->
 
 <script src="<c:url value="/resources/app/DynamicOfficeMapDashboard.js" />"></script>
-
 <script src="<c:url value="/resources/app/service/NotificationService.js" />"></script>
 
 <script src="<c:url value="/resources/app/controllers/UpdateFloorController.js" />"></script>

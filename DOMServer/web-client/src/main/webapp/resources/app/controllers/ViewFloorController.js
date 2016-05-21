@@ -28,6 +28,10 @@ angular.module('dynamicOfficeMapApp')
             $scope.floor = response.data;
 
             if ($scope.floor.map) {
+
+                $scope.floor.map = $scope.floor.map.replaceAll('localhost', window.location.hostname);
+                $scope.floor.map = $scope.floor.map.replace( /\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/gi, window.location.hostname);
+
                 canvas.loadFromJSON($scope.floor.map, canvas.renderAll.bind(canvas), function(o, object) {
                     object.hasControls = false;
                     object.hasRotatingPoint = false;

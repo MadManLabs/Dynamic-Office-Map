@@ -12,7 +12,7 @@
 	<link href="<c:url value="/resources/library/font-awesome/css/font-awesome.min.css" />" rel="stylesheet">
 	<link href="<c:url value="/resources/style/main.css" />" rel="stylesheet">
 
-	<script>var HOST = "http://localhost:8080/api/";</script>
+	<script>var HOST = "${pageContext.request.contextPath}/api/";</script>
 
 	<script src="<c:url value="/resources/library/jquery-1.12.2.min.js" />"></script>
 	<script src="<c:url value="/resources/library/fabric.min.js" />"></script>

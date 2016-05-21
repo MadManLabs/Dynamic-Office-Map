@@ -30,7 +30,12 @@ public class PersonDTO {
     private String permanentDeskCode;
 
     private String temporaryFloorName;
+    private String temporaryFloorId;
+
     private String permanentFloorName;
+    private String permanentFloorId;
+
+    private String permanentZoneName;
 
     public PersonDTO(Person person) {
         if (person != null) {
@@ -51,12 +56,15 @@ public class PersonDTO {
                 this.temporaryZoneCode = person.getTemporaryZone().getCode();
                 this.temporaryZoneName = person.getTemporaryZone().getName();
                 this.temporaryFloorName = person.getTemporaryZone().getFloor().getName();
+                this.temporaryFloorId = person.getTemporaryZone().getFloor().getId();
             }
 
             if (person.getPermanentDesk() != null) {
                 this.permanentDeskId = person.getPermanentDesk().getId();
                 this.permanentDeskCode = person.getPermanentDesk().getCode();
                 this.permanentFloorName = person.getPermanentDesk().getZone().getFloor().getName();
+                this.permanentFloorId = person.getPermanentDesk().getZone().getFloor().getId();
+                this.permanentZoneName = person.getPermanentDesk().getZone().getName();
             }
         }
     }
@@ -164,5 +172,29 @@ public class PersonDTO {
 
     public String getPermanentFloorName() {
         return permanentFloorName;
+    }
+
+    public String getPermanentZoneName() {
+        return permanentZoneName;
+    }
+
+    public void setPermanentZoneName(String permanentZoneName) {
+        this.permanentZoneName = permanentZoneName;
+    }
+
+    public String getTemporaryFloorId() {
+        return temporaryFloorId;
+    }
+
+    public void setTemporaryFloorId(String temporaryFloorId) {
+        this.temporaryFloorId = temporaryFloorId;
+    }
+
+    public String getPermanentFloorId() {
+        return permanentFloorId;
+    }
+
+    public void setPermanentFloorId(String permanentFloorId) {
+        this.permanentFloorId = permanentFloorId;
     }
 }

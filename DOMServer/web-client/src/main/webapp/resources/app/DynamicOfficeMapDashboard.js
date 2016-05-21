@@ -28,7 +28,7 @@ angular
             templateUrl: 'app/views/view_person.html',
             controller: 'ViewPersonController'
         }).
-        when('/personMap/:personId', {
+        when('/personMap/:username', {
             templateUrl:  '../app/views/view_person_map.html',
             controller: 'ViewPersonMapController'
         }).

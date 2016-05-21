@@ -121,7 +121,16 @@ angular.module('dynamicOfficeMapApp')
         }).then(function successCallback(response) {
             $scope.floor = response.data;
 
+            String.prototype.replaceAll = function(search, replacement) {
+                var target = this;
+                return target.replace(new RegExp(search, 'g'), replacement);
+            };
+
             if ($scope.floor.map) {
+
+                $scope.floor.map = $scope.floor.map.replaceAll('localhost', window.location.hostname);
+                $scope.floor.map = $scope.floor.map.replace( /\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/gi, window.location.hostname);
+
                 canvas.loadFromJSON($scope.floor.map, canvas.renderAll.bind(canvas), function(o, object) {
                     if (object.objectType && (['Zone', 'Asset'].indexOf(object.objectType) != -1)) {
                         object.hasControls = false;
