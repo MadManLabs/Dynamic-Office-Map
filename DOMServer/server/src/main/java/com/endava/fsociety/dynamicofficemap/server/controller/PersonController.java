@@ -26,11 +26,6 @@ public class PersonController {
         return personViewService.findAllPersons();
     }
 
-    @RequestMapping(value = "/zone/{temporaryZone}", method = RequestMethod.GET)
-    public List<PersonDTO> findAllInZone(@PathVariable("temporaryZone") String temporaryZoneCode) {
-        return personViewService.findAllPersonsByTempZoneCode(temporaryZoneCode);
-    }
-
     @RequestMapping(value = "/username/{username}", method = RequestMethod.GET)
     public PersonDTO findByUsername(@PathVariable("username") String username) {
         return personViewService.findByUsername(username);
