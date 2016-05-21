@@ -21,6 +21,7 @@ public class AssetDTO {
 
     private String zoneId;
     private String floorId;
+    private String closeByAssetId;
 
     public AssetDTO() {
     }
@@ -34,6 +35,9 @@ public class AssetDTO {
         this.zoneId = asset.getZone().getId();
         this.floorId = asset.getZone().getFloor().getId();
         this.isOnMap = asset.isOnMap();
+        if (asset.getCloseBy() != null) {
+            this.closeByAssetId = asset.getCloseBy().getId();
+        }
     }
 
     @JsonIgnore
@@ -49,6 +53,14 @@ public class AssetDTO {
         asset.setAssetType(assetType);
 
         return asset;
+    }
+
+    public String getCloseByAssetId() {
+        return closeByAssetId;
+    }
+
+    public void setCloseByAssetId(String closeByAssetId) {
+        this.closeByAssetId = closeByAssetId;
     }
 
     public String getId() {

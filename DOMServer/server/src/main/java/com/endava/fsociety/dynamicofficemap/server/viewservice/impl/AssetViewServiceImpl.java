@@ -69,6 +69,13 @@ public class AssetViewServiceImpl implements AssetViewService {
         }
 
         asset.setZone(zone);
+        if (assetDTO.getCloseByAssetId() != null) {
+            Asset closeByAsset = assetService.findById(assetDTO.getCloseByAssetId());
+            if (closeByAsset != null) {
+                asset.setCloseBy(closeByAsset);
+            }
+        }
+
         asset.setAssetType(assetType);
         asset.setName(assetDTO.getName());
         asset.setCode(assetDTO.getCode());

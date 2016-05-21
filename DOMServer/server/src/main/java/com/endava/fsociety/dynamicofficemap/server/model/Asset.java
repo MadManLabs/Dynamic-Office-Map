@@ -28,6 +28,9 @@ public class Asset {
     @DBRef
     private Zone zone;
 
+    @DBRef
+    private Asset closeBy;
+
     public Asset() {
     }
 
@@ -77,5 +80,13 @@ public class Asset {
 
     public void setOnMap(boolean onMap) {
         isOnMap = onMap;
+    }
+
+    public Asset getCloseBy() {
+        return closeBy;
+    }
+
+    public void setCloseBy(Asset closeBy) {
+        this.closeBy = closeBy;
     }
 }
