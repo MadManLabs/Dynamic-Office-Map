@@ -25,6 +25,8 @@ public interface AssetViewService {
 
     List<AssetDTO> findByMap(String floorId);
 
+    List<AssetDTO> findByMapAndTypeId(String floorId, String assetTypeId);
+
     AssetDTO removeFromMap(String id);
 
 }
