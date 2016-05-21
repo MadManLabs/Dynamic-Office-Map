@@ -1,8 +1,9 @@
 package com.fsociety.domclient.core;
 
+import android.content.Intent;
 import android.util.Log;
-import android.widget.Toast;
 
+import com.fsociety.domclient.activity.ProjectDetailsActivity_;
 import com.fsociety.domclient.rest.UpdatePersonDeskById;
 import com.fsociety.domclient.service.StorageReaderService;
 
@@ -82,7 +83,10 @@ public class Application extends android.app.Application implements BootstrapNot
 			if (getSettings().getLoggedInPersonDTO() != null) {
 				new UpdatePersonDeskById(this, getSettings().getLoggedInPersonDTO(), "BEACON", region.getId1().toString()).execute();
 			} else {
-				Toast.makeText(this, "User is not logged in!", Toast.LENGTH_SHORT).show();
+				Intent intent = new Intent(this, ProjectDetailsActivity_.class);
+				intent.putExtra("code", region.getId1().toString());
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				this.startActivity(intent);
 			}
 		}
 	}

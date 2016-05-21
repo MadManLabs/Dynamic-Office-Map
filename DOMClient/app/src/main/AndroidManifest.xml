@@ -38,6 +38,8 @@
 		<activity android:name=".activity.UserDetailsActivity_" android:parentActivityName=".activity.UserDetailsActivity_">
 			<meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".activity.FindFriendActivity_"/>
 		</activity>
+		<activity android:name=".activity.ProjectDetailsActivity_">
+		</activity>
 	</application>
 
 </manifest>
