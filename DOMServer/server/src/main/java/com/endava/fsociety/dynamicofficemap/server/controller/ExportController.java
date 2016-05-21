@@ -34,6 +34,12 @@ public class ExportController {
         return exportService.createReponseForExcelExportedDocument(exportService.exportAssets(assetDTOs));
     }
 
+    @RequestMapping(value = "/asset/floor/{floorId}/{assetTypeId}", method = RequestMethod.GET)
+    public ResponseEntity<byte[]>  exportAssetsByFloorAndType(@PathVariable("floorId") String floorId, @PathVariable("assetTypeId") String assetTypeId) {
+        List<AssetDTO> assetDTOs = assetViewService.findByMapAndTypeId(floorId, assetTypeId);
+        return exportService.createReponseForExcelExportedDocument(exportService.exportAssets(assetDTOs));
+    }
+
     @RequestMapping(value = "/asset/qr/{assetId}", method = RequestMethod.GET)
     public ResponseEntity<byte[]>  exportQRPerAsset(@PathVariable("assetId") String assetId) {
         AssetDTO assetDTO = assetViewService.findById(assetId);
