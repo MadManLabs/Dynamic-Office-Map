@@ -36,7 +36,7 @@ public class ExportController {
 
     @RequestMapping(value = "/asset/floor/{floorId}/{assetTypeId}", method = RequestMethod.GET)
     public ResponseEntity<byte[]>  exportAssetsByFloorAndType(@PathVariable("floorId") String floorId, @PathVariable("assetTypeId") String assetTypeId) {
-        List<AssetDTO> assetDTOs = assetViewService.findByMapAndTypeId(floorId, assetTypeId);
+        List<AssetDTO> assetDTOs = assetViewService.findByFloorAndTypeId(floorId, assetTypeId);
         return exportService.createReponseForExcelExportedDocument(exportService.exportAssets(assetDTOs));
     }
 
