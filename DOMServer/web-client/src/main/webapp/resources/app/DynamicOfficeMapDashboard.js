@@ -28,6 +28,10 @@ angular
             templateUrl: 'app/views/view_assets.html',
             controller: 'ViewAssetsController'
         }).
+        when('/assets/:floorId/:assetTypeId', {
+            templateUrl: 'app/views/view_assets.html',
+            controller: 'ViewAssetsController'
+        }).
         when('/person/:personId', {
             templateUrl: 'app/views/view_person.html',
             controller: 'ViewPersonController'

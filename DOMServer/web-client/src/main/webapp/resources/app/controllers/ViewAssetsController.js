@@ -1,11 +1,17 @@
 'use strict';
 
 angular.module('dynamicOfficeMapApp')
-    .controller('ViewAssetsController', function ($scope, $http, $uibModal, $routeParams, $window) {
+    .controller('ViewAssetsController', function ($scope, $http, $uibModal, $routeParams, $window, $location) {
 
         var floorId = $routeParams.floorId;
+        var assetTypeId = $routeParams.assetTypeId;
+
         $scope.floor = {};
         $scope.assets = [];
+
+        $scope.filterByAssetType = function (assetTypeId) {
+            $location.path('/assets/' + floorId + '/' + assetTypeId);
+        };
 
         $http({
             method: 'GET',
@@ -14,9 +20,16 @@ angular.module('dynamicOfficeMapApp')
             $scope.floor = response.data;
         });
 
+        var url = HOST + 'asset/floor/' + floorId;
+        $scope.exportUrl =  'export/asset/floor/' + floorId;
+        if (assetTypeId) {
+            url += "/assetType/" + assetTypeId;
+            $scope.exportUrl += "/assetType/" + assetTypeId;
+        }
+
         $http({
             method: 'GET',
-            url: HOST + 'asset/floor/' + floorId
+            url: url
         }).then(function successCallback(response) {
             $scope.assets = response.data;
         });
