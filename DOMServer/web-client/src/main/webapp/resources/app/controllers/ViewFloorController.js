@@ -10,11 +10,12 @@ angular.module('dynamicOfficeMapApp')
         $scope.objectSelectedInfo = {};
 
         $scope.persons = [];
+        $scope.title = "";
 
         var grid = 50;
         var gridSize = 1100;
 
-        var canvas = new fabric.Canvas('floorMap', { selection: false });
+        var canvas = new fabric.CanvasWithViewport('floorMap', { selection: false });
 
         $scope.viewPerson = function(personId) {
             $location.path('/person/' + personId);
@@ -48,6 +49,7 @@ angular.module('dynamicOfficeMapApp')
                     }).then(function successCallback(response) {
                         if (response.data) {
                             $scope.persons.push(response.data);
+                            $scope.title = "Desk Information";
                         }
                     });
                 } else if (object.target.objectType && object.target.objectType === 'Zone') {
@@ -56,6 +58,17 @@ angular.module('dynamicOfficeMapApp')
                         $scope.objectSelected = true;
                         $scope.objectSelectedInfo = object.target;
                     });
+
+                    $http({
+                        method: 'GET',
+                        url: HOST + 'zone/' + object.target.idObject
+                    }).then(function successCallback(response) {
+                        $scope.title = response.data.name + " Zone";
+                        if (response.data.parentName) {
+                            $scope.title += " (" + response.data.parentName + ")";
+                        }
+                    });
+
                     $http({
                         method: 'GET',
                         url: HOST + '/person/zone/' + object.target.idObject
@@ -76,5 +89,9 @@ angular.module('dynamicOfficeMapApp')
             });
 
         });
+
+        $scope.grabMode = function(grabMode) {
+            canvas.isGrabMode = grabMode;
+        };
 
     });
