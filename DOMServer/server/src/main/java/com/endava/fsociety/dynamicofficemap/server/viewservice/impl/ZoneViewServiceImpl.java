@@ -28,6 +28,16 @@ public class ZoneViewServiceImpl implements ZoneViewService {
     private FloorService floorService;
 
     @Override
+    public List<ZoneDTO> findAll() {
+        List<Zone> zones = zoneService.findAll();
+        List<ZoneDTO> zoneDTOs = new ArrayList<ZoneDTO>();
+        for (Zone zone : zones) {
+            zoneDTOs.add(new ZoneDTO(zone));
+        }
+        return zoneDTOs;
+    }
+
+    @Override
     public ZoneDTO findById(String id) {
         Zone zone = zoneService.findById(id);
         if (zone == null) {

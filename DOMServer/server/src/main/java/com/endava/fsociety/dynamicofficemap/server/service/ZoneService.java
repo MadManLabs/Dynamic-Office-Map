@@ -11,6 +11,8 @@ import java.util.List;
 
 public interface ZoneService {
 
+    List<Zone> findAll();
+
     Zone findById(String id);
 
     List<Zone> findByFloor(Floor floor);

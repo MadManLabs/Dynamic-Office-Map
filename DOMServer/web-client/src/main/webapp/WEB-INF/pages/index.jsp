@@ -41,6 +41,7 @@
 	<script src="<c:url value="/resources/app/controllers/AddAssetTypeController.js" />"></script>
 	<script src="<c:url value="/resources/app/controllers/AddAssetController.js" />"></script>
 	<script src="<c:url value="/resources/app/controllers/ViewQRCodeController.js" />"></script>
+	<script src="<c:url value="/resources/app/controllers/ViewZonesController.js" />"></script>
 	<script src="<c:url value="/resources/app/controllers/UpdateAssetController.js" />"></script>
 	<script src="<c:url value="/resources/app/controllers/UpdateZoneController.js" />"></script>
 	<script src="<c:url value="/resources/app/controllers/ViewFloorController.js" />"></script>

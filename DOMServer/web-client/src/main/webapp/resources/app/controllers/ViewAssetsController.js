@@ -30,6 +30,9 @@ angular.module('dynamicOfficeMapApp')
                 resolve: {
                     assetId: function() {
                         return assetId;
+                    },
+                    type: function() {
+                        return "asset";
                     }
                 }
             });

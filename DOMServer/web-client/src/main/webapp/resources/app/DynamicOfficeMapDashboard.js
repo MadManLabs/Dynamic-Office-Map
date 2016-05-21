@@ -12,6 +12,10 @@ angular
             templateUrl: 'app/views/view_floors.html',
             controller: 'ViewFloorsController'
         }).
+        when('/zones', {
+            templateUrl: 'app/views/view_zones.html',
+            controller: 'ViewZonesController'
+        }).
         when('/floor/:floorId', {
             templateUrl: 'app/views/update_floor.html',
             controller: 'UpdateFloorController'

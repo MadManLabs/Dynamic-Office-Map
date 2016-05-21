@@ -19,6 +19,11 @@ public class ZoneServiceImpl implements ZoneService {
     @Autowired
     private ZoneRepository zoneRepository;
 
+    @Override
+    public List<Zone> findAll() {
+        return zoneRepository.findAll();
+    }
+
     public Zone findById(String id) {
         return zoneRepository.findOne(id);
     }

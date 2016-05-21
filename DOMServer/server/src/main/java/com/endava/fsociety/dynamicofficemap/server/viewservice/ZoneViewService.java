@@ -10,6 +10,8 @@ import java.util.List;
 
 public interface ZoneViewService {
 
+    List<ZoneDTO> findAll();
+
     ZoneDTO findById(String id);
 
     List<ZoneDTO> findByFloor(String floorId);
