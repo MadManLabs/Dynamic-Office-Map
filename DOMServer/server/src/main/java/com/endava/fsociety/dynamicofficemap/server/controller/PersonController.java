@@ -1,6 +1,8 @@
 package com.endava.fsociety.dynamicofficemap.server.controller;
 
 import com.endava.fsociety.dynamicofficemap.server.dto.PersonDTO;
+import com.endava.fsociety.dynamicofficemap.server.viewservice.PersonViewService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,29 +18,32 @@ import java.util.List;
 @RequestMapping("/person")
 public class PersonController {
 
-    /**
-     * TODO
-     * @return
-     */
+    @Autowired
+    private PersonViewService personViewService;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<PersonDTO> findAll() {
-        return null;
+        return personViewService.findAllPersons();
+    }
+
+    @RequestMapping(value = "/zone/{temporaryZone}", method = RequestMethod.GET)
+    public List<PersonDTO> findAllInZone(@PathVariable("temporaryZone") String temporaryZoneCode) {
+        return personViewService.findAllPersonsByTempZoneCode(temporaryZoneCode);
     }
 
     @RequestMapping(value = "/email/{email}", method = RequestMethod.GET)
     public PersonDTO findByEmail(@PathVariable("email") String email) {
-        return null;
+        return personViewService.findByEmail(email);
     }
 
-    @RequestMapping(value = "/{id}/permanentZone/{permanentZone}", method = RequestMethod.PUT)
-    public PersonDTO updatePermanentZone(@PathVariable("id") String personId, @PathVariable("permanentZone") String permanentZoneCode) {
-        return null;
+    @RequestMapping(value = "/{id}/permanentDesk/{assetCode}", method = RequestMethod.PUT)
+    public PersonDTO updatePermanentZone(@PathVariable("id") String personId, @PathVariable("assetCode") String assetCode) {
+        return personViewService.updatePermanentDesk(personId, assetCode);
     }
 
     @RequestMapping(value = "/{id}/temporaryZone/{temporaryZone}", method = RequestMethod.PUT)
     public PersonDTO updateTemporaryZone(@PathVariable("id") String personId, @PathVariable("temporaryZone") String temporaryZoneCode) {
-        return null;
+        return personViewService.updateTemporaryZone(personId, temporaryZoneCode);
     }
 
 }
