@@ -3,14 +3,8 @@ package com.endava.fsociety.dynamicofficemap.server.viewservice.impl;
 import com.endava.fsociety.dynamicofficemap.server.dto.AssetDTO;
 import com.endava.fsociety.dynamicofficemap.server.exception.BadDataException;
 import com.endava.fsociety.dynamicofficemap.server.exception.BadUrlException;
-import com.endava.fsociety.dynamicofficemap.server.model.Asset;
-import com.endava.fsociety.dynamicofficemap.server.model.AssetType;
-import com.endava.fsociety.dynamicofficemap.server.model.Floor;
-import com.endava.fsociety.dynamicofficemap.server.model.Zone;
-import com.endava.fsociety.dynamicofficemap.server.service.AssetService;
-import com.endava.fsociety.dynamicofficemap.server.service.AssetTypeService;
-import com.endava.fsociety.dynamicofficemap.server.service.FloorService;
-import com.endava.fsociety.dynamicofficemap.server.service.ZoneService;
+import com.endava.fsociety.dynamicofficemap.server.model.*;
+import com.endava.fsociety.dynamicofficemap.server.service.*;
 import com.endava.fsociety.dynamicofficemap.server.viewservice.AssetViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +30,9 @@ public class AssetViewServiceImpl implements AssetViewService {
 
     @Autowired
     private FloorService floorService;
+
+    @Autowired
+    private PersonService personService;
 
     @Override
     public AssetDTO findById(String id) {
@@ -73,6 +70,12 @@ public class AssetViewServiceImpl implements AssetViewService {
             Asset closeByAsset = assetService.findById(assetDTO.getCloseByAssetId());
             if (closeByAsset != null) {
                 asset.setCloseBy(closeByAsset);
+            }
+        }
+        if (assetDTO.getTenantId() != null) {
+            Person person = personService.findById(assetDTO.getTenantId());
+            if (person != null) {
+                asset.setTenant(person);
             }
         }
 

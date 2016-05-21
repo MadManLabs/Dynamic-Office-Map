@@ -31,6 +31,9 @@ public class Asset {
     @DBRef
     private Asset closeBy;
 
+    @DBRef
+    private Person tenant;
+
     public Asset() {
     }
 
@@ -88,5 +91,13 @@ public class Asset {
 
     public void setCloseBy(Asset closeBy) {
         this.closeBy = closeBy;
+    }
+
+    public Person getTenant() {
+        return tenant;
+    }
+
+    public void setTenant(Person tenant) {
+        this.tenant = tenant;
     }
 }

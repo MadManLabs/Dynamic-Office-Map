@@ -16,6 +16,8 @@ public interface PersonService {
 
     Person findByUsername(String email);
 
+    Person findById(String id);
+
     List<Person> findAll();
 
     Person updatePermanentDesk(String personId, String assetCode) throws BadUrlException;
