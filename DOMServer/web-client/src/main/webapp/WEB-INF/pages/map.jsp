@@ -41,5 +41,6 @@
 <script src="<c:url value="/resources/app/controllers/ViewFloorController.js" />"></script>
 <script src="<c:url value="/resources/app/controllers/ViewPersonController.js" />"></script>
 <script src="<c:url value="/resources/app/controllers/ViewPersonMapController.js" />"></script>
+<script src="<c:url value="/resources/app/controllers/ViewAssetMapController.js" />"></script>
 </body>
 </html>

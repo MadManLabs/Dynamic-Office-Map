@@ -82,6 +82,7 @@ public class PersonServiceImpl implements PersonService {
     public Person updateTemporaryZoneByBeacon(String personId, String beaconUuid) throws BadUrlException {
         Beacon beacon = beaconService.findByUuid(beaconUuid);
         Person person = personRepository.findOne(personId);
+
         if (beacon != null && person != null) {
             if ("zone".equalsIgnoreCase(beacon.getType())) {
                 Zone zone = zoneRepository.findByCode(beacon.getCode());
