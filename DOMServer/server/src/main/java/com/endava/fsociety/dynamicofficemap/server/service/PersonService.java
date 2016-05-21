@@ -1,6 +1,7 @@
 package com.endava.fsociety.dynamicofficemap.server.service;
 
 import com.endava.fsociety.dynamicofficemap.server.exception.BadUrlException;
+import com.endava.fsociety.dynamicofficemap.server.model.Asset;
 import com.endava.fsociety.dynamicofficemap.server.model.Floor;
 import com.endava.fsociety.dynamicofficemap.server.model.Person;
 
@@ -24,5 +25,7 @@ public interface PersonService {
     List<Person> findAllPersonsByTempZoneCode(String zoneCode) throws BadUrlException;
 
     Set<Person> findAllPersonsOnMap(Floor floor);
+
+    Person findByPermanentDesk(Asset asset);
 
 }

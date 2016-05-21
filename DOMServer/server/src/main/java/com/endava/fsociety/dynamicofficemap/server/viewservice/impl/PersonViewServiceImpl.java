@@ -2,10 +2,14 @@ package com.endava.fsociety.dynamicofficemap.server.viewservice.impl;
 
 import com.endava.fsociety.dynamicofficemap.server.dto.PersonDTO;
 import com.endava.fsociety.dynamicofficemap.server.exception.BadUrlException;
+import com.endava.fsociety.dynamicofficemap.server.model.Asset;
 import com.endava.fsociety.dynamicofficemap.server.model.Floor;
 import com.endava.fsociety.dynamicofficemap.server.model.Person;
+import com.endava.fsociety.dynamicofficemap.server.model.Zone;
+import com.endava.fsociety.dynamicofficemap.server.service.AssetService;
 import com.endava.fsociety.dynamicofficemap.server.service.FloorService;
 import com.endava.fsociety.dynamicofficemap.server.service.PersonService;
+import com.endava.fsociety.dynamicofficemap.server.service.ZoneService;
 import com.endava.fsociety.dynamicofficemap.server.viewservice.PersonViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +21,7 @@ import java.util.Set;
 /**
  * Created by caldea on 5/21/2016.
  */
+
 @Service
 public class PersonViewServiceImpl implements PersonViewService {
 
@@ -25,6 +30,12 @@ public class PersonViewServiceImpl implements PersonViewService {
 
     @Autowired
     private FloorService floorService;
+
+    @Autowired
+    private AssetService assetService;
+
+    @Autowired
+    private ZoneService zoneService;
 
     @Override
     public List<PersonDTO> findAllPersons() {
@@ -79,4 +90,47 @@ public class PersonViewServiceImpl implements PersonViewService {
         }
         return personDTOs;
     }
+
+    @Override
+    public PersonDTO findPersonByPermanentDesk(String assetId) {
+        Asset asset = assetService.findById(assetId);
+        if (asset == null) {
+            throw new BadUrlException("There is no assed with id " + assetId);
+        }
+        Person person = personService.findByPermanentDesk(asset);
+        if (person == null) {
+            return null;
+        }
+        return new PersonDTO(person);
+    }
+
+    @Override
+    public List<PersonDTO> findPersonByPermanentZone(String zoneId) {
+        Zone zone = zoneService.findById(zoneId);
+        if (zone == null) {
+            throw new BadUrlException("There is no zone with id " + zoneId);
+        }
+        List<Asset> assets = new ArrayList<Asset>();
+        findAssetsFromMapZone(zone, assets);
+
+        List<PersonDTO> persons = new ArrayList<PersonDTO>();
+        for (Asset asset : assets) {
+            Person person = personService.findByPermanentDesk(asset);
+            if (person != null) {
+                persons.add(new PersonDTO(person));
+            }
+        }
+
+        return persons;
+    }
+
+    private void findAssetsFromMapZone(Zone parentZone, List<Asset> assets) {
+        List<Asset> assetsFromZone = assetService.findByZoneMap(parentZone);
+        assets.addAll(assetsFromZone);
+        List<Zone> zones = zoneService.findByParent(parentZone);
+        for (Zone zone : zones) {
+            findAssetsFromMapZone(zone, assets);
+        }
+    }
+
 }

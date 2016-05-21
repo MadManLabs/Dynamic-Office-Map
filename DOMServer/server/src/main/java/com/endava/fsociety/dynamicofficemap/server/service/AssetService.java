@@ -3,6 +3,7 @@ package com.endava.fsociety.dynamicofficemap.server.service;
 import com.endava.fsociety.dynamicofficemap.server.model.Asset;
 import com.endava.fsociety.dynamicofficemap.server.model.AssetType;
 import com.endava.fsociety.dynamicofficemap.server.model.Floor;
+import com.endava.fsociety.dynamicofficemap.server.model.Zone;
 
 import java.util.List;
 
@@ -25,5 +26,7 @@ public interface AssetService {
     List<Asset> findByFloor(Floor floor);
 
     List<Asset> findByMap(Floor floor);
+
+    List<Asset> findByZoneMap(Zone zone);
 
 }

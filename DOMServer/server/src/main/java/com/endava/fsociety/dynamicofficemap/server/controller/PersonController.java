@@ -31,6 +31,16 @@ public class PersonController {
         return personViewService.findAllPersonsOnMap(floorId);
     }
 
+    @RequestMapping(value = "/desk/{assetId}", method = RequestMethod.GET)
+    public PersonDTO findPersonByPermanentDesk(@PathVariable("assetId") String assetId) {
+        return personViewService.findPersonByPermanentDesk(assetId);
+    }
+
+    @RequestMapping(value = "/zone/{zoneId}", method = RequestMethod.GET)
+    public List<PersonDTO> findPersonByPermanentZone(@PathVariable("zoneId") String zoneId) {
+        return personViewService.findPersonByPermanentZone(zoneId);
+    }
+
     @RequestMapping(value = "/username/{username}", method = RequestMethod.GET)
     public PersonDTO findByUsername(@PathVariable("username") String username) {
         return personViewService.findByUsername(username);

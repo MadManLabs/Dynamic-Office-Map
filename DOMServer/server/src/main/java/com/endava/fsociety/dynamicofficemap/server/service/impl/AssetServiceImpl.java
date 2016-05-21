@@ -77,4 +77,9 @@ public class AssetServiceImpl implements AssetService {
         return assets;
     }
 
+    @Override
+    public List<Asset> findByZoneMap(Zone zone) {
+        return assetRepository.findByZoneAndIsOnMap(zone, true);
+    }
+
 }

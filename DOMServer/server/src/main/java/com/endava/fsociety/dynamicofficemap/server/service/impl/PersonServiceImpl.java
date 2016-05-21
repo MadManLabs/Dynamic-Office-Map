@@ -10,7 +10,6 @@ import com.endava.fsociety.dynamicofficemap.server.repository.PersonRepository;
 import com.endava.fsociety.dynamicofficemap.server.repository.ZoneRepository;
 import com.endava.fsociety.dynamicofficemap.server.service.AssetService;
 import com.endava.fsociety.dynamicofficemap.server.service.PersonService;
-import com.endava.fsociety.dynamicofficemap.server.service.ZoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,9 +32,6 @@ public class PersonServiceImpl implements PersonService {
 
     @Autowired
     private AssetRepository assetRepository;
-
-    @Autowired
-    private ZoneService zoneService;
 
     @Autowired
     private AssetService assetService;
@@ -99,6 +95,11 @@ public class PersonServiceImpl implements PersonService {
             }
         }
         return persons;
+    }
+
+    @Override
+    public Person findByPermanentDesk(Asset asset) {
+        return personRepository.findByPermanentDesk(asset);
     }
 
 

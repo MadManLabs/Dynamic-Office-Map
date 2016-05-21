@@ -22,4 +22,22 @@ public interface PersonViewService {
 
     List<PersonDTO> findAllPersonsOnMap(String floorId);
 
+    /**
+     * This will find the person that has this permanent desk.
+     *
+     * @param assetId
+     * @return
+     */
+
+    PersonDTO findPersonByPermanentDesk(String assetId);
+
+    /**
+     * This will find all the persons that have a permanent desk in this zone or in all the child zones.
+     *
+     * @param zoneId
+     * @return
+     */
+
+    List<PersonDTO> findPersonByPermanentZone(String zoneId);
+
 }
