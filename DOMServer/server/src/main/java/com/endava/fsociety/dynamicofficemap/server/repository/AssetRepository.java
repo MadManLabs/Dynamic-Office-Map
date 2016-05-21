@@ -22,6 +22,8 @@ public interface AssetRepository extends MongoRepository<Asset, String> {
 
     List<Asset> findByZone(Zone zone);
 
+    List<Asset> findByZoneAndAssetType(Zone zone, AssetType assetType);
+
     List<Asset> findByZoneAndIsOnMap(Zone zone, boolean isOnMap);
 
 }

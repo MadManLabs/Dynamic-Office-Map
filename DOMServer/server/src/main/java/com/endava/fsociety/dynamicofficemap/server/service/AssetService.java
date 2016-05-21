@@ -25,6 +25,8 @@ public interface AssetService {
 
     List<Asset> findByFloor(Floor floor);
 
+    List<Asset> findByFloorAndAssetType(Floor floor, AssetType assetType);
+
     List<Asset> findByMap(Floor floor);
 
     List<Asset> findByZoneMap(Zone zone);
