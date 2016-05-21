@@ -64,13 +64,13 @@ public class AssetViewServiceImpl implements AssetViewService {
         if (zone == null) {
             throw new BadDataException("There is no zone with id " + assetDTO.getZoneId());
         }
-
         asset.setZone(zone);
+
         if (assetDTO.getCloseByAssetId() != null) {
             Asset closeByAsset = assetService.findById(assetDTO.getCloseByAssetId());
-            if (closeByAsset != null) {
-                asset.setCloseBy(closeByAsset);
-            }
+            asset.setCloseBy(closeByAsset);
+        } else {
+            asset.setCloseBy(null);
         }
 
         if (assetDTO.getTenantId() != null) {

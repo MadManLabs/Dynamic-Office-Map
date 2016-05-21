@@ -6,6 +6,11 @@ angular.module('dynamicOfficeMapApp')
         $scope.assetTypes = [];
         $scope.zones = [];
         $scope.persons = [];
+        $scope.assets = [];
+
+        $scope.removeCloseBy = function() {
+            $scope.closeBy = {};
+        };
 
         $scope.cancel = function () {
             $uibModalInstance.dismiss('cancel');
@@ -16,6 +21,8 @@ angular.module('dynamicOfficeMapApp')
             if ($scope.tenant) {
                 tenantId = $scope.tenant.id;
             }
+
+            var closeBy = $scope.closeBy.id;
 
             var zoneId = null;
             if ($scope.assetZone) {
@@ -29,6 +36,7 @@ angular.module('dynamicOfficeMapApp')
             $scope.asset.typeId = assetTypeId;
             $scope.asset.zoneId = zoneId;
             $scope.asset.tenantId = tenantId;
+            $scope.asset.closeByAssetId = closeBy;
 
             $http({
                 method: 'POST',
@@ -58,6 +66,13 @@ angular.module('dynamicOfficeMapApp')
             url: HOST + 'zone/floor/' + floorId
         }).then(function successCallback(response) {
             $scope.zones = response.data;
+        });
+
+        $http({
+            method: 'GET',
+            url: HOST + 'asset/map/' + floorId
+        }).then(function successCallback(response) {
+            $scope.assets = response.data;
         });
 
     });

@@ -23,9 +23,17 @@ angular.module('dynamicOfficeMapApp')
                     url: HOST + 'floor/' + floorId
                 }).then(function successCallback(response) {
                     var floor = response.data;
-                    var id = "test";
+
+                    var id = null;
                     if ($scope.asset.onMap) {
                         id = $scope.asset.id;
+                    } else if ($scope.asset.closeByAssetId) {
+                        id = $scope.asset.closeByAssetId;
+                    } else {
+                        // alert("This asset is not added on the map!");
+                        // $("#floorMap").remove();
+                        $scope.error = "This asset is not added on the map!";
+                        return;
                     }
 
                     String.prototype.replaceAll = function(search, replacement) {
