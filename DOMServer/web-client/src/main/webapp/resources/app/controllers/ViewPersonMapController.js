@@ -15,12 +15,18 @@ angular.module('dynamicOfficeMapApp')
         }).then(function successCallback(response) {
             $scope.person = response.data;
             var floorId;
+
             var temporaryZone = false;
+            var permanentZone = false;
+
             if (response.data.temporaryFloorId) {
                 floorId = response.data.temporaryFloorId;
                 temporaryZone = true;
-            } else if (response.data.permanentFloorId) {
+            }
+
+            if (response.data.permanentFloorId) {
                 floorId = response.data.permanentFloorId;
+                permanentZone = true;
             }
 
             if (floorId) {
@@ -50,11 +56,13 @@ angular.module('dynamicOfficeMapApp')
                             if (temporaryZone) {
                                 if (object.objectType && object.objectType === 'Zone') {
                                     if (object.idObject == $scope.person.temporaryZoneId) {
-                                        object.stroke = 'red';
+                                        object.stroke = 'blue';
                                         object.strokeWidth = 5;
                                     }
                                 }
-                            } else {
+                            }
+
+                            if (permanentZone) {
                                 if (object.objectType && object.objectType === 'Asset') {
                                     if (object.idObject == $scope.person.permanentDeskId) {
                                         object.stroke = 'red';
