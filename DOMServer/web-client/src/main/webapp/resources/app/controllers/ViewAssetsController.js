@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dynamicOfficeMapApp')
-    .controller('ViewAssetsController', function ($scope, $http, $uibModal, $routeParams, $location) {
+    .controller('ViewAssetsController', function ($scope, $http, $uibModal, $routeParams, $window) {
 
         var floorId = $routeParams.floorId;
         $scope.floor = {};
@@ -20,6 +20,26 @@ angular.module('dynamicOfficeMapApp')
         }).then(function successCallback(response) {
             $scope.assets = response.data;
         });
+
+        $scope.editAsset = function(assetId) {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/views/update_asset.html',
+                controller: 'UpdateAssetController',
+                resolve: {
+                    assetId: function() {
+                        return assetId;
+                    },
+                    viewTenant: function () {
+                        return true;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (asset) {
+                $window.location.reload();
+            });
+        };
 
         $scope.addAsset = function() {
             var modalInstance = $uibModal.open({

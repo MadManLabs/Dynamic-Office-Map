@@ -56,4 +56,14 @@ public class PersonController {
         return personViewService.updateTemporaryZone(personId, temporaryZoneCode);
     }
 
+    @RequestMapping(value = "/tenant/{assetId}", method = RequestMethod.GET)
+    public PersonDTO findTenantByAsset(@PathVariable("assetId") String assetId) {
+        return personViewService.findTenantByAssetId(assetId);
+    }
+
+    @RequestMapping(value = "/id/{personId}", method = RequestMethod.GET)
+    public PersonDTO findById(@PathVariable("personId") String personId) {
+        return personViewService.findById(personId);
+    }
+
 }

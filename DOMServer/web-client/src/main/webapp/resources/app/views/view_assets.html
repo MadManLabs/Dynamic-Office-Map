@@ -8,6 +8,7 @@
         <th>Code</th>
         <th>Name</th>
         <th>Type</th>
+        <th>Tenant</th>
         <th>Actions</th>
         </thead>
         <tr ng-repeat="asset in assets">
@@ -15,7 +16,11 @@
             <td>{{asset.code}}</td>
             <td>{{asset.name}}</td>
             <td>{{asset.typeName}}</td>
+            <td>{{asset.tenantName}}</td>
             <td width="200">
+                <button class="btn btn-primary btn-sm" type="button" ng-click="editAsset(asset.id)">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;
+                </button>
             </td>
         </tr>
     </table>

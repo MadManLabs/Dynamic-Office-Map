@@ -58,6 +58,9 @@ angular.module('dynamicOfficeMapApp')
                 resolve: {
                     assetId: function() {
                         return $scope.objectSelectedInfo.idObject;
+                    },
+                    viewTenant: function () {
+                        return false;
                     }
                 }
             });

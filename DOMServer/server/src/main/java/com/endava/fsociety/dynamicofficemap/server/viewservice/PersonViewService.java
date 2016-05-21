@@ -40,4 +40,8 @@ public interface PersonViewService {
 
     List<PersonDTO> findPersonByPermanentZone(String zoneId);
 
+    PersonDTO findTenantByAssetId(String assetId);
+
+    PersonDTO findById(String personId);
+
 }

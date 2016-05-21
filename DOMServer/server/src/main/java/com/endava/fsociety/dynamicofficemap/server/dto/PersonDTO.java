@@ -12,8 +12,8 @@ public class PersonDTO {
     private String id;
 
     private String firstName;
-
     private String lastName;
+    private String name;
 
     private String email;
     private String hashGravatar;
@@ -40,8 +40,10 @@ public class PersonDTO {
     public PersonDTO(Person person) {
         if (person != null) {
             this.id = person.getId();
+
             this.firstName = person.getFirstName();
             this.lastName = person.getLastName();
+            this.name = person.getFirstName() + " " + person.getLastName();
 
             this.email = person.getEmail();
             if (person.getEmail() != null) {
@@ -196,5 +198,13 @@ public class PersonDTO {
 
     public void setPermanentFloorId(String permanentFloorId) {
         this.permanentFloorId = permanentFloorId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

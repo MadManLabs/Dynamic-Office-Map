@@ -1,12 +1,18 @@
 'use strict';
 
 angular.module('dynamicOfficeMapApp')
-    .controller('UpdateAssetController', function ($scope, $http, $uibModalInstance, assetId) {
+    .controller('UpdateAssetController', function ($scope, $http, $uibModalInstance, assetId, viewTenant) {
 
         $scope.asset = {};
         $scope.zones = [];
         $scope.floor = {};
         $scope.zone = {};
+
+        $scope.persons = [];
+        if (viewTenant) {
+            $scope.viewTenant = true;
+        }
+        $scope.tenant = {};
 
         $scope.cancel = function () {
             $uibModalInstance.dismiss('cancel');
@@ -15,6 +21,10 @@ angular.module('dynamicOfficeMapApp')
         $scope.ok = function() {
             if ($scope.zone) {
                 $scope.asset.zoneId = $scope.zone.id;
+            }
+
+            if (viewTenant) {
+                $scope.asset.tenantId = $scope.tenant.id;
             }
 
             $http({
@@ -52,6 +62,25 @@ angular.module('dynamicOfficeMapApp')
             }).then(function successCallback(response) {
                 $scope.zone = response.data;
             });
+
+            if (viewTenant) {
+                $http({
+                    method: 'GET',
+                    url: HOST + 'person'
+                }).then(function successCallback(response) {
+                    $scope.persons = response.data;
+                });
+
+                if ($scope.asset.tenantId) {
+                    $http({
+                        method: 'GET',
+                        url: HOST + 'person/id/' + $scope.asset.tenantId
+                    }).then(function successCallback(response) {
+                        $scope.tenant = response.data;
+                    });
+                }
+            }
+
         });
 
     });

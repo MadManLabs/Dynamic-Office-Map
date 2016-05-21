@@ -5,12 +5,18 @@ angular.module('dynamicOfficeMapApp')
 
         $scope.assetTypes = [];
         $scope.zones = [];
+        $scope.persons = [];
 
         $scope.cancel = function () {
             $uibModalInstance.dismiss('cancel');
         };
 
         $scope.ok = function() {
+            var tenantId = null;
+            if ($scope.tenant) {
+                tenantId = $scope.tenant.id;
+            }
+
             var zoneId = null;
             if ($scope.assetZone) {
                 zoneId = $scope.assetZone.id;
@@ -22,6 +28,7 @@ angular.module('dynamicOfficeMapApp')
 
             $scope.asset.typeId = assetTypeId;
             $scope.asset.zoneId = zoneId;
+            $scope.asset.tenantId = tenantId;
 
             $http({
                 method: 'POST',
@@ -37,6 +44,13 @@ angular.module('dynamicOfficeMapApp')
             url: HOST + 'assetType'
         }).then(function successCallback(response) {
             $scope.assetTypes = response.data;
+        });
+
+        $http({
+            method: 'GET',
+            url: HOST + 'person'
+        }).then(function successCallback(response) {
+            $scope.persons = response.data;
         });
 
         $http({

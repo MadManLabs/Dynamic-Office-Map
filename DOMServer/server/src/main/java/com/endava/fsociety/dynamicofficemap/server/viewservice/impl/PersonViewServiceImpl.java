@@ -124,6 +124,27 @@ public class PersonViewServiceImpl implements PersonViewService {
         return persons;
     }
 
+    @Override
+    public PersonDTO findTenantByAssetId(String assetId) {
+        Asset asset = assetService.findById(assetId);
+        if (asset == null) {
+            throw new BadUrlException("There is no asset with id " + assetId);
+        }
+        if (asset.getTenant() == null) {
+            return null;
+        }
+        return new PersonDTO(asset.getTenant());
+    }
+
+    @Override
+    public PersonDTO findById(String personId) {
+        Person person = personService.findById(personId);
+        if (person == null) {
+            throw new BadUrlException("There is no person with id " + personId);
+        }
+        return new PersonDTO(person);
+    }
+
     private void findAssetsFromMapZone(Zone parentZone, List<Asset> assets) {
         List<Asset> assetsFromZone = assetService.findByZoneMap(parentZone);
         assets.addAll(assetsFromZone);
