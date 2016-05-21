@@ -58,7 +58,7 @@ public class ExportServiceImpl implements ExportService {
                     "Please Contact the Administrator.";
 
     public static final String[] ASSET_HEADER_TITLES =
-            {"Code", "Name", "Type"};
+            {"Code", "Name", "Type", "Tenant"};
 
     @Override
     public byte[] exportAssets(List<AssetDTO> assetDTOs) {
@@ -99,7 +99,7 @@ public class ExportServiceImpl implements ExportService {
                     assetDTO.getCode(),
                     assetDTO.getName(),
                     assetDTO.getTypeName(),
-
+                    assetDTO.getTenantName()
             };
 
             final Row unsubmittedOrderRow = sheet.createRow(currentRowNumber++);
