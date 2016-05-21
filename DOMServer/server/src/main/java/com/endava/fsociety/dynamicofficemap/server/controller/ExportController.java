@@ -1,8 +1,10 @@
 package com.endava.fsociety.dynamicofficemap.server.controller;
 
 import com.endava.fsociety.dynamicofficemap.server.dto.AssetDTO;
+import com.endava.fsociety.dynamicofficemap.server.dto.ZoneDTO;
 import com.endava.fsociety.dynamicofficemap.server.service.ExportService;
 import com.endava.fsociety.dynamicofficemap.server.viewservice.AssetViewService;
+import com.endava.fsociety.dynamicofficemap.server.viewservice.ZoneViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,9 @@ public class ExportController {
     private AssetViewService assetViewService;
 
     @Autowired
+    private ZoneViewService zoneViewService;
+
+    @Autowired
     private ExportService exportService;
 
 
@@ -32,7 +37,13 @@ public class ExportController {
     @RequestMapping(value = "/asset/qr/{assetId}", method = RequestMethod.GET)
     public ResponseEntity<byte[]>  exportQRPerAsset(@PathVariable("assetId") String assetId) {
         AssetDTO assetDTO = assetViewService.findById(assetId);
-        return exportService.createReponseForPNGExportedDocument(exportService.exportQR("ASSET="+assetDTO.getCode()));
+        return exportService.createReponseForPNGExportedDocument(exportService.exportQR("ASSET=" + assetDTO.getCode()));
+    }
+
+    @RequestMapping(value = "/zone/qr/{zoneId}", method = RequestMethod.GET)
+    public ResponseEntity<byte[]>  exportQRPerZone(@PathVariable("zoneId") String zoneId) {
+        ZoneDTO zoneDTO = zoneViewService.findById(zoneId);
+        return exportService.createReponseForPNGExportedDocument(exportService.exportQR("ZONE="+zoneDTO.getCode()));
     }
 
 
