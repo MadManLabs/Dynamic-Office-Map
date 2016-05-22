@@ -35,6 +35,8 @@
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/qrImageView"
 			android:layout_centerHorizontal="true"
+			android:drawableLeft="@drawable/ic_scan"
+			android:drawableStart="@drawable/ic_scan"
 			android:layout_marginTop="@dimen/view_vertical_margin"
 			android:text="@string/register_desk_activity_read_qr_code_button_text"/>
 
@@ -58,5 +60,14 @@
 			android:contentDescription="nfcIcon"
 			android:scaleType="fitXY"
 			android:src="@drawable/nfc"/>
+
+	<TextView
+			android:id="@+id/registerDesk3TextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/nfcImageView"
+			android:layout_marginTop="10dp"
+			android:textSize="@dimen/text_appearance_smaller_medium"
+			android:text="- get near a Bluetooth or WiFi beacon"/>
 
 </RelativeLayout>

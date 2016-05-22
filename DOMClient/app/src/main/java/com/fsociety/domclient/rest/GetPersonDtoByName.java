@@ -54,6 +54,6 @@ public class GetPersonDtoByName extends AsyncTask<Void, Void, PersonDTO> {
 		userDetailsFragment.getEmailTextView().setText(String.format(userDetailsFragment.getResources().getString(R.string.user_details_activity_email_text), personDTO.getEmail() != null ? personDTO.getEmail() : ""));
 		userDetailsFragment.getPermanentFloorZoneTextView().setText(userDetailsFragment.getPermanentFloorZoneTextView().getText()+ " " + (personDTO.getPermanentFloorName()!=null?personDTO.getPermanentFloorName():"-") + " / " + (personDTO.getPermanentZoneName()!=null?personDTO.getPermanentZoneName():"-") );
 		userDetailsFragment.getTemporaryFloorZoneTextView().setText(userDetailsFragment.getTemporaryFloorZoneTextView().getText()+ " " + (personDTO.getTemporaryFloorName()!=null?personDTO.getTemporaryFloorName():"-") + " / " + (personDTO.getTemporaryZoneName()!=null?personDTO.getTemporaryZoneName():"-") );
-		userDetailsFragment.getMapWebView().loadUrl("http://" + userDetailsFragment.application.getSettings().getServerIp() + ":" + userDetailsFragment.application.getSettings().getServerPort() + "/map/#/personMap/"+personDTO.getUsername());
+		userDetailsFragment.getMapWebView().loadUrl("http://" + userDetailsFragment.application.getSettings().getServerIp() + ":" + userDetailsFragment.application.getSettings().getServerPort() + "/map/#/personMap/"+personDTO.getUsername() + "/false");
 	}
 }

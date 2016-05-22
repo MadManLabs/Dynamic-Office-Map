@@ -26,7 +26,7 @@
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/endavaImageView"
 			android:text="@string/home_activity_welcome_text"
-			android:layout_marginTop="25dp"
+			android:layout_marginTop="30dp"
 			android:textSize="@dimen/text_appearance_smaller_medium"
 			android:textStyle="bold"/>
 
@@ -35,7 +35,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_below="@+id/welcomeTextView"
-			android:layout_marginTop="25dp"
+			android:layout_marginTop="35dp"
 			android:visibility="gone">
 
 		<TextView
@@ -50,7 +50,7 @@
 				android:id="@+id/administerRelativeLayout"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="20dp"
+				android:layout_marginTop="25dp"
 				android:layout_below="@+id/loggedAsTextView"
 				android:visibility="gone">
 
@@ -58,7 +58,7 @@
 					android:id="@+id/administerUsernameTextView"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Choose the username which assets you want to administer..."
+					android:text="Please choose the username which assets you want to register."
 					android:textSize="@dimen/text_appearance_smaller_medium"/>
 
 			<RelativeLayout
@@ -104,6 +104,8 @@
 				android:layout_centerHorizontal="true"
 				android:layout_marginTop="25dp"
 				android:text="Register asset"
+				android:drawableLeft="@drawable/ic_add"
+				android:drawableStart="@drawable/ic_add"
 				android:textSize="@dimen/text_appearance_smaller_medium"/>
 
 		<Button
@@ -115,6 +117,8 @@
 				android:layout_centerHorizontal="true"
 				android:layout_marginTop="@dimen/view_vertical_margin"
 				android:text="@string/home_activity_find_friend_text"
+				android:drawableLeft="@drawable/ic_search"
+				android:drawableStart="@drawable/ic_search"
 				android:textSize="@dimen/text_appearance_smaller_medium"/>
 
 	</RelativeLayout>
@@ -123,6 +127,7 @@
 			android:id="@+id/notLoggedInUserRelativeLayout"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
+			android:layout_marginTop="35dp"
 			android:layout_below="@+id/welcomeTextView">
 
 		<TextView
@@ -136,6 +141,7 @@
 		<RelativeLayout
 				android:id="@+id/usernameRelativeLayout"
 				android:layout_width="wrap_content"
+				android:layout_marginTop="10dp"
 				android:layout_height="wrap_content"
 				android:layout_alignLeft="@+id/loginExplainTextView"
 				android:layout_below="@+id/loginExplainTextView">
@@ -166,6 +172,8 @@
 				android:layout_centerHorizontal="true"
 				android:layout_marginTop="@dimen/view_vertical_margin"
 				android:text="@string/home_activity_login_text"
+				android:drawableLeft="@drawable/ic_identity"
+				android:drawableStart="@drawable/ic_identity"
 				android:textSize="@dimen/text_appearance_smaller_medium"/>
 
 	</RelativeLayout>
