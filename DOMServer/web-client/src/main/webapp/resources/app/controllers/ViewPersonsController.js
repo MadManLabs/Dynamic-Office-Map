@@ -13,4 +13,8 @@ angular.module('dynamicOfficeMapApp')
             $scope.persons = response.data;
         });
 
+        $scope.viewPerson = function(personId) {
+            $location.path('/person/' + personId);
+        };
+
     });
