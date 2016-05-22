@@ -20,7 +20,11 @@ public class AssetDTO {
     private String typeName;
 
     private String zoneId;
+    private String zoneName;
+
     private String floorId;
+    private String floorName;
+
     private String closeByAssetId;
 
     private String tenantId;
@@ -35,8 +39,12 @@ public class AssetDTO {
         this.code = asset.getCode();
         this.typeId = asset.getAssetType().getId();
         this.typeName = asset.getAssetType().getName();
+
         this.zoneId = asset.getZone().getId();
+        this.zoneName = asset.getZone().getName();
+
         this.floorId = asset.getZone().getFloor().getId();
+        this.floorName = asset.getZone().getFloor().getName();
 
         this.isOnMap = asset.isOnMap();
         if (asset.getCloseBy() != null) {
@@ -151,5 +159,21 @@ public class AssetDTO {
 
     public void setTenantName(String tenantName) {
         this.tenantName = tenantName;
+    }
+
+    public String getZoneName() {
+        return zoneName;
+    }
+
+    public void setZoneName(String zoneName) {
+        this.zoneName = zoneName;
+    }
+
+    public String getFloorName() {
+        return floorName;
+    }
+
+    public void setFloorName(String floorName) {
+        this.floorName = floorName;
     }
 }
