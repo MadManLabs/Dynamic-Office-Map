@@ -11,6 +11,7 @@ public class FloorDTO {
     private String id;
     private String name;
     private String map;
+    private Integer persons;
 
     public FloorDTO() {
     }
@@ -43,5 +44,13 @@ public class FloorDTO {
 
     public void setMap(String map) {
         this.map = map;
+    }
+
+    public Integer getPersons() {
+        return persons;
+    }
+
+    public void setPersons(Integer persons) {
+        this.persons = persons;
     }
 }

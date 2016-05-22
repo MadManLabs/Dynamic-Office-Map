@@ -4,13 +4,16 @@ import com.endava.fsociety.dynamicofficemap.server.dto.FloorDTO;
 import com.endava.fsociety.dynamicofficemap.server.exception.BadDataException;
 import com.endava.fsociety.dynamicofficemap.server.exception.BadUrlException;
 import com.endava.fsociety.dynamicofficemap.server.model.Floor;
+import com.endava.fsociety.dynamicofficemap.server.model.Person;
 import com.endava.fsociety.dynamicofficemap.server.service.FloorService;
+import com.endava.fsociety.dynamicofficemap.server.service.PersonService;
 import com.endava.fsociety.dynamicofficemap.server.viewservice.FloorViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by fstancu on 5/11/2016.
@@ -21,6 +24,9 @@ public class FloorViewServiceImpl implements FloorViewService {
 
     @Autowired
     private FloorService floorService;
+
+    @Autowired
+    private PersonService personService;
 
     public FloorDTO findById(String id) {
         Floor floor = floorService.findById(id);
@@ -34,7 +40,10 @@ public class FloorViewServiceImpl implements FloorViewService {
         List<Floor> floors = floorService.findAll();
         List<FloorDTO> floorDTOs = new ArrayList<FloorDTO>();
         for (Floor floor : floors) {
-            floorDTOs.add(new FloorDTO(floor));
+            Set<Person> persons = personService.findAllPersonsOnMap(floor);
+            FloorDTO floorDTO = new FloorDTO(floor);
+            floorDTO.setPersons(persons.size());
+            floorDTOs.add(floorDTO);
         }
         return floorDTOs;
     }
