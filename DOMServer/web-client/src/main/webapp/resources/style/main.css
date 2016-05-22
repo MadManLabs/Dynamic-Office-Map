@@ -10,3 +10,13 @@ html, body {
     padding: 5px 15px 15px 15px;
     margin-top: 25px;
 }
+
+.btn-success {
+    background-color: darkorange !important;
+    border-color: darkorange !important;
+}
+
+.btn-success:hover {
+    background-color: orangered !important;
+    border-color: orangered !important;
+}
