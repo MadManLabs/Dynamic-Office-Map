@@ -44,7 +44,7 @@ public class AssetTypeViewServiceImpl implements AssetTypeViewService {
 
         assetType.setName(assetTypeDTO.getName());
         assetType.setCode(assetTypeDTO.getCode());
-        assetType.setImage(assetType.getImage());
+        assetType.setImage(assetTypeDTO.getImage());
 
         return new AssetTypeDTO(assetTypeService.save(assetType));
     }
