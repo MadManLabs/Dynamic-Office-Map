@@ -15,7 +15,6 @@ import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class GetProjectDtoById extends AsyncTask<Void, Void, ProjectDTO> {
@@ -52,8 +51,6 @@ public class GetProjectDtoById extends AsyncTask<Void, Void, ProjectDTO> {
 			try {
 				imageUrl = new URL(personDTOs[0].getLogo());
 				bmp = BitmapFactory.decodeStream(imageUrl.openConnection().getInputStream());
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

@@ -3,6 +3,7 @@ package com.fsociety.domclient.fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.nfc.NfcAdapter;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import com.fsociety.domclient.R;
 import com.fsociety.domclient.activity.RegisterDeskActivity;
+import com.fsociety.domclient.rest.UpdateAssetById;
 import com.fsociety.domclient.rest.UpdatePersonDeskById;
 
 import org.androidannotations.annotations.AfterViews;
@@ -32,9 +34,9 @@ public class RegisterDeskFragment extends BaseFragment {
 	@AfterViews
 	protected void setupViews() {
 		((RegisterDeskActivity) getActivity()).registerDeskFragment = this;
-		registerDesk1TextView.setText(getResources().getString(R.string.register_desk_activity_register_desk_1_text));
+		registerDesk1TextView.setText(Html.fromHtml(getResources().getString(R.string.register_desk_activity_register_desk_1_text)));
 		if (NfcAdapter.getDefaultAdapter(getActivity()) != null) {
-			registerDesk2TextView.setText(getResources().getString(R.string.register_desk_activity_register_desk_2_text));
+			registerDesk2TextView.setText(Html.fromHtml(getResources().getString(R.string.register_desk_activity_register_desk_2_text)));
 		} else {
 			registerDesk2TextView.setVisibility(View.INVISIBLE);
 			nfcImageView.setVisibility(View.INVISIBLE);
@@ -56,7 +58,11 @@ public class RegisterDeskFragment extends BaseFragment {
 				//Toast.makeText(getActivity(), "Scan resulted in code:" + contents, Toast.LENGTH_LONG).show();
 				String codeType = contents.split("=")[0];
 				String code = contents.split("=")[1];
-				new UpdatePersonDeskById(this, application.getSettings().getLoggedInPersonDTO(), codeType, code).execute();
+				if (application.getSettings().getAdministerPersonDTO()==null) {
+					new UpdatePersonDeskById(this, application.getSettings().getLoggedInPersonDTO(), codeType, code).execute();
+				} else {
+					new UpdateAssetById(this, application.getSettings().getLoggedInPersonDTO(), codeType, code).execute();
+				}
 			} else if (resultCode == Activity.RESULT_CANCELED) {
 				Toast.makeText(getActivity(), getResources().getString(R.string.register_desk_activity_scan_cancelled_text), Toast.LENGTH_LONG).show();
 			}

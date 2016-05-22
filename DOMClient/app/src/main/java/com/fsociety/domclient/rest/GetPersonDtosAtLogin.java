@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.fsociety.domclient.activity.HomeActivity;
 import com.fsociety.domclient.dto.PersonDTO;
 import com.fsociety.domclient.fragment.HomeFragment;
 
@@ -69,6 +70,7 @@ public class GetPersonDtosAtLogin extends AsyncTask<Void, Void, List<PersonDTO>>
 					homeFragment.application.getSettings().setLoggedInPersonDTO(personDTO);
 					homeFragment.getStorageWriterService().saveObjectToFile(homeFragment.application.getSettings(), homeFragment.application.getConfiguration().getApplicationBinDirectory(), homeFragment.application.getConfiguration().getSettingsFilename());
 					homeFragment.setupViews();
+					((HomeActivity) homeFragment.getActivity()).resetMenu();
 				}
 			}
 		}

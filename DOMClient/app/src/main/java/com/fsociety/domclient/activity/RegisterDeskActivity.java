@@ -71,13 +71,15 @@ public class RegisterDeskActivity extends BaseActivity {
 			if (parcelables != null && parcelables.length > 0) {
 				//Toast.makeText(this, readTextFromMessage((NdefMessage) parcelables[0]), Toast.LENGTH_LONG).show();
 				PersonDTO personDTO = new PersonDTO();
-				//personDTO.setId(application.getSettings().getId());
 				DeskDTO deskDTO = new DeskDTO();
 				String nfcCode = readTextFromMessage((NdefMessage) parcelables[0]);
 				String codeType = nfcCode.split("=")[0];
 				String code = nfcCode.split("=")[1];
-				//personDTO.setDesk(deskDTO);
-				new UpdatePersonDeskById(this, application.getSettings().getLoggedInPersonDTO(), codeType, code).execute();
+				if (application.getSettings().getAdministerPersonDTO()==null) {
+					new UpdatePersonDeskById(this, application.getSettings().getLoggedInPersonDTO(), codeType, code).execute();
+				} else {
+					new UpdatePersonDeskById(this, application.getSettings().getAdministerPersonDTO(), codeType, code).execute();
+				}
 			} else {
 				Toast.makeText(this, "No NDEF messages found!", Toast.LENGTH_SHORT).show();
 			}

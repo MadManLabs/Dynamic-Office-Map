@@ -46,11 +46,51 @@
 				android:text="@string/home_activity_logged_as_text"
 				android:textSize="@dimen/text_appearance_smaller_medium"/>
 
+		<RelativeLayout
+				android:id="@+id/administerRelativeLayout"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="20dp"
+				android:layout_below="@+id/loggedAsTextView"
+				android:visibility="gone">
+
+			<TextView
+					android:id="@+id/administerUsernameTextView"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Choose the username which assets you want to administer..."
+					android:textSize="@dimen/text_appearance_smaller_medium"/>
+
+			<RelativeLayout
+					android:id="@+id/usernameToAdministerRelativeLayout"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignLeft="@+id/administerUsernameTextView"
+					android:layout_below="@+id/administerUsernameTextView">
+
+				<TextView
+						android:id="@+id/usernameToAdministerTextView"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_centerVertical="true"
+						android:text="@string/home_activity_username_text"
+						android:textSize="@dimen/text_appearance_smaller_medium"/>
+
+				<com.fsociety.domclient.ui.InstantAutoCompleteTextView
+						android:id="@+id/usernameToAdministerInstantAutoCompleteTextView"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginLeft="@dimen/spacing_between_views"
+						android:layout_toRightOf="@+id/usernameToAdministerTextView"
+						android:textSize="@dimen/text_appearance_smaller_medium"/>
+			</RelativeLayout>
+		</RelativeLayout>
+
 		<TextView
 				android:id="@+id/whatToDoTextView"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_below="@+id/loggedAsTextView"
+				android:layout_below="@+id/administerRelativeLayout"
 				android:layout_marginTop="20dp"
 				android:text="@string/home_activity_what_to_do_text"
 				android:textSize="@dimen/text_appearance_smaller_medium"/>
@@ -63,7 +103,7 @@
 				android:layout_below="@+id/whatToDoTextView"
 				android:layout_centerHorizontal="true"
 				android:layout_marginTop="25dp"
-				android:text="@string/home_activity_register_desk_text"
+				android:text="Register asset"
 				android:textSize="@dimen/text_appearance_smaller_medium"/>
 
 		<Button

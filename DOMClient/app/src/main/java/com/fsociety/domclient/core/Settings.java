@@ -4,6 +4,7 @@ import com.fsociety.domclient.dto.PersonDTO;
 
 public class Settings {
 	private PersonDTO loggedInPersonDTO;
+	private PersonDTO administerPersonDTO;
 	private boolean enableBeaconUpdates;
 	private String serverIp;
 	private String serverPort;
@@ -38,5 +39,13 @@ public class Settings {
 
 	public void setServerPort(String serverPort) {
 		this.serverPort = serverPort;
+	}
+
+	public PersonDTO getAdministerPersonDTO() {
+		return administerPersonDTO;
+	}
+
+	public void setAdministerPersonDTO(PersonDTO administerPersonDTO) {
+		this.administerPersonDTO = administerPersonDTO;
 	}
 }
