@@ -18,7 +18,8 @@
         <div class="form-group">
             <label for="assetCode" class="col-sm-2 control-label">Asset&nbsp;Code</label>
             <div class="col-sm-10">
-                <input ng-model="asset.code" class="form-control" id="assetCode" required>
+                <input ng-model="asset.code" name="assetCode" class="form-control" id="assetCode" required>
+                <span style="color: red;" ng-show="addFloor.assetCode.$dirty && addFloor.assetCode.$error.required">The asset code is required.</span>
             </div>
         </div>
         <div class="form-group">
