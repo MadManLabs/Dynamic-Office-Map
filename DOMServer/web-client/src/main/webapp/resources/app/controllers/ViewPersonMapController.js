@@ -4,6 +4,7 @@ angular.module('dynamicOfficeMapApp')
     .controller('ViewPersonMapController', function ($scope, $http, $uibModal, $routeParams, $window) {
 
         var personUsername = $routeParams.username;
+        var refresh = $routeParams.refresh;
         $scope.person = {};
 
         var canvas = new fabric.CanvasWithViewport('floorMap', { selection: false });
@@ -73,7 +74,9 @@ angular.module('dynamicOfficeMapApp')
 
                         });
 
-                        setTimeout(function () { $window.location.reload(); }, 5000);
+                        if (!refresh) {
+                            setTimeout(function () { $window.location.reload(); }, 5000);
+                        }
 
                     }
                 });

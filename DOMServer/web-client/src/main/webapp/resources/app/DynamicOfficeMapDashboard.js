@@ -44,6 +44,10 @@ angular
             templateUrl:  '../app/views/view_person_map.html',
             controller: 'ViewPersonMapController'
         }).
+        when('/personMap/:username/:refresh', {
+            templateUrl:  '../app/views/view_person_map.html',
+            controller: 'ViewPersonMapController'
+        }).
         when('/assetMap/:assetId', {
             templateUrl:  '../app/views/view_asset_map.html',
             controller: 'ViewAssetMapController'
