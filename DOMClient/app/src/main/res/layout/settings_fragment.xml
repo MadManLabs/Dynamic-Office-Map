@@ -38,11 +38,20 @@
 				android:text="Enable beacon updates"
 				android:textSize="@dimen/text_appearance_smaller_medium"/>
 
+		<CheckBox
+			android:id="@+id/enableWifiUpdatesCheckBox"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/enableBeaconUpdatesCheckBox"
+			android:layout_marginLeft="@dimen/view_horizontal_margin"
+			android:text="Enable WiFi updates"
+			android:textSize="@dimen/text_appearance_smaller_medium"/>
+
 		<TextView
 				android:id="@+id/connectionTextView"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_below="@+id/enableBeaconUpdatesCheckBox"
+				android:layout_below="@+id/enableWifiUpdatesCheckBox"
 				android:layout_marginTop="@dimen/category_view_top_margin"
 				android:text="Connection"
 				android:textSize="@dimen/text_appearance_smaller_medium"

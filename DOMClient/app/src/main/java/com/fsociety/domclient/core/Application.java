@@ -1,7 +1,13 @@
 package com.fsociety.domclient.core;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.wifi.ScanResult;
+import android.net.wifi.WifiManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.fsociety.domclient.activity.ProjectDetailsActivity_;
 import com.fsociety.domclient.rest.UpdatePersonDeskById;
@@ -16,11 +22,21 @@ import org.altbeacon.beacon.startup.RegionBootstrap;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EApplication;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 @EApplication
 public class Application extends android.app.Application implements BootstrapNotifier {
 	private static final String TAG = "Application";
 	private static Application instance = null;
 	private RegionBootstrap regionBootstrap;
+
+	WifiManager wifiManager;
+	WifiReceiver receiverWifi;
+	List<ScanResult> wifiList;
+	List<String> listOfProvider =new ArrayList<>();
 
 	@Bean
 	protected Configuration configuration;
@@ -48,6 +64,9 @@ public class Application extends android.app.Application implements BootstrapNot
 		if (!settings.getEnableBeaconUpdates()) {
 			regionBootstrap.disable();
 		}
+		wifiManager = (WifiManager) this.getSystemService(Context.WIFI_SERVICE);
+		wifiManager.setWifiEnabled(settings.isEnableWifiUpdates());
+		scaning();
 	}
 
 	public Configuration getConfiguration() {
@@ -73,6 +92,18 @@ public class Application extends android.app.Application implements BootstrapNot
 		regionBootstrap = new RegionBootstrap(this, region);
 	}
 
+	private void scaning() {
+		// wifi scaned value broadcast receiver
+		receiverWifi = new WifiReceiver();
+		// Register broadcast receiver
+		// Broacast receiver will automatically call when number of wifi
+		// connections changed
+		registerReceiver(receiverWifi, new IntentFilter(
+				WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+		wifiManager.startScan();
+
+	}
+
 	@Override
 	public void didDetermineStateForRegion(int arg0, Region arg1) {
 	}
@@ -95,4 +126,38 @@ public class Application extends android.app.Application implements BootstrapNot
 	public void didExitRegion(Region arg0) {
 		// Don't care
 	}
+
+	class WifiReceiver extends BroadcastReceiver {
+
+		// This method call when number of wifi connections changed
+		public void onReceive(Context c, Intent intent) {
+			wifiList = wifiManager.getScanResults();
+
+			/* sorting of wifi provider based on level */
+			Collections.sort(wifiList, new Comparator<ScanResult>() {
+				@Override
+				public int compare(ScanResult lhs, ScanResult rhs) {
+					return (lhs.level > rhs.level ? -1
+							: (lhs.level == rhs.level ? 0 : 1));
+				}
+			});
+			listOfProvider.clear();
+			String providerName;
+			for (int i = 0; i < wifiList.size(); i++) {
+				/* to get SSID and BSSID of wifi provider*/
+				providerName = wifiList.get(i).BSSID;
+				if ("90:f6:52:5a:1b:2c".equalsIgnoreCase(providerName)) {
+
+					listOfProvider.add(String.valueOf(wifiList.get(i).level));
+					if (wifiList.get(i).level > -47) {
+						if (settings.isEnableWifiUpdates()) {
+							new UpdatePersonDeskById(Application.getInstance(), getSettings().getLoggedInPersonDTO(), "BEACON", providerName).execute();
+						}
+					}
+				}
+			}
+			Log.e("WifiReceiver", listOfProvider.toString());
+		}
+	}
+
 }

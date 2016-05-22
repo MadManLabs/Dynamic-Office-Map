@@ -64,6 +64,8 @@ public class PersonServiceImpl implements PersonService {
         if (desk != null && person != null) {
             person.setPermanentDesk(desk);
             person = personRepository.save(person);
+            desk.setTenant(person);
+            assetRepository.save(desk);
         } else {
             throw new BadUrlException("The Desk or the Person were not found");
         }

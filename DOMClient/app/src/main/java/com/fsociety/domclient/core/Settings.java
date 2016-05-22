@@ -6,6 +6,7 @@ public class Settings {
 	private PersonDTO loggedInPersonDTO;
 	private PersonDTO administerPersonDTO;
 	private boolean enableBeaconUpdates;
+	private boolean enableWifiUpdates;
 	private String serverIp;
 	private String serverPort;
 
@@ -47,5 +48,17 @@ public class Settings {
 
 	public void setAdministerPersonDTO(PersonDTO administerPersonDTO) {
 		this.administerPersonDTO = administerPersonDTO;
+	}
+
+	public boolean isEnableBeaconUpdates() {
+		return enableBeaconUpdates;
+	}
+
+	public boolean isEnableWifiUpdates() {
+		return enableWifiUpdates;
+	}
+
+	public void setEnableWifiUpdates(boolean enableWifiUpdates) {
+		this.enableWifiUpdates = enableWifiUpdates;
 	}
 }
