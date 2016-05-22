@@ -65,7 +65,6 @@ public class Application extends android.app.Application implements BootstrapNot
 			regionBootstrap.disable();
 		}
 		wifiManager = (WifiManager) this.getSystemService(Context.WIFI_SERVICE);
-		wifiManager.setWifiEnabled(settings.isEnableWifiUpdates());
 		scaning();
 	}
 
