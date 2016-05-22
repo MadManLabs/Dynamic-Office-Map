@@ -19,13 +19,15 @@
         <div class="form-group">
             <label for="zoneName" class="col-sm-2 control-label">Zone&nbsp;Name</label>
             <div class="col-sm-10">
-                <input ng-model="zone.name" class="form-control" id="zoneName">
+                <input ng-model="zone.name" class="form-control" name="zoneName" id="zoneName" required>
+                <span style="color: red;" ng-show="addFloor.zoneName.$dirty && addFloor.zoneName.$error.required">The zone name is required.</span>
             </div>
         </div>
         <div class="form-group">
             <label for="zoneCode" class="col-sm-2 control-label">Zone&nbsp;Code</label>
             <div class="col-sm-10">
-                <input ng-model="zone.code" class="form-control" id="zoneCode" required>
+                <input ng-model="zone.code" class="form-control" name="zoneCode" id="zoneCode" required>
+                <span style="color: red;" ng-show="addFloor.zoneCode.$dirty && addFloor.zoneCode.$error.required">The zone code is required.</span>
             </div>
         </div>
     </form>
