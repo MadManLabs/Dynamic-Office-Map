@@ -18,6 +18,9 @@ public class SettingsFragment extends BaseFragment {
 
 	@ViewById(R.id.enableBeaconUpdatesCheckBox)
 	protected CheckBox enableBeaconUpdatesCheckBox;
+
+	@ViewById(R.id.enableWifiUpdatesCheckBox)
+	protected CheckBox enableWifiUpdatesCheckBox;
 	@ViewById(R.id.ipEditText)
 	protected EditText ipEditText;
 	@ViewById(R.id.portEditText)
@@ -27,6 +30,7 @@ public class SettingsFragment extends BaseFragment {
 	@AfterViews
 	protected void setupViews() {
 		enableBeaconUpdatesCheckBox.setChecked(application.getSettings().getEnableBeaconUpdates());
+		enableWifiUpdatesCheckBox.setChecked(application.getSettings().isEnableWifiUpdates());
 		ipEditText.setText(application.getSettings().getServerIp());
 		portEditText.setText(application.getSettings().getServerPort());
 	}
@@ -35,6 +39,7 @@ public class SettingsFragment extends BaseFragment {
 	public void onPause() {
 		super.onPause();
 		application.getSettings().setEnableBeaconUpdates(enableBeaconUpdatesCheckBox.isChecked());
+		application.getSettings().setEnableWifiUpdates(enableWifiUpdatesCheckBox.isChecked());
 		application.setupBeaconManager();
 		if (!application.getSettings().getEnableBeaconUpdates()) {
 			application.getRegionBootstrap().disable();
