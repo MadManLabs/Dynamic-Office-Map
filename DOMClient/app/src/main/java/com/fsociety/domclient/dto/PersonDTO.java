@@ -17,6 +17,7 @@ public class PersonDTO {
 	private String permanentDeskCode;
 	private String temporaryFloorName;
 	private String permanentFloorName;
+	private String role;
 
 	public String getEmail() {
 		return email;
@@ -148,5 +149,13 @@ public class PersonDTO {
 
 	public String getName() {
 		return firstName + " " + lastName;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 }
