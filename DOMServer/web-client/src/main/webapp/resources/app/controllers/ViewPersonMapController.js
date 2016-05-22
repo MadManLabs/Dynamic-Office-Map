@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dynamicOfficeMapApp')
-    .controller('ViewPersonMapController', function ($scope, $http, $uibModal, $routeParams, NotificationService) {
+    .controller('ViewPersonMapController', function ($scope, $http, $uibModal, $routeParams, $window) {
 
         var personUsername = $routeParams.username;
         $scope.person = {};
@@ -72,6 +72,9 @@ angular.module('dynamicOfficeMapApp')
                             }
 
                         });
+
+                        setTimeout(function () { $window.location.reload(); }, 5000);
+
                     }
                 });
             }
