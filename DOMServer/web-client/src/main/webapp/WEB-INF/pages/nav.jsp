@@ -15,6 +15,7 @@
                 <li><a href="<c:url value="/#/zones" />">Zones</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <img src="<c:url value="/resources/image/endava.png" />" alt="Logo" />
             </ul>
         </div>
     </div>
