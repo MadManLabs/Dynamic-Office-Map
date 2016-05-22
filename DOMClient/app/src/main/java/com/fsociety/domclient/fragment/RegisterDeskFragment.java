@@ -61,7 +61,7 @@ public class RegisterDeskFragment extends BaseFragment {
 				if (application.getSettings().getAdministerPersonDTO()==null) {
 					new UpdatePersonDeskById(this, application.getSettings().getLoggedInPersonDTO(), codeType, code).execute();
 				} else {
-					new UpdateAssetById(this, application.getSettings().getLoggedInPersonDTO(), codeType, code).execute();
+					new UpdateAssetById(this, application.getSettings().getAdministerPersonDTO(), codeType, code).execute();
 				}
 			} else if (resultCode == Activity.RESULT_CANCELED) {
 				Toast.makeText(getActivity(), getResources().getString(R.string.register_desk_activity_scan_cancelled_text), Toast.LENGTH_LONG).show();

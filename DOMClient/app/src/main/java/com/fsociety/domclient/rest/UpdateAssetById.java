@@ -61,12 +61,12 @@ public class UpdateAssetById extends AsyncTask<Void, Void, Boolean> {
 			String url = "";
 			if (registerDeskFragment != null) {
 				if (!codeType.equalsIgnoreCase(ZONE)) {
-					url = "http://" + registerDeskFragment.application.getSettings().getServerIp() + ":" + registerDeskFragment.application.getSettings().getServerPort() + "/"+code+"/tenant/"+personDTO.getId();
+					url = "http://" + registerDeskFragment.application.getSettings().getServerIp() + ":" + registerDeskFragment.application.getSettings().getServerPort() + "/api/asset/"+code+"/tenant/"+personDTO.getId();
 				}
 			}
 			if (registerDeskActivity != null) {
 				if (!codeType.equalsIgnoreCase(ZONE)) {
-					url = "http://" + registerDeskActivity.application.getSettings().getServerIp() + ":" + registerDeskActivity.application.getSettings().getServerPort() + "/"+code+"/tenant/"+personDTO.getId();
+					url = "http://" + registerDeskActivity.application.getSettings().getServerIp() + ":" + registerDeskActivity.application.getSettings().getServerPort() + "/api/asset/"+code+"/tenant/"+personDTO.getId();
 				}
 			}
 			RestTemplate restTemplate = new RestTemplate();
