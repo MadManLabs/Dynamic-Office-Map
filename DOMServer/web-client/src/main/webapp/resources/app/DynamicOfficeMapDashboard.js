@@ -20,6 +20,10 @@ angular
             templateUrl: 'app/views/update_floor.html',
             controller: 'UpdateFloorController'
         }).
+        when('/persons/:floorId', {
+            templateUrl: 'app/views/view_persons.html',
+            controller: 'ViewPersonsController'
+        }).
         when('/view/:floorId', {
             templateUrl: 'app/views/view_floor.html',
             controller: 'ViewFloorController'

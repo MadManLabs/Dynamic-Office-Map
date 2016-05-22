@@ -12,12 +12,15 @@
             <td>{{$index + 1}}</td>
             <td><a ng-click="goToFloor(floor.id)">{{floor.name}}</a></td>
             <td>{{floor.persons}}</td>
-            <td width="200">
+            <td width="250">
                 <button class="btn btn-primary btn-sm" type="button" ng-click="viewFloor(floor.id)">
                     <i class="fa fa-eye" aria-hidden="true"></i> Floor
                 </button>
                 <button class="btn btn-primary btn-sm" type="button" ng-click="viewAssets(floor.id)">
                     <i class="fa fa-desktop" aria-hidden="true"></i> Assets
+                </button>
+                <button class="btn btn-primary btn-sm" type="button" ng-click="viewPersons(floor.id)">
+                    <i class="fa fa-users" aria-hidden="true"></i> Persons
                 </button>
             </td>
         </tr>

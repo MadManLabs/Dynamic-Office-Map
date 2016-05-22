@@ -1,0 +1,23 @@
+<div class="container">
+    <button class="btn btn-primary" type="button" ng-click="addFloor()" style="float: right;">Add Floor</button>
+    <h1>Persons</h1>
+    <table class="table table-striped">
+        <thead>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+            <th>Permanent Zone</th>
+            <th>Temporary Zone</th>
+        </thead>
+        <tr ng-repeat="person in persons">
+            <td>{{$index + 1}}</td>
+            <td>{{ person.firstName }}</td>
+            <td>{{ person.lastName }}</td>
+            <td>{{ person.username }}</td>
+            <td>{{ person.permanentZoneName }}</td>
+            <td ng-show="person.temporaryZoneName">{{ person.temporaryZoneName }} / {{ person.temporaryFloorName }}</td>
+            <td ng-show="!person.temporaryZoneName">N/A</td>
+        </tr>
+    </table>
+</div>
