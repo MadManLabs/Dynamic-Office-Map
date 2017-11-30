@@ -23,6 +23,10 @@ node {
 		sh "docker-compose build"
 	}
 	
+	stage('Docker Network Disconnect') {
+		sh "${docker} network disconnect dynamicofficemap_default MongoDB || true"
+	}
+	
 	stage('Docker Deploy') {
 		sh "docker-compose down"
 		sh "docker-compose up -d"
