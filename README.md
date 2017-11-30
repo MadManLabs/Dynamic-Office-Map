@@ -9,19 +9,19 @@
 ## Deployment ## 
 - choose the deployment type that suits your needs
 
-### Jenkins Build & Deployment ###
+### (1) Jenkins Build & Deployment (using Docker) ###
 - create a container with MongoDB called "MongoDB"
 - manually create the MongoDB collection nammed "dynamicofficemap"
 - run the Jenkins file
 
-### Docker Deployment ###
+### (2) Docker Deployment ###
 - create a container with MongoDB called "MongoDB"
 - manually create the MongoDB collection nammed "dynamicofficemap"
 - build the applications
 - run docker-compose up -d
 - add MongoDB container on dynamicofficemap_default network
 
-### Manually Deployment ###
+### (3) Manually Deployment ###
 
 - install MongoDB, Tomcat and Maven
 - manually create the MongoDB collection nammed "dynamicofficemap"
