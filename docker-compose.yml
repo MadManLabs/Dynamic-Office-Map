@@ -6,3 +6,5 @@ services:
         container_name: dynamic-office-map
         ports:
             - 7070:8080
+        external_links:
+            - MongoDB
