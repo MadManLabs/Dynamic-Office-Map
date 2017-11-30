@@ -18,3 +18,16 @@
 - resources/image/coffee.png
 - resources/image/pc.png
 - resources/image/printer.png
+
+### Create User ###
+- users are created manually for now
+
+```
+{
+    "firstName" : "Florin",
+    "lastName" : "Stancu",
+    "email" : "florin@email.com",
+    "username" : "florin",
+    "mac" : "MAC-FLORIN",
+}
+```
