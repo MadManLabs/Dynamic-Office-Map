@@ -3,7 +3,7 @@
 - manually create the MongoDB collection nammed "dynamicofficemap"
 - deploy web-portal application to /
 - deploy server-api application to /api
-- create a host nammed "MongoDB" that should point to your MongoDB host
+- create a host nammed "MongoDB" that should point to your MongoDB host (or change the host on application.properties)
 
 ## Docker ##
 - create a container with MongoDB called "MongoDB"
@@ -20,7 +20,7 @@
 - resources/image/printer.png
 
 ### Create User ###
-- users are created manually for now
+- users are created manually for now directly on the database
 
 ```
 {
