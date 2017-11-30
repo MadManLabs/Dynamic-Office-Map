@@ -7,7 +7,7 @@
 - Adrian Tundrea
 
 ## Deployment ## 
-- chose the deployment type that suits your needs
+- choose the deployment type that suits your needs
 
 ### Jenkins Build & Deployment ###
 - create a container with MongoDB called "MongoDB"
