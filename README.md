@@ -14,7 +14,7 @@
 - manually create the MongoDB collection nammed "dynamicofficemap"
 - run the Jenkins file
 
-#### (2) Docker Deployment ####
+#### (2) Manually Docker Deployment ####
 - create a container with MongoDB called "MongoDB"
 - manually create the MongoDB collection nammed "dynamicofficemap"
 - build the applications
