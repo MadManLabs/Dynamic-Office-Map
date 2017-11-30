@@ -8,18 +8,24 @@
 
 ## Manually Deployment ##
 
+- install MongoDB, Tomcat and Maven
 - manually create the MongoDB collection nammed "dynamicofficemap"
+- build the applications with maven
 - deploy web-portal application to /
 - deploy server-api application to /api
 - create a host nammed "MongoDB" that should point to your MongoDB host (or change the host on application.properties)
 
-## Docker ##
+## Docker Deployment ##
 - create a container with MongoDB called "MongoDB"
 - manually create the MongoDB collection nammed "dynamicofficemap"
 - build the applications
 - run docker-compose up -d
+- add MongoDB container on dynamicofficemap_default network
 
-** check the Jenkins file for more details
+## Jenkins Deployment ##
+- create a container with MongoDB called "MongoDB"
+- manually create the MongoDB collection nammed "dynamicofficemap"
+- run the Jenkins file
 
 ### Asset Type Images ###
 - resources/image/asset.png
