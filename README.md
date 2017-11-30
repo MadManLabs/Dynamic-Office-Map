@@ -1,5 +1,13 @@
 # Dynamic-Office-Map
 
+## fsociety Team ##
+
+- Florin Stancu
+- Cosmin Aldea
+- Adrian Tundrea
+
+## Manually Deployment ##
+
 - manually create the MongoDB collection nammed "dynamicofficemap"
 - deploy web-portal application to /
 - deploy server-api application to /api
