@@ -16,4 +16,13 @@ node {
 		sh "${mvn} -f DOMServer/web-client/pom.xml clean package -U"
 	}
 	
+	stage('Docker Image Build') {
+		sh "docker-compose build"
+	}
+	
+	stage('Docker Deploy') {
+		sh "docker-compose down"
+		sh "docker-compose up -d"
+	}
+	
 }

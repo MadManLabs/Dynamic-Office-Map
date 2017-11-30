@@ -1,0 +1,8 @@
+version: '3'
+services:
+    dynamic-office-map:
+        build: .
+        image: endava/dynamic-office-map
+        container_name: dynamic-office-map
+        ports:
+            - 7070:8080
