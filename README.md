@@ -22,7 +22,7 @@
 - run docker-compose up -d
 - add MongoDB container on dynamicofficemap_default network
 
-## Jenkins Deployment ##
+## Jenkins Build ##
 - create a container with MongoDB called "MongoDB"
 - manually create the MongoDB collection nammed "dynamicofficemap"
 - run the Jenkins file
