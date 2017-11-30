@@ -6,7 +6,22 @@
 - Cosmin Aldea
 - Adrian Tundrea
 
-## Manually Deployment ##
+## Deployment ## 
+- chose the deployment type that suits your needs
+
+### Jenkins Build & Deployment ###
+- create a container with MongoDB called "MongoDB"
+- manually create the MongoDB collection nammed "dynamicofficemap"
+- run the Jenkins file
+
+### Docker Deployment ###
+- create a container with MongoDB called "MongoDB"
+- manually create the MongoDB collection nammed "dynamicofficemap"
+- build the applications
+- run docker-compose up -d
+- add MongoDB container on dynamicofficemap_default network
+
+### Manually Deployment ###
 
 - install MongoDB, Tomcat and Maven
 - manually create the MongoDB collection nammed "dynamicofficemap"
@@ -15,25 +30,13 @@
 - deploy server-api application to /api
 - create a host nammed "MongoDB" that should point to your MongoDB host (or change the host on application.properties)
 
-## Docker Deployment ##
-- create a container with MongoDB called "MongoDB"
-- manually create the MongoDB collection nammed "dynamicofficemap"
-- build the applications
-- run docker-compose up -d
-- add MongoDB container on dynamicofficemap_default network
-
-## Jenkins Build & Deployment ##
-- create a container with MongoDB called "MongoDB"
-- manually create the MongoDB collection nammed "dynamicofficemap"
-- run the Jenkins file
-
-### Asset Type Images ###
+## Asset Type Images ##
 - resources/image/asset.png
 - resources/image/coffee.png
 - resources/image/pc.png
 - resources/image/printer.png
 
-### Create User ###
+## Create User ##
 - users are created manually for now directly on the database
 
 ```
