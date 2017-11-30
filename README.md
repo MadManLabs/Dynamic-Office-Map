@@ -12,3 +12,9 @@
 - run docker-compose up -d
 
 ** check the Jenkins file for more details
+
+### Asset Type Images ###
+- resources/image/asset.png
+- resources/image/coffee.png
+- resources/image/pc.png
+- resources/image/printer.png
