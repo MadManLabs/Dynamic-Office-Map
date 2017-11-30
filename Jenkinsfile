@@ -1,11 +1,14 @@
 node {
-	def mvn
+	def mvn, docker
 	
 	stage('Preparation') {
 		checkout scm
 		
 		def mvnHome = tool 'M3'
 		mvn = "${mvnHome}/bin/mvn"
+		
+		def dockerHome = tool 'Docker'
+		docker = "${dockerHome}/bin/docker"
 	}
 	
 	stage('Build Server') {
@@ -23,6 +26,10 @@ node {
 	stage('Docker Deploy') {
 		sh "docker-compose down"
 		sh "docker-compose up -d"
+	}
+	
+	stage('Docker Network Connect') {
+		sh "${docker} network connect dynamicofficemap_default MongoDB || true"
 	}
 	
 }
