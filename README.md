@@ -1,5 +1,7 @@
 # Dynamic-Office-Map
 
+Awesome dynamic office map application. Made with Spring, AngularJS, MongoDB, Android, Docker and more in 20 hours during a hackathon.
+
 ## fsociety Team ##
 
 - Florin Stancu
