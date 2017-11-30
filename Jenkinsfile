@@ -1,5 +1,7 @@
 node {
 	def mvn, docker
+	def project = "dynamicofficemap"
+	def external_apps = ['MongoDB']
 	
 	stage('Preparation') {
 		checkout scm
@@ -24,16 +26,20 @@ node {
 	}
 	
 	stage('Docker Network Disconnect') {
-		sh "${docker} network disconnect dynamicofficemap_default MongoDB || true"
+		external_apps.each { app ->
+			sh "${docker} network disconnect ${project}_default ${app} || true"
+		}
 	}
 	
 	stage('Docker Deploy') {
-		sh "docker-compose down"
-		sh "docker-compose up -d"
+		sh "docker-compose -p ${project} down"
+		sh "docker-compose -p ${project} up -d"
 	}
 	
 	stage('Docker Network Connect') {
-		sh "${docker} network connect dynamicofficemap_default MongoDB || true"
+		external_apps.each { app ->
+			sh "${docker} network connect ${project}_default ${app} || true"
+		}
 	}
 	
 }
