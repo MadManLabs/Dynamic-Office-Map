@@ -28,6 +28,6 @@
     "lastName" : "Stancu",
     "email" : "florin@email.com",
     "username" : "florin",
-    "mac" : "MAC-FLORIN",
+    "mac" : "MAC-FLORIN"
 }
 ```
