@@ -10,4 +10,5 @@
 - manually create the MongoDB collection nammed "dynamicofficemap"
 - build the applications
 - run docker-compose up -d
+
 ** check the Jenkins file for more details
