@@ -1,7 +1,7 @@
 node {
 	def mvn, docker
-	def project = "dynamicofficemap"
-	def external_apps = ['MongoDB']
+	def project = 'dynamicofficemap'
+	def externalContainers = ['MongoDB']
 	
 	stage('Preparation') {
 		checkout scm
@@ -11,6 +11,12 @@ node {
 		
 		def dockerHome = tool 'Docker'
 		docker = "${dockerHome}/bin/docker"
+	}
+	
+	stage('Docker Start Required Containers') {
+		externalContainers.each { container ->
+			sh "${docker} start ${container} || true"
+		}
 	}
 	
 	stage('Build Server') {
@@ -26,8 +32,8 @@ node {
 	}
 	
 	stage('Docker Network Disconnect') {
-		external_apps.each { app ->
-			sh "${docker} network disconnect ${project}_default ${app} || true"
+		externalContainers.each { container ->
+			sh "${docker} network disconnect ${project}_default ${container} || true"
 		}
 	}
 	
@@ -37,8 +43,8 @@ node {
 	}
 	
 	stage('Docker Network Connect') {
-		external_apps.each { app ->
-			sh "${docker} network connect ${project}_default ${app} || true"
+		externalContainers.each { container ->
+			sh "${docker} network connect ${project}_default ${container} || true"
 		}
 	}
 	
