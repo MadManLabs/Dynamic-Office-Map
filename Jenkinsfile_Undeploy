@@ -1,0 +1,24 @@
+node {
+	def docker
+	def project = 'dynamicofficemap'
+	def externalContainers = ['MongoDB']
+	
+	stage('Preparation') {
+		checkout scm
+		
+		def dockerHome = tool 'Docker'
+		docker = "${dockerHome}/bin/docker"
+	}
+	
+	
+	stage('Docker Network Disconnect') {
+		externalContainers.each { container ->
+			sh "${docker} network disconnect ${project}_default ${container} || true"
+		}
+	}
+	
+	stage('Docker Undeploy') {
+		sh "docker-compose -p ${project} down"
+	}
+	
+}
