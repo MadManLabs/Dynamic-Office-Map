@@ -47,6 +47,7 @@ Awesome dynamic office map application. Made with Spring, AngularJS, MongoDB, An
     "lastName" : "Stancu",
     "email" : "florin@email.com",
     "username" : "florin",
+	"role": "PARTNER",
     "mac" : "MAC-FLORIN"
 }
 ```
