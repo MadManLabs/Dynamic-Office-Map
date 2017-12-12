@@ -62,3 +62,19 @@ Awesome dynamic office map application. Made with Spring, AngularJS, MongoDB, An
 	"type": "zone_or_asset"
 }
 ```
+
+## Create Project Entity ##
+- another manual thing :(
+
+```
+{
+	"name": "My Awesome Project",
+	"logo": "https://www.freelogodesign.org/img/logo-ex-4.png",
+	"description": "Just an awesome description for my project.",
+	"technologies": "Some awesome technologies here",
+	"zone" : {
+		"$ref" : "zone",
+		"$id" : ObjectId("5a1fed17e4b09a64013577d1")
+	}
+}
+```
