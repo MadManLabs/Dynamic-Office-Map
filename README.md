@@ -51,3 +51,14 @@ Awesome dynamic office map application. Made with Spring, AngularJS, MongoDB, An
 	"mac" : "MAC-FLORIN"
 }
 ```
+
+## Create Beacon Entity ##
+- another manual thing :( 
+
+```
+{
+	"uuid": "UUID_BEACON",
+	"code": "ZONE_CODE_OR_ASSET_CODE",
+	"type": "zone_or_asset"
+}
+```
