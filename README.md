@@ -43,11 +43,11 @@ Awesome dynamic office map application. Made with Spring, AngularJS, MongoDB, An
 
 ```
 {
-    "firstName" : "Florin",
-    "lastName" : "Stancu",
-    "email" : "florin@email.com",
-    "username" : "florin",
+	"firstName" : "Florin",
+	"lastName" : "Stancu",
+	"email" : "florin@email.com",
+	"username" : "florin",
 	"role": "PARTNER",
-    "mac" : "MAC-FLORIN"
+	"mac" : "MAC-FLORIN"
 }
 ```
